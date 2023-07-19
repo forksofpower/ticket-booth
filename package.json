@@ -1,0 +1,7 @@
+{
+  "name": "ticket-booth",
+  "packageManager": "yarn@3.6.1",
+  "workspaces": [
+    "./apps"
+  ]
+}
