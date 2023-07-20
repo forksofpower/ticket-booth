@@ -2,6 +2,9 @@
   "name": "ticket-booth",
   "packageManager": "yarn@3.6.1",
   "workspaces": [
-    "./apps"
-  ]
+    "apps/*"
+  ],
+  "dependencies": {
+    "@yarnpkg/pnpify": "^4.0.0-rc.48"
+  }
 }
