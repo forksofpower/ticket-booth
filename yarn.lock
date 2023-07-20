@@ -617,6 +617,7 @@ __metadata:
     "@types/express": ^4.17.17
     "@types/node": ^20.4.2
     express: ^4.18.2
+    express-list-routes: ^1.1.5
     express-validator: ^7.0.1
     ts-node-dev: ^2.0.0
     typescript: ^5.1.6
@@ -1107,6 +1108,13 @@ __metadata:
   version: 3.1.1
   resolution: "exponential-backoff@npm:3.1.1"
   checksum: 3d21519a4f8207c99f7457287291316306255a328770d320b401114ec8481986e4e467e854cb9914dd965e0a1ca810a23ccb559c642c88f4c7f55c55778a9b48
+  languageName: node
+  linkType: hard
+
+"express-list-routes@npm:^1.1.5":
+  version: 1.1.5
+  resolution: "express-list-routes@npm:1.1.5"
+  checksum: 2083dd99ec1510dc4a60a8eba45f0679f18b3330ad85467511ea335ef4c70125323e499d1a9eca83847cf53ab75136a97f7d5f96787e3b924b0359fa12c3d5fe
   languageName: node
   linkType: hard
 
