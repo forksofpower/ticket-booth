@@ -617,7 +617,7 @@ __metadata:
     "@types/express": ^4.17.17
     "@types/node": ^20.4.2
     express: ^4.18.2
-    express-list-routes: ^1.1.5
+    express-async-errors: ^3.1.1
     express-validator: ^7.0.1
     ts-node-dev: ^2.0.0
     typescript: ^5.1.6
@@ -1111,10 +1111,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"express-list-routes@npm:^1.1.5":
-  version: 1.1.5
-  resolution: "express-list-routes@npm:1.1.5"
-  checksum: 2083dd99ec1510dc4a60a8eba45f0679f18b3330ad85467511ea335ef4c70125323e499d1a9eca83847cf53ab75136a97f7d5f96787e3b924b0359fa12c3d5fe
+"express-async-errors@npm:^3.1.1":
+  version: 3.1.1
+  resolution: "express-async-errors@npm:3.1.1"
+  peerDependencies:
+    express: ^4.16.2
+  checksum: 3a2a6df8ea957185df401a239189d617715c38fba13fac8ced7750b25fa95b0ae656e5d1385d12d0e4dcd7997e90d070b218e86abcf8e68bb6048830b53ba668
   languageName: node
   linkType: hard
 

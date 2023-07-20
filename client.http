@@ -8,6 +8,6 @@ POST {{baseURL}}/users/signup HTTP/1.1
 Content-Type: application/json
 
 {
-  "email": "forksofpower",
+  "email": "forksofpower@gmail.com",
   "password": "12345678"
 }
