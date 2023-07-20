@@ -1,1 +1,13 @@
-GET http://ticket-booth.com/api/users/current HTTP/1.1
+@baseURL = http://ticket-booth.com/api
+
+### Get Current User
+GET {{baseURL}}/users/currentuser HTTP/1.1
+
+### Create New User
+POST {{baseURL}}/users/signup HTTP/1.1
+Content-Type: application/json
+
+{
+  "email": "forksofpower",
+  "password": "12345678"
+}
