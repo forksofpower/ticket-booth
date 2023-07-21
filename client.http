@@ -1,9 +1,15 @@
-@baseURL = http://ticket-booth.com/api
+@baseURL = https://ticket-booth.example.com/api
 
-### Get Current User
-GET {{baseURL}}/users/currentuser HTTP/1.1
+### Create a Random New User
+POST {{baseURL}}/users/signup HTTP/1.1
+Content-Type: application/json
 
-### Create New User
+{
+  "email": "{{$guid}}@gmail.com",
+  "password": "12345678"
+}
+
+### Create a New User
 POST {{baseURL}}/users/signup HTTP/1.1
 Content-Type: application/json
 
@@ -11,3 +17,18 @@ Content-Type: application/json
   "email": "forksofpower@gmail.com",
   "password": "12345678"
 }
+
+### Sign-In User
+POST {{baseURL}}/users/signin HTTP/1.1
+Content-Type: application/json
+
+{
+  "email": "forksofpower@gmail.com",
+  "password": "12345678"
+}
+
+### Get Current User
+GET {{baseURL}}/users/currentuser HTTP/1.1
+
+### Sign-Out Current User
+GET {{baseURL}}/users/signout HTTP/1.1
