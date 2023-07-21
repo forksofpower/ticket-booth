@@ -9,7 +9,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    - host: ticket-booth.com
+    - host: ticket-booth.example.com
       http:
         paths:
           - path: "/api/users/?(.*)"
