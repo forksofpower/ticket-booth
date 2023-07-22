@@ -20,35 +20,33 @@ router.post(
   ],
   validateRequest,
   async (req: Request, res: Response) => {
-    console.debug("Creating a user...");
     const { email, password } = req.body;
+
+    // Prevent duplicate emails
     const existingUser = await User.findOne({ email });
+    if (existingUser) throw new BadRequestError("email already in use");
 
-    if (existingUser) {
-      throw new BadRequestError("email already in use");
-    }
-
+    // Create User
     const user = User.build({
       email,
       password,
     });
     await user.save();
 
-    // Generate JWT
+    // Generate JWT and store on session
     const userJwt = jwt.sign(
       {
-        id: user.id,
-        email: user.email,
+        id: user!.id,
+        email: user!.email,
       },
       config.jwtSecret
     );
 
-    // store JWT on session
     req.session = {
       jwt: userJwt,
     };
 
-    console.debug("User created", user.id);
+    // console.debug("User created", user!.id);
     res.status(201).send(user);
   }
 );

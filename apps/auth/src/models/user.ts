@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import { Password } from "../services/password";
 
+// Types
 interface UserAttrs {
   email: string;
   password: string;
@@ -13,6 +14,17 @@ interface UserModel extends mongoose.Model<UserDoc> {
   build(attrs: UserAttrs): UserDoc;
 }
 
+/**
+ * __Mongoose Schema for User__
+ *
+ * Required for Mongoose/TS interop
+ * - schema using `mongoose#schema`
+ * - `Attrs` interface for inputs
+ * - `Doc` interface for mongoose Document properties +
+ *    model fields + virtuals
+ * - `Model` interface for mongoose Model properties + static method types
+ * - `build` static method for creating new instance of Model with correct types
+ */
 const userSchema = new mongoose.Schema(
   {
     email: {
@@ -26,6 +38,7 @@ const userSchema = new mongoose.Schema(
     },
   },
   {
+    // This really should be on a View and not on the Model
     toJSON: {
       transform(doc, ret) {
         ret.id = ret._id;
@@ -37,7 +50,7 @@ const userSchema = new mongoose.Schema(
   }
 );
 
-// Hooks
+// Model Hooks
 userSchema.pre("save", async function (done) {
   if (this.isModified("password")) {
     const hashed = await Password.toHash(this.password);
@@ -47,7 +60,7 @@ userSchema.pre("save", async function (done) {
   done();
 });
 
-// Model Methods
+// Model Static Methods
 userSchema.statics.build = (attrs: UserAttrs) => {
   return new User(attrs);
 };
