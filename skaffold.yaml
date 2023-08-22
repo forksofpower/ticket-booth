@@ -17,3 +17,12 @@ build:
         manual:
           - src: "src/**/*.ts"
             dest: .
+    - image: forksofpower/tb-client
+      context: ./apps/client
+      docker:
+        dockerfile: Dockerfile
+        target: development
+      sync:
+        manual:
+          - src: "src/**/*.{ts,tsx,md}}"
+            dest: .

@@ -12,10 +12,17 @@ spec:
     - host: ticket-booth.example.com
       http:
         paths:
-          - path: "/api/users/?(.*)"
+          - path: /api/users/?(.*)
             pathType: ImplementationSpecific
             backend:
               service:
                 name: auth-srv
                 port:
                   number: 4000
+          - path: /?(.*)
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: client-srv
+                port:
+                  number: 3000
