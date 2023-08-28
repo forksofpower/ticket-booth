@@ -1,7 +1,7 @@
-import { NextFunction, Request, Response } from 'express';
-import jwt from 'jsonwebtoken';
+import { NextFunction, Request, Response } from "express";
+import jwt from "jsonwebtoken";
 
-import { config } from '../config';
+import { config } from "../config";
 
 interface UserPayload {
   id: string;
@@ -9,6 +9,7 @@ interface UserPayload {
 }
 
 declare global {
+  // eslint-disable-next-line @typescript-eslint/no-namespace
   namespace Express {
     interface Request {
       currentUser?: UserPayload;

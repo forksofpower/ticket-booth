@@ -21,7 +21,7 @@ const ThemeToggle = () => {
       (isClient &&
         localStorage.getItem("theme") !== Theme.DARK &&
         detectDarkMode()) ||
-      false
+      false,
   );
 
   useEffect(() => {

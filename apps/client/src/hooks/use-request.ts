@@ -20,14 +20,14 @@ export const useRequest = <RequestBody = any, ResponseBody = any>({
   const [isLoading, setIsLoading] = React.useState(false);
 
   const doRequest = async (
-    body?: RequestBody
+    body?: RequestBody,
   ): Promise<ResponseBody | void> => {
     setIsLoading(true);
     try {
       const response = await axios[method]<RequestBody, ResponseBody>(
         url,
         body || initialBody,
-        config
+        config,
       );
       return response;
     } catch (error) {

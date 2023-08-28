@@ -1,14 +1,14 @@
-import 'express-async-errors';
+import "express-async-errors";
 
-import cookieSession from 'cookie-session';
+import cookieSession from "cookie-session";
 // 3rd Party
-import express from 'express';
+import express from "express";
 
 // Errors
-import { NotFoundError } from './errors/not-found-error';
+import { NotFoundError } from "./errors/not-found-error";
 // Middleware
-import { errorHandler } from './middleware/error-handler';
-import { routes } from './routes/';
+import { errorHandler } from "./middleware/error-handler";
+import { routes } from "./routes/";
 
 // Configure Auth Application
 const app = express();
@@ -26,7 +26,7 @@ app.use(
 // Configure Routes
 app.use(routes);
 // Configure Catch-All Route
-app.all("*", async (req, res) => {
+app.all("*", async () => {
   throw new NotFoundError();
 });
 // Configure Error Handling

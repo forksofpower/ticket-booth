@@ -1,6 +1,6 @@
-import dotenv from 'dotenv';
-import { MongoMemoryServer } from 'mongodb-memory-server';
-import mongoose from 'mongoose';
+import dotenv from "dotenv";
+import { MongoMemoryServer } from "mongodb-memory-server";
+import mongoose from "mongoose";
 
 dotenv.config({ path: "../../.env" });
 
@@ -21,7 +21,7 @@ beforeAll(async () => {
 beforeEach(async () => {
   const collections = await mongoose.connection.db.collections();
 
-  for (let collection of collections) {
+  for (const collection of collections) {
     await collection.deleteMany({});
   }
 });

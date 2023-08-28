@@ -1,6 +1,6 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
-import { Password } from '../services/password';
+import { Password } from "../services/password";
 
 // Types
 interface UserAttrs {
@@ -48,7 +48,7 @@ const userSchema = new mongoose.Schema(
       },
       versionKey: false,
     },
-  }
+  },
 );
 
 // Model Hooks

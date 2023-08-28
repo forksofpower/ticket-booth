@@ -52,7 +52,7 @@ export const SignInUserForm: React.FC<SignInUserFormProps> = () => {
             };
           }
           return acc;
-        }, {})
+        }, {}),
       );
     }
   }, [requestErrors]);

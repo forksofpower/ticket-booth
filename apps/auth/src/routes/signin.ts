@@ -1,12 +1,12 @@
-import express, { Request, Response } from 'express';
-import { body } from 'express-validator';
-import jwt from 'jsonwebtoken';
+import express, { Request, Response } from "express";
+import { body } from "express-validator";
+import jwt from "jsonwebtoken";
 
-import { config } from '../config';
-import { BadRequestError } from '../errors/bad-request-error';
-import { validateRequest } from '../middleware/validate-request';
-import { User } from '../models/user';
-import { Password } from '../services/password';
+import { config } from "../config";
+import { BadRequestError } from "../errors/bad-request-error";
+import { validateRequest } from "../middleware/validate-request";
+import { User } from "../models/user";
+import { Password } from "../services/password";
 
 const router = express.Router();
 
@@ -37,7 +37,7 @@ router.post(
         id: existingUser.id,
         email: existingUser.email,
       },
-      config.jwtSecret
+      config.jwtSecret,
     );
 
     // store JWT on session
@@ -46,7 +46,7 @@ router.post(
     };
 
     res.status(200).send(existingUser);
-  }
+  },
 );
 
 export { router as signinRouter };
