@@ -1,118 +1,167 @@
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
+import { Inter } from "next/font/google";
 
-const inter = Inter({ subsets: ['latin'] })
+import MainLayout from "@/components/layouts/main-layout";
 
-export default function Home() {
+import { NextPageWithLayout } from "./_app";
+
+const inter = Inter({ subsets: ["latin"] });
+const Home: NextPageWithLayout = () => {
   return (
-    <main
-      className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
-    >
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          go fuck yourself&nbsp;
-          <code className="font-mono font-bold">src/pages/index.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <div>
+      <div className="hero min-h-[50vh] bg-base-200">
+        <div className="hero-content flex-col lg:flex-row-reverse">
+          <div className="text-center lg:text-left">
+            <h1 className="text-5xl font-bold">Login now!</h1>
+            <p className="py-6">
+              Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
+              excepturi exercitationem quasi. In deleniti eaque aut repudiandae
+              et a id nisi.
+            </p>
+          </div>
+          <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+            <div className="card-body">
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Email</span>
+                </label>
+                <input
+                  type="text"
+                  placeholder="email"
+                  className="input input-bordered"
+                />
+              </div>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Password</span>
+                </label>
+                <input
+                  type="text"
+                  placeholder="password"
+                  className="input input-bordered"
+                />
+                <label className="label">
+                  <a href="#" className="label-text-alt link link-hover">
+                    Forgot password?
+                  </a>
+                </label>
+              </div>
+              <div className="form-control mt-6">
+                <button className="btn btn-primary">Login</button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
+      <div className="bg-primary-content">
+        <div className="container mx-auto px-4">
+          <div className="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 items-center gap-12">
+              <div>
+                <div className="relative flex justify-center items-center w-12 h-12 bg-white rounded-xl before:absolute before:-inset-px before:-z-[1] before:bg-gradient-to-br before:from-blue-600 before:via-transparent before:to-violet-600 before:rounded-xl dark:bg-slate-900">
+                  <svg
+                    className="w-7 h-7 text-blue-600 dark:text-blue-500"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    viewBox="0 0 16 16"
+                  >
+                    <path d="M11 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h6zM5 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H5z" />
+                    <path d="M8 14a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
+                  </svg>
+                </div>
+                <div className="mt-5">
+                  <h3 className="text-lg font-semibold text-gray-800 dark:text-white">
+                    Responsive
+                  </h3>
+                  <p className="mt-1 text-gray-600 dark:text-gray-400">
+                    Responsive, and mobile-first project on the web
+                  </p>
+                </div>
+              </div>
 
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700/10 after:dark:from-sky-900 after:dark:via-[#0141ff]/40 before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
+              <div>
+                <div className="relative flex justify-center items-center w-12 h-12 bg-white rounded-xl before:absolute before:-inset-px before:-z-[1] before:bg-gradient-to-br before:from-blue-600 before:via-transparent before:to-violet-600 before:rounded-xl dark:bg-slate-900">
+                  <svg
+                    className="w-7 h-7 text-blue-600 dark:text-blue-500"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    viewBox="0 0 16 16"
+                  >
+                    <path d="M9.465 10H12a2 2 0 1 1 0 4H9.465c.34-.588.535-1.271.535-2 0-.729-.195-1.412-.535-2z" />
+                    <path d="M6 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 1a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm.535-10a3.975 3.975 0 0 1-.409-1H4a1 1 0 0 1 0-2h2.126c.091-.355.23-.69.41-1H4a2 2 0 1 0 0 4h2.535z" />
+                    <path d="M14 4a4 4 0 1 1-8 0 4 4 0 0 1 8 0z" />
+                  </svg>
+                </div>
+                <div className="mt-5">
+                  <h3 className="text-lg font-semibold text-gray-800 dark:text-white">
+                    Customizable
+                  </h3>
+                  <p className="mt-1 text-gray-600 dark:text-gray-400">
+                    Components are easily customized and extendable
+                  </p>
+                </div>
+              </div>
+
+              <div>
+                <div className="relative flex justify-center items-center w-12 h-12 bg-white rounded-xl before:absolute before:-inset-px before:-z-[1] before:bg-gradient-to-br before:from-blue-600 before:via-transparent before:to-violet-600 before:rounded-xl dark:bg-slate-900">
+                  <svg
+                    className="w-7 h-7 text-blue-600 dark:text-blue-500"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    viewBox="0 0 16 16"
+                  >
+                    <path d="M5.5 7a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5zM5 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5z" />
+                    <path d="M9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.5L9.5 0zm0 1v2A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z" />
+                  </svg>
+                </div>
+                <div className="mt-5">
+                  <h3 className="text-lg font-semibold text-gray-800 dark:text-white">
+                    Documentation
+                  </h3>
+                  <p className="mt-1 text-gray-600 dark:text-gray-400">
+                    Every component and plugin is well documented
+                  </p>
+                </div>
+              </div>
+
+              <div>
+                <div className="relative flex justify-center items-center w-12 h-12 bg-white rounded-xl before:absolute before:-inset-px before:-z-[1] before:bg-gradient-to-br before:from-blue-600 before:via-transparent before:to-violet-600 before:rounded-xl dark:bg-slate-900">
+                  <svg
+                    className="w-7 h-7 text-blue-600 dark:text-blue-500"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    viewBox="0 0 16 16"
+                  >
+                    <path d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
+                    <path d="M5 6a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
+                  </svg>
+                </div>
+                <div className="mt-5">
+                  <h3 className="text-lg font-semibold text-gray-800 dark:text-white">
+                    24/7 Support
+                  </h3>
+                  <p className="mt-1 text-gray-600 dark:text-gray-400">
+                    Contact us 24 hours a day, 7 days a week
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
+    </div>
+  );
+};
 
-      <div className="mb-32 grid text-center lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
+Home.getLayout = function getLayout(page) {
+  return <MainLayout>{page}</MainLayout>;
+};
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Discover and deploy boilerplate example Next.js&nbsp;projects.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
-}
+export default Home;
