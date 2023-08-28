@@ -1,5 +1,6 @@
-import mongoose from "mongoose";
-import { Password } from "../services/password";
+import mongoose from 'mongoose';
+
+import { Password } from '../services/password';
 
 // Types
 interface UserAttrs {

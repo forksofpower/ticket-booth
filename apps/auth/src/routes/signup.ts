@@ -1,11 +1,12 @@
-import express, { Request, Response } from "express";
-import { body } from "express-validator";
-import { User } from "../models/user";
-import { BadRequestError } from "../errors/bad-request-error";
-import { validateRequest } from "../middleware/validate-request";
+import express, { Request, Response } from 'express';
+import { body } from 'express-validator';
+import jwt from 'jsonwebtoken';
 
-import jwt from "jsonwebtoken";
-import { config } from "../config";
+import { config } from '../config';
+import { RequestValidationError } from '../errors';
+import { BadRequestError } from '../errors/bad-request-error';
+import { validateRequest } from '../middleware/validate-request';
+import { User } from '../models/user';
 
 const router = express.Router();
 
@@ -24,7 +25,16 @@ router.post(
 
     // Prevent duplicate emails
     const existingUser = await User.findOne({ email });
-    if (existingUser) throw new BadRequestError("email already in use");
+    if (existingUser)
+      throw new RequestValidationError([
+        {
+          msg: "Email in use",
+          type: "field",
+          path: "email",
+          location: "body",
+          value: email,
+        },
+      ]);
 
     // Create User
     const user = User.build({

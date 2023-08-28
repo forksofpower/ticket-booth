@@ -1,6 +1,6 @@
-import { MongoMemoryServer } from "mongodb-memory-server";
-import mongoose from "mongoose";
-import dotenv from "dotenv";
+import dotenv from 'dotenv';
+import { MongoMemoryServer } from 'mongodb-memory-server';
+import mongoose from 'mongoose';
 
 dotenv.config({ path: "../../.env" });
 

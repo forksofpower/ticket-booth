@@ -1,4 +1,4 @@
-import { CustomError, SerializedError } from "./custom-error";
+import { CustomError, SerializedError } from './custom-error';
 
 export class BadRequestError extends CustomError {
   statusCode = 400;

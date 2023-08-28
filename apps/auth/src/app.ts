@@ -1,14 +1,14 @@
-// 3rd Party
-import express from "express";
-import "express-async-errors";
-import cookieSession from "cookie-session";
+import 'express-async-errors';
 
-// Middleware
-import { errorHandler } from "./middleware/error-handler";
-import { routes } from "./routes/";
+import cookieSession from 'cookie-session';
+// 3rd Party
+import express from 'express';
 
 // Errors
-import { NotFoundError } from "./errors/not-found-error";
+import { NotFoundError } from './errors/not-found-error';
+// Middleware
+import { errorHandler } from './middleware/error-handler';
+import { routes } from './routes/';
 
 // Configure Auth Application
 const app = express();

@@ -1,6 +1,7 @@
-import request from "supertest";
-import { app } from "../../app";
-import { authenticateUser } from "../../test/authenticate-user";
+import request from 'supertest';
+
+import { app } from '../../app';
+import { authenticateUser } from '../../test/authenticate-user';
 
 describe("Auth: Signin", () => {
   it("fails when an email that does not exist is supplied", async () => {

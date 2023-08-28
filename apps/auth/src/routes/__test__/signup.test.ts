@@ -1,6 +1,7 @@
-import request from "supertest";
-import { app } from "../../app";
-import { authenticateUser } from "../../test/authenticate-user";
+import request from 'supertest';
+
+import { app } from '../../app';
+import { authenticateUser } from '../../test/authenticate-user';
 
 describe("Auth: Signup", () => {
   it("returns a 201 on successful signup", async () => {

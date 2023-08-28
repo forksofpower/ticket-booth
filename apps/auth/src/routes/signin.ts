@@ -1,11 +1,13 @@
-import express, { Request, Response } from "express";
-import jwt from "jsonwebtoken";
-import { body } from "express-validator";
-import { validateRequest } from "../middleware/validate-request";
-import { User } from "../models/user";
-import { BadRequestError } from "../errors/bad-request-error";
-import { Password } from "../services/password";
-import { config } from "../config";
+import express, { Request, Response } from 'express';
+import { body } from 'express-validator';
+import jwt from 'jsonwebtoken';
+
+import { config } from '../config';
+import { BadRequestError } from '../errors/bad-request-error';
+import { validateRequest } from '../middleware/validate-request';
+import { User } from '../models/user';
+import { Password } from '../services/password';
+
 const router = express.Router();
 
 router.post(
