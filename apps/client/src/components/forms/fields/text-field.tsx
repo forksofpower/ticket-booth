@@ -11,23 +11,24 @@ export const TextField: React.FC<{
 }> = ({ error, field, label, placeholder, type, register, ...props }) => {
   return (
     <div className="form-control">
-      <label className="label">
+      <label className="label pt-0">
         <span className="text-base label-text">{label}</span>
       </label>
       <input
         type={type || "text"}
-        placeholder={placeholder || label}
+        placeholder={placeholder}
         className={cx("input input-bordered focus:input-primary", {
           "input-error": error,
         })}
         {...register}
         {...props}
       />
-      {error?.message && (
-        <label className="label">
-          <span className="label-text-alt text-error">{error.message}</span>
-        </label>
-      )}
+      <label className="label py-1">
+        <span className="label-text-alt"></span>
+        <p className="label-text-alt text-error min-h-[1rem]">
+          {error?.message && error.message}
+        </p>
+      </label>
     </div>
   );
 };

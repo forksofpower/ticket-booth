@@ -1,9 +1,13 @@
 import Link from "next/link";
-import React from "react";
+import React, { use } from "react";
+
+import { useCurrentUser } from "@/contexts/current-user";
 
 type Props = {};
 
 const NavBar = (props: Props) => {
+  const { currentUser, setCurrentUser } = useCurrentUser();
+
   return (
     <div className="navbar fixed top-0 z-50">
       <div className="flex-1">
@@ -43,14 +47,24 @@ const NavBar = (props: Props) => {
             </div>
           </div>
         </div> */}
-        <div>
+        {currentUser ? (
           <Link
-            href="/auth/signin"
+            href="/auth/signout"
             className="btn btn-ghost normal-case text-l"
+            // onClick={() => setCurrentUser(null)}
           >
-            Login
+            Sign Out
           </Link>
-        </div>
+        ) : (
+          <div>
+            <Link
+              href="/auth/signin"
+              className="btn btn-ghost normal-case text-l"
+            >
+              Sign In
+            </Link>
+          </div>
+        )}
         {/* <div className="dropdown dropdown-end">
           <label
             tabIndex={0}
