@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
 
-import { config } from "../config";
+// import { config } from "../config";
 
 interface UserPayload {
   id: string;
@@ -25,7 +25,7 @@ export const currentUser = (
     return next();
   }
   try {
-    const payload = jwt.verify(req.session.jwt, config.jwtSecret);
+    const payload = jwt.verify(req.session.jwt, process.env.JWT_SECRET!);
     req.currentUser = payload as UserPayload;
   } catch (error) {}
 

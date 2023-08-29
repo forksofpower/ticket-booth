@@ -4,10 +4,9 @@ import cookieSession from "cookie-session";
 // 3rd Party
 import express from "express";
 
-// Errors
-import { NotFoundError } from "./errors/not-found-error";
-// Middleware
-import { errorHandler } from "./middleware/error-handler";
+// Common
+import { errorHandler, NotFoundError } from "@forksofpower/ticketbooth-common";
+
 import { routes } from "./routes/";
 
 // Configure Auth Application

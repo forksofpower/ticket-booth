@@ -1,5 +1,5 @@
 import Router from "next/router";
-import React, { useEffect } from "react";
+import React from "react";
 
 import { RegisterUserFormInput } from "@/components/forms/register-user-form";
 import { SignInUserFormInput as UserSignInRequestBody } from "@/components/forms/signin-user-form";
@@ -11,9 +11,7 @@ import { useRequest } from "./use-request";
 
 const useAuth = () => {
   const { currentUser, setCurrentUser } = useCurrentUser();
-  const [isSignedIn, setIsSignedIn] = React.useState(
-    currentUser !== null || currentUser !== undefined
-  );
+  const [isSignedIn, setIsSignedIn] = React.useState(currentUser !== null);
 
   const { doRequest: doRegister, errors: registerErrors } = useRequest<
     RegisterUserFormInput,
