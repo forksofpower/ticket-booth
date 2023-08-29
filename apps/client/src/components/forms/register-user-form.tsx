@@ -23,7 +23,6 @@ export const RegisterUserForm = () => {
     register,
     handleSubmit,
     watch,
-    getValues,
     formState: { errors: formErrors },
   } = useForm<RegisterUserFormInput>();
 
@@ -35,6 +34,10 @@ export const RegisterUserForm = () => {
         headers: {
           "Content-Type": "application/json",
         },
+      },
+      onSuccess: () => {
+        // redirect to home page on successful registration
+        router.push(routes.root());
       },
     });
   useEffect(() => {
@@ -89,9 +92,6 @@ export const RegisterUserForm = () => {
       confirmPassword,
       fullName,
     });
-    if (res) {
-      router.push(routes.root());
-    }
   }
 
   return (
