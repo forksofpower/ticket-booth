@@ -1,10 +1,9 @@
 "use client";
-import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { FieldErrors, useForm } from "react-hook-form";
 
-import { useRequest } from "@/hooks/use-request";
-import { routes } from "@/routes";
+import useAuth from "@/hooks/use-auth";
+import { normalizeErrorResponsesByField } from "@/utils/errors";
 
 import { TextField } from "./fields/text-field";
 
@@ -13,29 +12,16 @@ export interface SignInUserFormInput {
   password: string;
 }
 
-export interface SignInUserFormProps {
-  // onSuccess: () => void;
-}
+export interface SignInUserFormProps {}
 
 export const SignInUserForm: React.FC<SignInUserFormProps> = () => {
   const [errors, setErrors] = useState<FieldErrors<SignInUserFormInput>>({});
-  const router = useRouter();
+  const { signIn, signInErrors: requestErrors } = useAuth();
   const {
     register,
     handleSubmit,
     formState: { errors: formErrors },
   } = useForm<SignInUserFormInput>();
-
-  const { doRequest: doUserSignInRequest, errors: requestErrors } =
-    useRequest<SignInUserFormInput>({
-      url: "/api/users/signin",
-      method: "post",
-      config: {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      },
-    });
 
   useEffect(() => {
     setErrors(formErrors);
@@ -43,17 +29,7 @@ export const SignInUserForm: React.FC<SignInUserFormProps> = () => {
 
   useEffect(() => {
     if (requestErrors) {
-      setErrors(
-        requestErrors.reduce<FieldErrors>((acc, e) => {
-          if (e.field) {
-            acc[e.field as string] = {
-              message: e.message,
-              type: "validate",
-            };
-          }
-          return acc;
-        }, {}),
-      );
+      setErrors(normalizeErrorResponsesByField(requestErrors));
     }
   }, [requestErrors]);
 
@@ -66,19 +42,16 @@ export const SignInUserForm: React.FC<SignInUserFormProps> = () => {
       }
     },
   });
+
   const passwordField = register("password", {
     required: "Password is required",
   });
 
   async function onSubmit({ email, password }: SignInUserFormInput) {
-    const res = await doUserSignInRequest({
+    await signIn({
       email,
       password,
     });
-    // TODO: find a better way to handle the success response
-    if (res.id) {
-      router.push(routes.root());
-    }
   }
 
   return (
@@ -96,7 +69,7 @@ export const SignInUserForm: React.FC<SignInUserFormProps> = () => {
         error={errors.password}
         register={passwordField}
       />
-      <div className="pt-4">
+      <div className="form-control">
         <button onClick={handleSubmit(onSubmit)} className="btn btn-primary">
           Sign In
         </button>

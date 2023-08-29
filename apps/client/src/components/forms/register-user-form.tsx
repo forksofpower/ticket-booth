@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { FieldErrors, useForm } from "react-hook-form";
 
+import useAuth from "@/hooks/use-auth";
 import { useRequest } from "@/hooks/use-request";
 import { routes } from "@/routes";
 import { normalizeErrorResponsesByField } from "@/utils/errors";
@@ -18,7 +19,8 @@ export interface RegisterUserFormInput {
 
 export const RegisterUserForm = () => {
   const [errors, setErrors] = useState<FieldErrors<RegisterUserFormInput>>({});
-  const router = useRouter();
+  const { register: registerUser, registerErrors: requestErrors } = useAuth();
+
   const {
     register,
     handleSubmit,
@@ -26,20 +28,20 @@ export const RegisterUserForm = () => {
     formState: { errors: formErrors },
   } = useForm<RegisterUserFormInput>();
 
-  const { doRequest: doUserRegisterRequest, errors: requestErrors } =
-    useRequest<RegisterUserFormInput>({
-      url: "/api/users/signup",
-      method: "post",
-      config: {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      },
-      onSuccess: () => {
-        // redirect to home page on successful registration
-        router.push(routes.root());
-      },
+  async function onSubmit({
+    email,
+    password,
+    confirmPassword,
+    fullName,
+  }: RegisterUserFormInput) {
+    await registerUser({
+      email,
+      password,
+      confirmPassword,
+      fullName,
     });
+  }
+
   useEffect(() => {
     setErrors(formErrors);
   }, [formErrors]);
@@ -80,31 +82,19 @@ export const RegisterUserForm = () => {
     },
   });
 
-  async function onSubmit({
-    email,
-    password,
-    confirmPassword,
-    fullName,
-  }: RegisterUserFormInput) {
-    const res = await doUserRegisterRequest({
-      email,
-      password,
-      confirmPassword,
-      fullName,
-    });
-  }
-
   return (
-    <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
+    <form className="" onSubmit={handleSubmit(onSubmit)}>
       <TextField
         field="fullName"
         label="Full Name"
+        placeholder=""
         error={errors.fullName}
         register={fullNameField}
       />
       <TextField
         field="email"
         label="Email Address"
+        placeholder=""
         error={errors.email}
         register={emailField}
       />
@@ -112,6 +102,7 @@ export const RegisterUserForm = () => {
         field="password"
         label="Password"
         type="password"
+        placeholder=""
         error={errors.password}
         register={passwordField}
       />
@@ -119,11 +110,12 @@ export const RegisterUserForm = () => {
         field="confirmPassword"
         label="Confirm Password"
         type="password"
+        placeholder=""
         error={errors.confirmPassword}
         register={confirmPasswordField}
       />
 
-      <div className="pt-4">
+      <div className="form-control">
         <button onClick={handleSubmit(onSubmit)} className="btn btn-primary">
           Register
         </button>
