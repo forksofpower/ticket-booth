@@ -76,7 +76,7 @@ export const RegisterUserForm = () => {
   });
 
   return (
-    <form className="" onSubmit={handleSubmit(onSubmit)} autoComplete="false">
+    <form autoComplete="false">
       <TextField
         field="email"
         placeholder="Email Address"

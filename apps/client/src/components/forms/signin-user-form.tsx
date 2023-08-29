@@ -55,7 +55,7 @@ export const SignInUserForm: React.FC<SignInUserFormProps> = () => {
   }
 
   return (
-    <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
+    <form className="space-y-4">
       <TextField
         field="email"
         label="Email Address"

@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 
 import RegisterUserForm from "@/components/forms/register-user-form";
 import MainLayout from "@/components/layouts/main-layout";
-import { useCurrentUser } from "@/contexts/current-user";
+import useAuth from "@/hooks/use-auth";
 import { User } from "@/types/user";
 
 import { NextPageWithLayout } from "./_app";
@@ -14,11 +14,11 @@ interface HomeProps {
 
 const inter = Inter({ subsets: ["latin"] });
 const Home: NextPageWithLayout<HomeProps> = () => {
-  const { currentUser } = useCurrentUser();
+  const { isSignedIn } = useAuth();
   return (
     <div>
       <div className="hero min-h-[60vh] bg-base-200">
-        {!currentUser ? (
+        {!isSignedIn ? (
           <div className="hero-content flex-col lg:flex-row-reverse">
             <div className="text-center lg:text-left">
               <h1 className="text-5xl font-bold">Register now!</h1>

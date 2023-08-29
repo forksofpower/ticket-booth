@@ -10,9 +10,10 @@ import { User } from "@/types/user";
 import { useRequest } from "./use-request";
 
 const useAuth = () => {
-  const [isSignedIn, setIsSignedIn] = React.useState(false);
-
   const { currentUser, setCurrentUser } = useCurrentUser();
+  const [isSignedIn, setIsSignedIn] = React.useState(
+    currentUser !== null || currentUser !== undefined
+  );
 
   const { doRequest: doRegister, errors: registerErrors } = useRequest<
     RegisterUserFormInput,
@@ -49,24 +50,27 @@ const useAuth = () => {
     method: "get",
     onSuccess: () => {
       setCurrentUser(null);
+      setIsSignedIn(false);
       Router.push(routes.root());
     },
   });
 
   async function register(body: RegisterUserFormInput, redirectTo?: string) {
     const user = await doRegister(body);
-    if (user) setCurrentUser(user);
+    if (user) {
+      setCurrentUser(user);
+      setIsSignedIn(true);
+    }
     Router.push(redirectTo || routes.root());
   }
   async function signIn(body: UserSignInRequestBody, redirectTo?: string) {
     const user = await doSignIn(body);
-    if (user) setCurrentUser(user);
+    if (user) {
+      setCurrentUser(user);
+      setIsSignedIn(true);
+    }
     Router.push(redirectTo || routes.root());
   }
-
-  useEffect(() => {
-    setIsSignedIn(currentUser !== null);
-  }, [currentUser]);
 
   return {
     signIn,
