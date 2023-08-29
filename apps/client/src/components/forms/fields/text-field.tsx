@@ -1,19 +1,32 @@
 import cx from "classnames";
+import { use } from "react";
 import { FieldError, UseFormRegisterReturn } from "react-hook-form";
 
 export const TextField: React.FC<{
   field: string;
-  label: string;
+  label?: string;
   register: UseFormRegisterReturn;
+  errorPlacement?: "left" | "right";
   placeholder?: string;
   type?: "text" | "password";
   error?: FieldError;
-}> = ({ error, field, label, placeholder, type, register, ...props }) => {
+}> = ({
+  error,
+  field,
+  label,
+  placeholder,
+  errorPlacement = "left",
+  type,
+  register,
+  ...props
+}) => {
   return (
     <div className="form-control">
-      <label className="label pt-0">
-        <span className="text-base label-text">{label}</span>
-      </label>
+      {label && (
+        <label className="label pt-0">
+          <span className="text-base label-text">{label}</span>
+        </label>
+      )}
       <input
         type={type || "text"}
         placeholder={placeholder}
@@ -23,8 +36,8 @@ export const TextField: React.FC<{
         {...register}
         {...props}
       />
-      <label className="label py-1">
-        <span className="label-text-alt"></span>
+      <label className="label">
+        {placeholder === "right" && <span className="label-text-alt"></span>}
         <p className="label-text-alt text-error min-h-[1rem]">
           {error?.message && error.message}
         </p>

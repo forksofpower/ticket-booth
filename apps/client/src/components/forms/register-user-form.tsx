@@ -1,17 +1,13 @@
 "use client";
-import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { FieldErrors, useForm } from "react-hook-form";
 
 import useAuth from "@/hooks/use-auth";
-import { useRequest } from "@/hooks/use-request";
-import { routes } from "@/routes";
 import { normalizeErrorResponsesByField } from "@/utils/errors";
 
 import { TextField } from "./fields/text-field";
 
 export interface RegisterUserFormInput {
-  fullName: string;
   email: string;
   password: string;
   confirmPassword: string;
@@ -32,13 +28,11 @@ export const RegisterUserForm = () => {
     email,
     password,
     confirmPassword,
-    fullName,
   }: RegisterUserFormInput) {
     await registerUser({
       email,
       password,
       confirmPassword,
-      fullName,
     });
   }
 
@@ -53,7 +47,6 @@ export const RegisterUserForm = () => {
   }, [requestErrors]);
 
   // register form fields with validation rules
-  const fullNameField = register("fullName", { required: "Name is required" });
   const emailField = register("email", {
     required: "Email is required",
     validate: (value) => {
@@ -83,39 +76,29 @@ export const RegisterUserForm = () => {
   });
 
   return (
-    <form className="" onSubmit={handleSubmit(onSubmit)}>
-      <TextField
-        field="fullName"
-        label="Full Name"
-        placeholder=""
-        error={errors.fullName}
-        register={fullNameField}
-      />
+    <form className="" onSubmit={handleSubmit(onSubmit)} autoComplete="false">
       <TextField
         field="email"
-        label="Email Address"
-        placeholder=""
+        placeholder="Email Address"
         error={errors.email}
         register={emailField}
       />
       <TextField
         field="password"
-        label="Password"
+        placeholder="Password"
         type="password"
-        placeholder=""
         error={errors.password}
         register={passwordField}
       />
       <TextField
         field="confirmPassword"
-        label="Confirm Password"
+        placeholder="Confirm Password"
         type="password"
-        placeholder=""
         error={errors.confirmPassword}
         register={confirmPasswordField}
       />
 
-      <div className="form-control">
+      <div className="form-control pt-3">
         <button onClick={handleSubmit(onSubmit)} className="btn btn-primary">
           Register
         </button>
