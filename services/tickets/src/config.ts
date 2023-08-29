@@ -1,4 +1,7 @@
 type Config = {
+  mongodb: {
+    uri: string;
+  };
   server: {
     port: number;
   };
@@ -6,6 +9,9 @@ type Config = {
 };
 
 export const config: Config = {
+  mongodb: {
+    uri: process.env.MONGO_URI!,
+  },
   server: {
     port: Number(process.env.PORT!),
   },

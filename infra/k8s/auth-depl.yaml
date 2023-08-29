@@ -20,6 +20,8 @@ spec:
               memory: "1Gi"
               cpu: "1.0"
           env:
+            - name: MONGO_URI
+              value: mongodb://auth-mongo-srv:27017/auth
             - name: JWT_SECRET
               valueFrom:
                 secretKeyRef:
