@@ -9,16 +9,16 @@ build:
   local:
     push: false
   artifacts:
-    - image: forksofpower/tb-auth
-      context: ./apps/auth
+    - image: ticket-booth/auth-service
+      context: ./services/auth
       docker:
         dockerfile: Dockerfile
       sync:
         manual:
           - src: "src/**/*.ts"
             dest: .
-    - image: forksofpower/tb-client
-      context: ./apps/client
+    - image: ticket-booth/client-service
+      context: ./services/client
       docker:
         dockerfile: Dockerfile
         target: development

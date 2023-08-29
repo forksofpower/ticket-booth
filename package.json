@@ -3,7 +3,7 @@
   "packageManager": "yarn@3.6.1",
   "workspaces": [
     "services/*",
-    "libs/*"
+    "lib/*"
   ],
   "dependencies": {
     "@yarnpkg/pnpify": "^4.0.0-rc.48"

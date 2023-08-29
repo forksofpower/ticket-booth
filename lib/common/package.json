@@ -1,0 +1,20 @@
+{
+  "name": "@ticketbooth/common",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./build/index.js",
+  "types": "./build/index.d.ts",
+  "author": "",
+  "license": "ISC",
+  "files": [
+    "build/**/*"
+  ],
+  "scripts": {
+    "clean": "rimraf ./build/*",
+    "build": "npm run clean && tsc"
+  },
+  "devDependencies": {
+    "rimraf": "^5.0.1",
+    "typescript": "^5.2.2"
+  }
+}
