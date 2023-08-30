@@ -20,13 +20,6 @@ spec:
                 name: auth-srv
                 port:
                   number: 4000
-          - path: /?(.*)
-            pathType: ImplementationSpecific
-            backend:
-              service:
-                name: client-srv
-                port:
-                  number: 3000
           - path: /api/tickets/?(.*)
             pathType: ImplementationSpecific
             backend:
@@ -34,3 +27,11 @@ spec:
                 name: tickets-srv
                 port:
                   number: 4000
+          # Catch-all for all other requests #
+          - path: /?(.*)
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: client-srv
+                port:
+                  number: 3000
