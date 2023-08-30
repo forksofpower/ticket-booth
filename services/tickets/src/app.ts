@@ -3,7 +3,7 @@ import "express-async-errors";
 import cookieSession from "cookie-session";
 import express from "express";
 
-import { errorHandler, NotFoundError } from "@forksofpower/ticketbooth-common";
+import { currentUser, errorHandler, NotFoundError } from "@forksofpower/ticketbooth-common";
 
 import { routes } from "./routes";
 
@@ -21,8 +21,10 @@ app.use(
     secure: process.env.NODE_ENV !== "test",
   })
 );
+// Attach currentUser to request
+app.use(currentUser);
 // Configure Routes
-// app.use(routes);
+app.use(routes);
 // Configure Catch-All Route
 app.all("*", async () => {
   throw new NotFoundError();
