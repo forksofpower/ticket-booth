@@ -1,7 +1,6 @@
 import jwt from "jsonwebtoken";
-import request from "supertest";
+import mongoose from "mongoose";
 
-import { app } from "../app";
 import { config } from "../config";
 
 /**
@@ -11,7 +10,7 @@ import { config } from "../config";
 export const authenticateUser = () => {
   // build a JWT payload
   const payload = {
-    id: "987234987234",
+    id: new mongoose.Types.ObjectId().toHexString(),
     email: "test@test.com",
   };
   // create the JWT
