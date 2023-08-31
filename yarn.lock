@@ -1016,6 +1016,7 @@ __metadata:
     express: ^4.18.2
     express-validator: ^7.0.1
     jsonwebtoken: ^9.0.1
+    node-nats-streaming: ^0.3.2
     rimraf: ^5.0.1
     typescript: ^5.2.2
   languageName: unknown
@@ -5342,6 +5343,13 @@ daisyui@latest:
   languageName: node
   linkType: hard
 
+"google-protobuf@npm:^3.11.2":
+  version: 3.21.2
+  resolution: "google-protobuf@npm:3.21.2"
+  checksum: 3caa2e1e2654714cc1a201ac5e5faabcaa48f5fba3d8ff9b64ca66fe19e4e0506b94053f32eddc77bf3a7a47ac1660315c6744185c1e2bb27654fd76fe91b988
+  languageName: node
+  linkType: hard
+
 "gopd@npm:^1.0.1":
   version: 1.0.1
   resolution: "gopd@npm:1.0.1"
@@ -7228,6 +7236,21 @@ daisyui@latest:
   languageName: node
   linkType: hard
 
+"nats@npm:^1.4.9":
+  version: 1.4.12
+  resolution: "nats@npm:1.4.12"
+  dependencies:
+    nuid: ^1.1.4
+    ts-nkeys: ^1.0.16
+  bin:
+    node-pub: examples/node-pub
+    node-reply: examples/node-reply
+    node-req: examples/node-req
+    node-sub: examples/node-sub
+  checksum: 7c0f8daffdeeb22ae35a7237435ba44e0e7367c543da2b27f558ce8206f99cac868982cdeccdd25ca6e5290efcae13d71f58ea6673416813d4a13ee6e247a80c
+  languageName: node
+  linkType: hard
+
 "natural-compare@npm:^1.4.0":
   version: 1.4.0
   resolution: "natural-compare@npm:1.4.0"
@@ -7338,6 +7361,20 @@ daisyui@latest:
   languageName: node
   linkType: hard
 
+"node-nats-streaming@npm:^0.3.2":
+  version: 0.3.2
+  resolution: "node-nats-streaming@npm:0.3.2"
+  dependencies:
+    google-protobuf: ^3.11.2
+    nats: ^1.4.9
+    nuid: ^1.1.4
+  bin:
+    node-stan-pub: examples/stan-pub.js
+    node-stan-sub: examples/stan-sub.js
+  checksum: e06842d765e8ea3b665becb54aa84c1fa6cfb0a5140cd27a14755787ce54e8b682c5fb8c07eb00ded1fff6c09e61ce41eb52faec8ddc2383dc9755604d43447b
+  languageName: node
+  linkType: hard
+
 "node-releases@npm:^2.0.13":
   version: 2.0.13
   resolution: "node-releases@npm:2.0.13"
@@ -7395,6 +7432,13 @@ daisyui@latest:
     gauge: ^4.0.3
     set-blocking: ^2.0.0
   checksum: ae238cd264a1c3f22091cdd9e2b106f684297d3c184f1146984ecbe18aaa86343953f26b9520dedd1b1372bc0316905b736c1932d778dbeb1fcf5a1001390e2a
+  languageName: node
+  linkType: hard
+
+"nuid@npm:^1.1.4":
+  version: 1.1.6
+  resolution: "nuid@npm:1.1.6"
+  checksum: 6e994707135a853c7f0b1024498eb5f29e52d19b5037abe9e2732e678fffc923edb339d7df45dfceb46706403b55c20213ce1aa5a4c18a03b1a670ba9e67c08a
   languageName: node
   linkType: hard
 
@@ -9034,6 +9078,15 @@ daisyui@latest:
   languageName: node
   linkType: hard
 
+"ts-nkeys@npm:^1.0.16":
+  version: 1.0.16
+  resolution: "ts-nkeys@npm:1.0.16"
+  dependencies:
+    tweetnacl: ^1.0.3
+  checksum: ba043b0aa54283f4f26a50ba5cefc8e691f403f82c505df69a5c9d2580804355c971a9a47182d96c9cc705176505785cfc0bac1ea395c269b8786e3106e72e19
+  languageName: node
+  linkType: hard
+
 "ts-node-dev@npm:^2.0.0":
   version: 2.0.0
   resolution: "ts-node-dev@npm:2.0.0"
@@ -9159,6 +9212,13 @@ daisyui@latest:
   version: 0.0.6
   resolution: "tunnel@npm:0.0.6"
   checksum: c362948df9ad34b649b5585e54ce2838fa583aa3037091aaed66793c65b423a264e5229f0d7e9a95513a795ac2bd4cb72cda7e89a74313f182c1e9ae0b0994fa
+  languageName: node
+  linkType: hard
+
+"tweetnacl@npm:^1.0.3":
+  version: 1.0.3
+  resolution: "tweetnacl@npm:1.0.3"
+  checksum: e4a57cac188f0c53f24c7a33279e223618a2bfb5fea426231991652a13247bea06b081fd745d71291fcae0f4428d29beba1b984b1f1ce6f66b06a6d1ab90645c
   languageName: node
   linkType: hard
 
