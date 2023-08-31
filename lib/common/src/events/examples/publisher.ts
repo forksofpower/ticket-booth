@@ -17,7 +17,7 @@ stan.on("connect", async () => {
       id: "123",
       title: "concert",
       price: 20,
-      userId: "1234",
+      userId: "123455",
     });
   } catch (err) {
     console.error(err);

@@ -47,6 +47,10 @@
     "setupFilesAfterEnv": [
       "./src/test/setup.ts"
     ],
+    "ignorePatterns": [
+      "./node_modules/",
+      "./build/"
+    ],
     "collectCoverage": true
   }
 }

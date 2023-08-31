@@ -4,6 +4,8 @@ import mongoose from "mongoose";
 
 dotenv.config({ path: "../../.env" });
 
+jest.mock("../nats-wrapper");
+
 let mongo: MongoMemoryServer;
 /**
  * Connect to a new in-memory database before running any tests.

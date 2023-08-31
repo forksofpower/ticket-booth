@@ -14,14 +14,14 @@ type Config = {
 
 export const config: Config = {
   mongodb: {
-    uri: process.env.MONGO_URI!,
+    uri: getEnv("MONGO_URI"),
   },
   server: {
-    port: Number(process.env.PORT!),
+    port: Number(getEnv("PORT")),
   },
   nats: {
-    url: process.env.STAN_URL || "http://nats-srv:4222",
-    clusterId: process.env.STAN_CLUSTER_ID || "ticketbooth",
+    url: getEnv("NATS_URL"),
+    clusterId: getEnv("NATS_CLUSTER_ID"),
   },
-  jwtSecret: process.env.JWT_SECRET!,
+  jwtSecret: getEnv("JWT_SECRET"),
 };
