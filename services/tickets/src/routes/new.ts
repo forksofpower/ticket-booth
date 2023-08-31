@@ -3,6 +3,7 @@ import { body } from "express-validator";
 
 import { requireAuth, validateRequest } from "@forksofpower/ticketbooth-common";
 
+// import { TicketCreatedPublisher } from "@forksofpower/ticketbooth-common"
 import { Ticket } from "../models/ticket";
 
 const router = express.Router();
