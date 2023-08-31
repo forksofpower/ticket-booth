@@ -652,7 +652,7 @@
   version "8.48.0"
 
 "@forksofpower/ticketbooth-common@^1.0.6", "@forksofpower/ticketbooth-common@^1.0.8", "@forksofpower/ticketbooth-common@file:/home/patrick/dev/microservices-learning/ticket-booth/lib/common":
-  version "1.0.12"
+  version "1.0.13"
   resolved "file:lib/common"
   dependencies:
     "@types/cookie-session" "^2.0.44"

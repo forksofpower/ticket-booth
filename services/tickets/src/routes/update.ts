@@ -2,7 +2,11 @@ import express, { Request, Response } from "express";
 import { body } from "express-validator";
 
 import {
-    NotAuthorizedError, NotFoundError, requireAuth, TicketUpdatedPublisher, validateRequest
+  NotAuthorizedError,
+  NotFoundError,
+  requireAuth,
+  TicketUpdatedPublisher,
+  validateRequest,
 } from "@forksofpower/ticketbooth-common";
 
 import { Ticket } from "../models/ticket";
