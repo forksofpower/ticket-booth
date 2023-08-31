@@ -3912,16 +3912,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-daisyui@latest:
-  version: 3.6.3
-  resolution: "daisyui@npm:3.6.3"
+"daisyui@npm:latest":
+  version: 3.6.4
+  resolution: "daisyui@npm:3.6.4"
   dependencies:
     colord: ^2.9
     css-selector-tokenizer: ^0.8
     postcss: ^8
     postcss-js: ^4
     tailwindcss: ^3
-  checksum: f1efa69a01d2fad1edab593b25fe3cac9c4f0290b8102bc1681b99ffe7a093a2747144605e49de2038efd3401df33e4fff14eb9354ea0049138bc0d9383e7bc1
+  checksum: d0830456870c5e420ce42919305b4fa851f79d1ca6d1f3b7ad1e83a07cbe21fc7b20fa77dbb6f5d7971fcd551f7609ee07ca68545db802f8f0d29266e78bd656
   languageName: node
   linkType: hard
 
@@ -7638,6 +7638,38 @@ daisyui@latest:
   checksum: 09281999441f2fe9c33a5eeab76700795365a061563d66b098923eb719251a42bdbe432790d35064d0816ead9296dbeb1ad51a733edf4167c96bd5d0882e428a
   languageName: node
   linkType: hard
+
+"orders@workspace:services/orders":
+  version: 0.0.0-use.local
+  resolution: "orders@workspace:services/orders"
+  dependencies:
+    "@forksofpower/ticketbooth-common": ^1.0.8
+    "@types/cookie-session": ^2.0.44
+    "@types/express": ^4.17.17
+    "@types/jest": ^29.5.3
+    "@types/jsonwebtoken": ^9.0.2
+    "@types/mongoose": ^5.11.97
+    "@types/node": ^20.4.2
+    "@types/supertest": ^2.0.12
+    "@typescript-eslint/eslint-plugin": ^6.4.1
+    "@typescript-eslint/parser": ^6.4.1
+    cookie-session: ^2.0.0
+    dotenv: ^16.3.1
+    eslint: ^8.48.0
+    express: ^4.18.2
+    express-async-errors: ^3.1.1
+    express-validator: ^7.0.1
+    jest: ^29.6.1
+    jsonwebtoken: ^9.0.1
+    mongodb-memory-server: ^8.13.0
+    mongoose: ^7.4.0
+    node-nats-streaming: ^0.3.2
+    supertest: ^6.3.3
+    ts-jest: ^29.1.1
+    ts-node-dev: ^2.0.0
+    typescript: ^5.1.6
+  languageName: unknown
+  linkType: soft
 
 "p-cancelable@npm:^2.0.0":
   version: 2.1.1
