@@ -1005,23 +1005,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@forksofpower/ticketbooth-common@npm:1.0.20":
-  version: 1.0.20
-  resolution: "@forksofpower/ticketbooth-common@npm:1.0.20"
-  dependencies:
-    "@types/cookie-session": ^2.0.44
-    "@types/express": ^4.17.17
-    "@types/jsonwebtoken": ^9.0.2
-    cookie-session: ^2.0.0
-    express: ^4.18.2
-    express-validator: ^7.0.1
-    jsonwebtoken: ^9.0.1
-    node-nats-streaming: ^0.3.2
-  checksum: d06773ffba74dd1688b4bfe64f215d60f127c4b0089187b6633bf891fe37e780dc034f75a1514ef7673a9196ee1c6a3457db2ea80e1386668d879e880e54eaf6
-  languageName: node
-  linkType: hard
-
-"@forksofpower/ticketbooth-common@workspace:lib/common":
+"@forksofpower/ticketbooth-common@1.0.21, @forksofpower/ticketbooth-common@workspace:lib/common":
   version: 0.0.0-use.local
   resolution: "@forksofpower/ticketbooth-common@workspace:lib/common"
   dependencies:
@@ -3124,7 +3108,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "auth@workspace:services/auth"
   dependencies:
-    "@forksofpower/ticketbooth-common": 1.0.20
+    "@forksofpower/ticketbooth-common": 1.0.21
     "@types/cookie-session": ^2.0.44
     "@types/express": ^4.17.17
     "@types/jest": ^29.5.3
@@ -3651,7 +3635,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "client@workspace:services/client"
   dependencies:
-    "@forksofpower/ticketbooth-common": 1.0.20
+    "@forksofpower/ticketbooth-common": 1.0.21
     "@tailwindcss/forms": ^0.5.5
     "@types/node": 20.4.3
     "@types/react": 18.2.15
@@ -7659,7 +7643,7 @@ daisyui@latest:
   version: 0.0.0-use.local
   resolution: "orders@workspace:services/orders"
   dependencies:
-    "@forksofpower/ticketbooth-common": 1.0.20
+    "@forksofpower/ticketbooth-common": 1.0.21
     "@types/cookie-session": ^2.0.44
     "@types/express": ^4.17.17
     "@types/jest": ^29.5.3
@@ -9042,7 +9026,7 @@ daisyui@latest:
   version: 0.0.0-use.local
   resolution: "tickets@workspace:services/tickets"
   dependencies:
-    "@forksofpower/ticketbooth-common": 1.0.20
+    "@forksofpower/ticketbooth-common": 1.0.21
     "@types/cookie-session": ^2.0.44
     "@types/express": ^4.17.17
     "@types/jest": ^29.5.3
