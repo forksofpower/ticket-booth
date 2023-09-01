@@ -1005,9 +1005,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@forksofpower/ticketbooth-common@npm:1.0.18":
-  version: 1.0.18
-  resolution: "@forksofpower/ticketbooth-common@npm:1.0.18"
+"@forksofpower/ticketbooth-common@npm:1.0.19":
+  version: 1.0.19
+  resolution: "@forksofpower/ticketbooth-common@npm:1.0.19"
   dependencies:
     "@types/cookie-session": ^2.0.44
     "@types/express": ^4.17.17
@@ -1017,7 +1017,7 @@ __metadata:
     express-validator: ^7.0.1
     jsonwebtoken: ^9.0.1
     node-nats-streaming: ^0.3.2
-  checksum: f91d6a0ca146b3deb57b800cbe4fe8a721c4ca6b889c018668bd2d94b9c88eb6f310f22317c8006b6d543f17d1ffb4ad0001d4b6d26238d7cf4fac1a96953f4c
+  checksum: eda9c24e9e5b808a2ad3dfa70c6b7b4d769c8ca754608e09c2d1a2e0fcfb9b426c5a4d969f6cf58017c91e0b9ad45c74cf38cf192c47985269dd65700a7d66c7
   languageName: node
   linkType: hard
 
@@ -3124,7 +3124,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "auth@workspace:services/auth"
   dependencies:
-    "@forksofpower/ticketbooth-common": 1.0.18
+    "@forksofpower/ticketbooth-common": 1.0.19
     "@types/cookie-session": ^2.0.44
     "@types/express": ^4.17.17
     "@types/jest": ^29.5.3
@@ -3651,7 +3651,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "client@workspace:services/client"
   dependencies:
-    "@forksofpower/ticketbooth-common": 1.0.18
+    "@forksofpower/ticketbooth-common": 1.0.19
     "@tailwindcss/forms": ^0.5.5
     "@types/node": 20.4.3
     "@types/react": 18.2.15
@@ -7659,7 +7659,7 @@ daisyui@latest:
   version: 0.0.0-use.local
   resolution: "orders@workspace:services/orders"
   dependencies:
-    "@forksofpower/ticketbooth-common": 1.0.18
+    "@forksofpower/ticketbooth-common": 1.0.19
     "@types/cookie-session": ^2.0.44
     "@types/express": ^4.17.17
     "@types/jest": ^29.5.3
@@ -9042,7 +9042,7 @@ daisyui@latest:
   version: 0.0.0-use.local
   resolution: "tickets@workspace:services/tickets"
   dependencies:
-    "@forksofpower/ticketbooth-common": 1.0.18
+    "@forksofpower/ticketbooth-common": 1.0.19
     "@types/cookie-session": ^2.0.44
     "@types/express": ^4.17.17
     "@types/jest": ^29.5.3

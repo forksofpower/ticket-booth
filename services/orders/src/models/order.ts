@@ -4,7 +4,7 @@ import mongoose from "mongoose";
 interface OrderAttrs {
   userId: string;
   expiresAt: Date;
-  status: string;
+  status: OrderStatus;
   ticket: TicketDoc;
 }
 interface OrderDoc extends mongoose.Document {
