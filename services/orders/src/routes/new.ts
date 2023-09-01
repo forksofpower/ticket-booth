@@ -1,21 +1,18 @@
 import express, { Request, Response } from "express";
-import { body } from "express-validator";
+import { body, param } from "express-validator";
 
 import {
-    BadRequestError, NotFoundError, OrderStatus, requireAuth, validateRequest
+  BadRequestError,
+  NotFoundError,
+  OrderStatus,
+  requireAuth,
+  validateRequest,
 } from "@forksofpower/ticketbooth-common";
 
 import { Order } from "../models/order";
 import { Ticket } from "../models/ticket";
 
 const EXPIRATION_WINDOW_SECONDS = 15 * 60;
-
-// import {
-//     OrderCreatedPublisher, requireAuth, validateRequest
-// } from "@forksofpower/ticketbooth-common";
-// import { Order } from "../models/order";
-
-// import { natsWrapper } from "../nats-wrapper";
 
 const router = express.Router();
 
