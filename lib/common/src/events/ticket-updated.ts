@@ -3,6 +3,8 @@ import { Message } from "node-nats-streaming";
 import { Listener, Publisher } from "./base";
 import { Subjects } from "./subjects";
 
+import type { DomainEvent } from "./types";
+
 /**
  * Event
  */
@@ -12,10 +14,10 @@ export interface TicketUpdatedEventData {
   price: number;
   userId: string;
 }
-export interface TicketUpdatedEvent {
-  subject: Subjects.TicketUpdated;
-  data: TicketUpdatedEventData;
-}
+export type TicketUpdatedEvent = DomainEvent<
+  Subjects.TicketUpdated,
+  TicketUpdatedEventData
+>;
 
 /**
  * Publisher
