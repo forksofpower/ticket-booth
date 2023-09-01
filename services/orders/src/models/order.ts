@@ -23,23 +23,9 @@ interface OrderModel extends mongoose.Model<OrderDoc> {
   build(attrs: OrderAttrs): OrderDoc;
 }
 
-/**
- * __Mongoose Schema for Order__
- *
- * Required for Mongoose/TS interop
- * - schema using `mongoose#schema`
- * - `Attrs` interface for inputs
- * - `Doc` interface for mongoose Document properties +
- *    model fields + virtuals
- * - `Model` interface for mongoose Model properties + static method types
- * - `build` static method for creating new instance of Model with correct types
- */
+// Schema
 const orderSchema = new mongoose.Schema(
   {
-    ticketId: {
-      type: String,
-      required: true,
-    },
     status: {
       type: String,
       required: true,
