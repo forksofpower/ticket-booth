@@ -1,13 +1,11 @@
 import express, { Request, Response } from "express";
 
 import {
-    NotAuthorizedError, NotFoundError, NotImplementedError
+  NotAuthorizedError,
+  NotFoundError,
+  OrderStatus,
 } from "@forksofpower/ticketbooth-common";
 
-// import { body } from "express-validator";
-// import {
-//     NotAuthorizedError, NotFoundError, OrderUpdatedPublisher, requireAuth, validateRequest
-// } from "@forksofpower/ticketbooth-common";
 import { Order } from "../models/order";
 
 // import { natsWrapper } from "../nats-wrapper";
@@ -18,10 +16,10 @@ router.delete("/api/orders/:id", async (req: Request, res: Response) => {
   if (!order) throw new NotFoundError();
   if (order.userId !== req.currentUser!.id) throw new NotAuthorizedError();
 
-  order.status = "cancelled";
+  order.status = OrderStatus.Cancelled;
   await order.save();
 
-  throw new NotImplementedError();
+  return res.status(204).send(order);
 });
 
 export { router as deleteOrderRouter };
