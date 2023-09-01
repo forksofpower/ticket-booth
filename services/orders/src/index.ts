@@ -4,7 +4,7 @@ import { app } from "./app";
 import { config } from "./config";
 import { natsWrapper } from "./nats-wrapper";
 
-const port = process.env.PORT || 4000;
+const port = config.server.port;
 
 const start = async () => {
   if (!config.jwtSecret) throw new Error("JWT_SECRET is undefined");
@@ -14,11 +14,12 @@ const start = async () => {
     // Connect to NATS Streaming Server
     await natsWrapper.connect(
       config.nats.clusterId,
-      "3245345",
+      config.nats.clientId,
       config.nats.url
     );
-    natsWrapper.client.on("close", () => {
-      console.log("NATS connection closed");
+    natsWrapper.client.on("close", (data) => {
+      console.log("NATS connection closed", data);
+      console.log("data: ", data);
     });
     process.on("SIGINT", () => natsWrapper.client.close());
     process.on("SIGTERM", () => natsWrapper.client.close());

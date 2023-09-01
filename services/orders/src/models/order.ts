@@ -3,9 +3,15 @@ import mongoose from "mongoose";
 // Types
 interface OrderAttrs {
   userId: string;
+  expiresAt: Date;
+  status: string;
+  ticket: TicketDoc;
 }
 interface OrderDoc extends mongoose.Document {
   userId: string;
+  expiresAt: Date;
+  status: string;
+  ticket: TicketDoc;
 }
 interface OrderModel extends mongoose.Model<OrderDoc> {
   build(attrs: OrderAttrs): OrderDoc;
@@ -24,9 +30,24 @@ interface OrderModel extends mongoose.Model<OrderDoc> {
  */
 const orderSchema = new mongoose.Schema(
   {
+    ticketId: {
+      type: String,
+      required: true,
+    },
+    status: {
+      type: String,
+      required: true,
+    },
     userId: {
       type: String,
       required: true,
+    },
+    expiresAt: {
+      type: mongoose.Schema.Types.Date,
+    },
+    ticket: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Ticket",
     },
   },
   {

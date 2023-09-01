@@ -1,5 +1,11 @@
 @baseURL = https://ticket-booth.example.com/api
 
+###############################################################################
+###
+### Authentication
+###
+###############################################################################
+
 ### Create a Random New User
 POST {{baseURL}}/users/signup HTTP/1.1
 Content-Type: application/json
@@ -32,3 +38,63 @@ GET {{baseURL}}/users/currentuser HTTP/1.1
 
 ### Sign-Out Current User
 GET {{baseURL}}/users/signout HTTP/1.1
+
+
+###############################################################################
+###
+### Tickets
+### 
+###############################################################################
+
+### Create Ticket
+POST {{baseURL}}/tickets HTTP/1.1
+Content-Type: application/json
+
+{
+  "title": "Concert",
+  "price": 20
+}
+
+### Get All Tickets
+GET {{baseURL}}/tickets HTTP/1.1
+
+### Get Ticket by ID
+
+@ticketId = 64f151bf537d3a1560247a11
+GET {{baseURL}}/tickets/{{ticketId}} HTTP/1.1
+
+### Update Ticket
+PUT {{baseURL}}/tickets/{{ticketId}} HTTP/1.1
+Content-Type: application/json
+
+{
+  "title": "Concert",
+  "price": 15
+}
+
+### Delete Ticket
+DELETE {{baseURL}}/tickets/{{ticketId}} HTTP/1.1
+
+###############################################################################
+### 
+### Orders
+###
+###############################################################################
+
+### Create Order
+POST {{baseURL}}/orders HTTP/1.1
+
+{
+  "ticketId": "{{ticketId}}"
+}
+
+### Get All Orders
+GET {{baseURL}}/orders HTTP/1.1
+
+### Get Order by ID
+@orderId = response.body.id
+GET {{baseURL}}/orders/{{orderId}} HTTP/1.1
+
+### Delete Order
+DELETE {{baseURL}}/orders/{{orderId}} HTTP/1.1
+

@@ -20,6 +20,8 @@ spec:
               memory: "1Gi"
               cpu: "1.0"
           env:
+            - name: PORT
+              value: "4000"
             - name: NATS_CLIENT_ID
               valueFrom:
                 fieldRef:
@@ -29,7 +31,7 @@ spec:
             - name: NATS_CLUSTER_ID
               value: ticketbooth
             - name: MONGO_URI
-              value: mongodb://tickets-mongo-srv:27017/tickets
+              value: mongodb://orders-mongo-srv:27017/orders
             - name: JWT_SECRET
               valueFrom:
                 secretKeyRef:

@@ -20,6 +20,8 @@ spec:
               memory: "1Gi"
               cpu: "1.0"
           env:
+            - name: PORT
+              value: "4000"
             - name: NATS_CLIENT_ID
               valueFrom:
                 fieldRef:

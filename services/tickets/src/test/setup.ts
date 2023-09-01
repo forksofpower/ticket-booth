@@ -2,9 +2,15 @@ import dotenv from "dotenv";
 import { MongoMemoryServer } from "mongodb-memory-server";
 import mongoose from "mongoose";
 
+import { getEnv } from "@forksofpower/ticketbooth-common";
+
 dotenv.config({ path: "../../.env" });
 
 jest.mock("../nats-wrapper");
+// mock getEnv from @forksofpower/ticketbooth-common
+jest.mock("@forksofpower/ticketbooth-common", () => ({
+  getEnv: jest.fn(),
+}));
 
 let mongo: MongoMemoryServer;
 /**
