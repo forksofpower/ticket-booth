@@ -1555,16 +1555,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@smithy/credential-provider-imds@npm:^2.0.0, @smithy/credential-provider-imds@npm:^2.0.5":
-  version: 2.0.5
-  resolution: "@smithy/credential-provider-imds@npm:2.0.5"
+"@smithy/credential-provider-imds@npm:^2.0.0, @smithy/credential-provider-imds@npm:^2.0.7":
+  version: 2.0.7
+  resolution: "@smithy/credential-provider-imds@npm:2.0.7"
   dependencies:
-    "@smithy/node-config-provider": ^2.0.5
-    "@smithy/property-provider": ^2.0.5
+    "@smithy/node-config-provider": ^2.0.7
+    "@smithy/property-provider": ^2.0.6
     "@smithy/types": ^2.2.2
     "@smithy/url-parser": ^2.0.5
     tslib: ^2.5.0
-  checksum: 21c1564b1a1866205d9d38b0d857a2b50daf22cbc8621185d5eb89f975662dda9655569592f3ca6ffac159b1a29348bb58eb565cd8b175502e260ea6b8dd5c0f
+  checksum: e4caa4d2f34b9788345fb13ed7d363bc70491e2ac505f2c20d308a3e228a6705666e540ebe07fb81b1369c8893dc4ca64e0997f55221b411335070a83dd48729
   languageName: node
   linkType: hard
 
@@ -1682,15 +1682,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@smithy/node-config-provider@npm:^2.0.5":
-  version: 2.0.5
-  resolution: "@smithy/node-config-provider@npm:2.0.5"
+"@smithy/node-config-provider@npm:^2.0.5, @smithy/node-config-provider@npm:^2.0.7":
+  version: 2.0.7
+  resolution: "@smithy/node-config-provider@npm:2.0.7"
   dependencies:
-    "@smithy/property-provider": ^2.0.5
-    "@smithy/shared-ini-file-loader": ^2.0.5
+    "@smithy/property-provider": ^2.0.6
+    "@smithy/shared-ini-file-loader": ^2.0.6
     "@smithy/types": ^2.2.2
     tslib: ^2.5.0
-  checksum: fca153adfd50f575fc6352645204ba53f67388ee83e4013695810c1b7fe199888259f5ed9fe889b28664981a20ce45bd380c4d0f5fce9484c850ebd0d61d80a8
+  checksum: 5bb2e41ada99a4a94a0b087b2e5d2a5e4e1e5d4ed8cb7bf84258ff662a8f649d70870ec40587d4ee92a93dbc1fa904189d71d691c559252e3dc8ddf20990910b
   languageName: node
   linkType: hard
 
@@ -1707,13 +1707,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@smithy/property-provider@npm:^2.0.0, @smithy/property-provider@npm:^2.0.5":
-  version: 2.0.5
-  resolution: "@smithy/property-provider@npm:2.0.5"
+"@smithy/property-provider@npm:^2.0.0, @smithy/property-provider@npm:^2.0.6":
+  version: 2.0.6
+  resolution: "@smithy/property-provider@npm:2.0.6"
   dependencies:
     "@smithy/types": ^2.2.2
     tslib: ^2.5.0
-  checksum: 3c988c97864a8fb0b956e8aa245bab3c608f62ab42b340db140e3d18cd8414ff964383a97c4bd01a36baa327084005daa5cd4d106e6fe6070572786e8f43b6ac
+  checksum: 7292d89603c3e98c8d771bb7a9f5fac992608927808d7e06b68213514bf2b894ba5360f2a2b0ccd1f0a1b6aa3c31689637b5fce3eebcaa7aec1dd980a6a1e624
   languageName: node
   linkType: hard
 
@@ -1755,13 +1755,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@smithy/shared-ini-file-loader@npm:^2.0.0, @smithy/shared-ini-file-loader@npm:^2.0.5":
-  version: 2.0.5
-  resolution: "@smithy/shared-ini-file-loader@npm:2.0.5"
+"@smithy/shared-ini-file-loader@npm:^2.0.0, @smithy/shared-ini-file-loader@npm:^2.0.6":
+  version: 2.0.6
+  resolution: "@smithy/shared-ini-file-loader@npm:2.0.6"
   dependencies:
     "@smithy/types": ^2.2.2
     tslib: ^2.5.0
-  checksum: 47a838a3e1e7c7d90e52a6f2061400d6bd9f892095a031500e4f06cd838f3cb66848d1ab953aecba1a0d9b99ae5facb19756ee2290b279564b7c25873371165e
+  checksum: 33569b7e1f236b03c9253ba9d1a07e87d3fb186c33da7ce3f1d3f641a50f1a484e8624b6667d0044188e4a5eb5d594ab9f197dc2d31a8958dc2dd5e6cf74af1d
   languageName: node
   linkType: hard
 
@@ -1861,28 +1861,28 @@ __metadata:
   linkType: hard
 
 "@smithy/util-defaults-mode-browser@npm:^2.0.5":
-  version: 2.0.5
-  resolution: "@smithy/util-defaults-mode-browser@npm:2.0.5"
+  version: 2.0.6
+  resolution: "@smithy/util-defaults-mode-browser@npm:2.0.6"
   dependencies:
-    "@smithy/property-provider": ^2.0.5
+    "@smithy/property-provider": ^2.0.6
     "@smithy/types": ^2.2.2
     bowser: ^2.11.0
     tslib: ^2.5.0
-  checksum: 2e2ac168289e7d8b302a9a9aed7b999e3f56ca62bfdd282f16bd90dae532ba29c745b71e2a466df3948862a188e5b7dca86854dc4dc65d521bbadd4b0cb67984
+  checksum: 017bb8b0deaa38509164478e2d4b865a0c80098013a7e445a633f97a8e5211b79741dca3c2e0990992d0cabd2f3187ec8bba5a9992ad65e5f2898f5cb302c76f
   languageName: node
   linkType: hard
 
 "@smithy/util-defaults-mode-node@npm:^2.0.5":
-  version: 2.0.5
-  resolution: "@smithy/util-defaults-mode-node@npm:2.0.5"
+  version: 2.0.7
+  resolution: "@smithy/util-defaults-mode-node@npm:2.0.7"
   dependencies:
     "@smithy/config-resolver": ^2.0.5
-    "@smithy/credential-provider-imds": ^2.0.5
-    "@smithy/node-config-provider": ^2.0.5
-    "@smithy/property-provider": ^2.0.5
+    "@smithy/credential-provider-imds": ^2.0.7
+    "@smithy/node-config-provider": ^2.0.7
+    "@smithy/property-provider": ^2.0.6
     "@smithy/types": ^2.2.2
     tslib: ^2.5.0
-  checksum: c952dd62e389935528eea9672b2fe3f1ab800dcd48ae56e903fc6c0c052045945aeb670dfb42587e556a2b17170c71409ca971b27847aaf5bca2bebda443dd8c
+  checksum: 87392a683dbf9d73b5068f280f416efcb70a7f71c0b02bd9f4519530c7f48112ce8549378459c764ae23f0520c065c4e801411fb1875fd8d142a4af95a5bcbba
   languageName: node
   linkType: hard
 
@@ -3912,16 +3912,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"daisyui@npm:latest":
-  version: 3.6.4
-  resolution: "daisyui@npm:3.6.4"
+daisyui@latest:
+  version: 3.6.3
+  resolution: "daisyui@npm:3.6.3"
   dependencies:
     colord: ^2.9
     css-selector-tokenizer: ^0.8
     postcss: ^8
     postcss-js: ^4
     tailwindcss: ^3
-  checksum: d0830456870c5e420ce42919305b4fa851f79d1ca6d1f3b7ad1e83a07cbe21fc7b20fa77dbb6f5d7971fcd551f7609ee07ca68545db802f8f0d29266e78bd656
+  checksum: f1efa69a01d2fad1edab593b25fe3cac9c4f0290b8102bc1681b99ffe7a093a2747144605e49de2038efd3401df33e4fff14eb9354ea0049138bc0d9383e7bc1
   languageName: node
   linkType: hard
 
@@ -4168,9 +4168,9 @@ __metadata:
   linkType: hard
 
 "electron-to-chromium@npm:^1.4.477":
-  version: 1.4.506
-  resolution: "electron-to-chromium@npm:1.4.506"
-  checksum: 449966efca7ab56a308726eec952d0e5a673c12de23921da5336698adb49bfcc1e4e04f3e24c144db9ba8d40023c95bbe8a44a50eb709ddf55984884539eea91
+  version: 1.4.507
+  resolution: "electron-to-chromium@npm:1.4.507"
+  checksum: c68edd5ab14441c60c7a3a99ead5f11163dafac841f41683ae4b24576cf3aebb20f5e35b582bc9d6d6d9e7516b0268e62bf68f1fa435d97ca0fa6b0c88c5e57b
   languageName: node
   linkType: hard
 
@@ -5041,9 +5041,9 @@ __metadata:
   linkType: hard
 
 "fraction.js@npm:^4.2.0":
-  version: 4.3.2
-  resolution: "fraction.js@npm:4.3.2"
-  checksum: 21820632b85240dc638726282fd3fab973a2a90a6e396e57d48d154558b42ba1fb09667480067e1bc87488f7bed69c0a21f2cafe31657e21e6ffdd7fca7d04bf
+  version: 4.3.4
+  resolution: "fraction.js@npm:4.3.4"
+  checksum: 26fdecf114e3b693c760d3b2d5447f8ba9e815991ca7c7cdb930156780793b87f10936979a890b389676d960d7cd026273da9a44a6e20c12e3c4fd282a026ed3
   languageName: node
   linkType: hard
 
