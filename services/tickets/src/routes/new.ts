@@ -1,10 +1,9 @@
 import express, { Request, Response } from "express";
 import { body } from "express-validator";
 
-import {
-    requireAuth, TicketCreatedPublisher, validateRequest
-} from "@forksofpower/ticketbooth-common";
+import { requireAuth, validateRequest } from "@forksofpower/ticketbooth-common";
 
+import { TicketCreatedPublisher } from "../events/publishers/ticket-created";
 import { Ticket } from "../models/ticket";
 import { natsWrapper } from "../nats-wrapper";
 

@@ -5,10 +5,10 @@ import {
   NotAuthorizedError,
   NotFoundError,
   requireAuth,
-  TicketUpdatedPublisher,
   validateRequest,
 } from "@forksofpower/ticketbooth-common";
 
+import { TicketUpdatedPublisher } from "../events/publishers/ticket-updated";
 import { Ticket } from "../models/ticket";
 import { natsWrapper } from "../nats-wrapper";
 
