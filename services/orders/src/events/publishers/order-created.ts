@@ -1,5 +1,8 @@
-import { OrderCreatedEvent, Publisher } from "@forksofpower/ticketbooth-common";
-import { Subjects } from "@forksofpower/ticketbooth-common/build/events/subjects";
+import {
+  OrderCreatedEvent,
+  Publisher,
+  Subjects,
+} from "@forksofpower/ticketbooth-common";
 
 export class OrderCreatedPublisher extends Publisher<OrderCreatedEvent> {
   readonly subject = Subjects.OrderCreated;

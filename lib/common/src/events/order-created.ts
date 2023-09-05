@@ -1,6 +1,6 @@
 import { DomainEvent, OrderStatus, Subjects, Versionable } from "./types";
 
-export interface OrderCreatedEventData extends Versionable {
+export interface OrderCreatedEventData {
   id: string;
   status: OrderStatus;
   userId: string;

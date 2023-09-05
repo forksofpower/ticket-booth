@@ -2,10 +2,10 @@ import { Message } from "node-nats-streaming";
 
 import {
   Listener,
+  Subjects,
   TicketCreatedEvent,
   TicketCreatedEventData,
 } from "@forksofpower/ticketbooth-common";
-import { Subjects } from "@forksofpower/ticketbooth-common/build/events/subjects";
 
 import { Ticket } from "../../models/ticket";
 
