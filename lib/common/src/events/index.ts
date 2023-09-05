@@ -1,6 +1,5 @@
 export * from "./types";
 export * from "./base";
-export * from "./subjects";
 
 // Tickets
 export * from "./ticket-created";

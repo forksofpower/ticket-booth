@@ -1,7 +1,6 @@
-import { Subjects } from "./subjects";
-import { DomainEvent, OrderStatus } from "./types";
+import { DomainEvent, OrderStatus, Subjects, Versionable } from "./types";
 
-export interface OrderCreatedEventData {
+export interface OrderCreatedEventData extends Versionable {
   id: string;
   status: OrderStatus;
   userId: string;

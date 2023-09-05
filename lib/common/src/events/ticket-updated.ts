@@ -1,8 +1,8 @@
-import { Subjects } from "./subjects";
+import { Subjects } from "./types/subjects";
 
-import type { DomainEvent } from "./types";
+import type { DomainEvent, Versionable } from "./types";
 
-export interface TicketUpdatedEventData {
+export interface TicketUpdatedEventData extends Versionable {
   id: string;
   title: string;
   price: number;
