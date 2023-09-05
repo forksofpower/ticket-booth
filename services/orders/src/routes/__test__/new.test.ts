@@ -6,6 +6,7 @@ import { OrderStatus } from "@forksofpower/ticketbooth-common";
 import { app } from "../../app";
 import { Order } from "../../models/order";
 import { Ticket } from "../../models/ticket";
+import { natsWrapper } from "../../nats-wrapper";
 import { authenticateUser } from "../../test/authenticate-user";
 
 // import { Order } from "../../models/order";
@@ -49,6 +50,7 @@ describe("Order: New", () => {
       .send({ ticketId: ticket.id })
       .expect(400);
   });
+
   it("reserves a ticket", async () => {
     // create a ticket
     const ticket = Ticket.build({
@@ -68,5 +70,22 @@ describe("Order: New", () => {
     expect(order.body.ticket.id).toEqual(ticket.id);
   });
 
-  it.todo("emits an order:created event");
+  it("emits an order:created event", async () => {
+    // create a ticket
+    const ticket = Ticket.build({
+      title: "Concert",
+      price: 20,
+    });
+
+    await ticket.save();
+
+    // try to reserve the ticket
+    const order = await request(app)
+      .post("/api/orders")
+      .set("Cookie", authenticateUser())
+      .send({ ticketId: ticket.id })
+      .expect(201);
+
+    expect(natsWrapper.client.publish).toHaveBeenCalled();
+  });
 });

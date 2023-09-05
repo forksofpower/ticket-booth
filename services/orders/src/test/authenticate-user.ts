@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 import mongoose from "mongoose";
 
-import { config } from "../config";
+// import { config } from "../config";
 
 /**
  * Helper function to signup and return cookie
@@ -14,7 +14,7 @@ export const authenticateUser = () => {
     email: "test@test.com",
   };
   // create the JWT
-  const userJwt = jwt.sign(payload, config.jwtSecret);
+  const userJwt = jwt.sign(payload, "asdfasdf");
   // Build session Object { jwt: MY_JWT }
   const session = {
     jwt: userJwt,

@@ -3,12 +3,13 @@ import express, { Request, Response } from "express";
 import {
   NotAuthorizedError,
   NotFoundError,
+  OrderCancelledPublisher,
   OrderStatus,
 } from "@forksofpower/ticketbooth-common";
 
 import { Order } from "../models/order";
+import { natsWrapper } from "../nats-wrapper";
 
-// import { natsWrapper } from "../nats-wrapper";
 const router = express.Router();
 
 router.delete("/api/orders/:id", async (req: Request, res: Response) => {
@@ -18,6 +19,14 @@ router.delete("/api/orders/:id", async (req: Request, res: Response) => {
 
   order.status = OrderStatus.Cancelled;
   await order.save();
+
+  // publish an event saying this was cancelled!
+  new OrderCancelledPublisher(natsWrapper.client).publish({
+    id: order.id,
+    ticket: {
+      id: order.ticket.id,
+    },
+  });
 
   return res.status(204).send(order);
 });

@@ -6,6 +6,7 @@ import { body } from "express-validator";
 import {
   BadRequestError,
   NotFoundError,
+  OrderCreatedPublisher,
   OrderStatus,
   requireAuth,
   validateRequest,
@@ -13,6 +14,7 @@ import {
 
 import { Order } from "../models/order";
 import { Ticket } from "../models/ticket";
+import { natsWrapper } from "../nats-wrapper";
 
 const EXPIRATION_WINDOW_SECONDS = 15 * 60;
 
@@ -31,7 +33,6 @@ router.post(
   async (req: Request, res: Response) => {
     const { ticketId } = req.body;
     // find the ticket the user is trying to order in the database
-    console.log(ticketId);
     const ticket = await Ticket.findById(ticketId);
     if (!ticket) {
       throw new NotFoundError();
@@ -55,7 +56,16 @@ router.post(
 
     await order.save();
 
-    // TODO: Publish an event saying that an order was created
+    new OrderCreatedPublisher(natsWrapper.client).publish({
+      id: order.id,
+      status: order.status,
+      userId: order.userId,
+      expiresAt: order.expiresAt.toISOString(),
+      ticket: {
+        id: ticket.id,
+        price: ticket.price,
+      },
+    });
 
     res.status(201).send(order);
   }
