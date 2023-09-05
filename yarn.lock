@@ -1005,23 +1005,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@forksofpower/ticketbooth-common@npm:1.0.24":
-  version: 1.0.24
-  resolution: "@forksofpower/ticketbooth-common@npm:1.0.24"
-  dependencies:
-    "@types/cookie-session": ^2.0.44
-    "@types/express": ^4.17.17
-    "@types/jsonwebtoken": ^9.0.2
-    cookie-session: ^2.0.0
-    express: ^4.18.2
-    express-validator: ^7.0.1
-    jsonwebtoken: ^9.0.1
-    node-nats-streaming: ^0.3.2
-  checksum: c8bd2674ecb582c365aa1564e681d19b7b31257c07f87a79d82820943a3bfa2c4d4074e3f5638fa6075da0d041e6a24ad7004e8ca7d8d57e5412043ce24af2fc
-  languageName: node
-  linkType: hard
-
-"@forksofpower/ticketbooth-common@workspace:lib/common":
+"@forksofpower/ticketbooth-common@1.0.26, @forksofpower/ticketbooth-common@workspace:lib/common":
   version: 0.0.0-use.local
   resolution: "@forksofpower/ticketbooth-common@workspace:lib/common"
   dependencies:
@@ -3124,7 +3108,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "auth@workspace:services/auth"
   dependencies:
-    "@forksofpower/ticketbooth-common": 1.0.24
+    "@forksofpower/ticketbooth-common": 1.0.26
     "@types/cookie-session": ^2.0.44
     "@types/express": ^4.17.17
     "@types/jest": ^29.5.3
@@ -3651,7 +3635,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "client@workspace:services/client"
   dependencies:
-    "@forksofpower/ticketbooth-common": 1.0.24
+    "@forksofpower/ticketbooth-common": 1.0.26
     "@tailwindcss/forms": ^0.5.5
     "@types/node": 20.4.3
     "@types/react": 18.2.15
@@ -3928,7 +3912,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-daisyui@latest:
+"daisyui@npm:latest":
   version: 3.6.5
   resolution: "daisyui@npm:3.6.5"
   dependencies:
@@ -7659,7 +7643,7 @@ daisyui@latest:
   version: 0.0.0-use.local
   resolution: "orders@workspace:services/orders"
   dependencies:
-    "@forksofpower/ticketbooth-common": 1.0.24
+    "@forksofpower/ticketbooth-common": 1.0.26
     "@types/cookie-session": ^2.0.44
     "@types/express": ^4.17.17
     "@types/jest": ^29.5.3
@@ -9042,7 +9026,7 @@ daisyui@latest:
   version: 0.0.0-use.local
   resolution: "tickets@workspace:services/tickets"
   dependencies:
-    "@forksofpower/ticketbooth-common": 1.0.24
+    "@forksofpower/ticketbooth-common": 1.0.26
     "@types/cookie-session": ^2.0.44
     "@types/express": ^4.17.17
     "@types/jest": ^29.5.3

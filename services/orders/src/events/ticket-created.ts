@@ -7,6 +7,8 @@ import {
 } from "@forksofpower/ticketbooth-common";
 import { Subjects } from "@forksofpower/ticketbooth-common/build/events/subjects";
 
+import { Ticket } from "../models/ticket";
+
 /**
  * Listener
  */
@@ -14,12 +16,20 @@ export class TicketCreatedListener extends Listener<TicketCreatedEvent> {
   readonly subject = Subjects.TicketCreated;
   queueGroupName = "orders-service";
 
-  onMessage(data: TicketCreatedEventData, msg: Message): void {
-    console.log("Event Data:", {
-      id: data.id,
-      title: data.title,
-      price: data.price,
-    });
+  async onMessage(
+    { title, price }: TicketCreatedEventData,
+    msg: Message
+  ): Promise<void> {
+    try {
+      const ticket = Ticket.build({
+        title: title,
+        price: price,
+      });
+
+      await ticket.save();
+    } catch (err) {
+      console.error(err);
+    }
 
     // successful message
     msg.ack();
