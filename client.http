@@ -60,7 +60,7 @@ GET {{baseURL}}/tickets HTTP/1.1
 
 ### Get Ticket by ID
 
-@ticketId = 64f151bf537d3a1560247a11
+@ticketId = 64f23e07a5b4eb4bdee1104a
 GET {{baseURL}}/tickets/{{ticketId}} HTTP/1.1
 
 ### Update Ticket
@@ -83,6 +83,7 @@ DELETE {{baseURL}}/tickets/{{ticketId}} HTTP/1.1
 
 ### Create Order
 POST {{baseURL}}/orders HTTP/1.1
+Content-Type: application/json
 
 {
   "ticketId": "{{ticketId}}"
@@ -97,4 +98,3 @@ GET {{baseURL}}/orders/{{orderId}} HTTP/1.1
 
 ### Delete Order
 DELETE {{baseURL}}/orders/{{orderId}} HTTP/1.1
-

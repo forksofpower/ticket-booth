@@ -7,6 +7,7 @@ import express from "express";
 // Common
 import { errorHandler, NotFoundError } from "@forksofpower/ticketbooth-common";
 
+import { healthCheck } from "./health";
 import { routes } from "./routes/";
 
 // Configure Auth Application
@@ -23,8 +24,11 @@ app.use(
     secure: process.env.NODE_ENV !== "test",
   })
 );
+
 // Configure Routes
 app.use(routes);
+// Health Check
+app.use(healthCheck);
 // Configure Catch-All Route
 app.all("*", async () => {
   throw new NotFoundError();

@@ -1005,9 +1005,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@forksofpower/ticketbooth-common@npm:1.0.21":
-  version: 1.0.21
-  resolution: "@forksofpower/ticketbooth-common@npm:1.0.21"
+"@forksofpower/ticketbooth-common@1.0.23, @forksofpower/ticketbooth-common@workspace:lib/common":
+  version: 0.0.0-use.local
+  resolution: "@forksofpower/ticketbooth-common@workspace:lib/common"
   dependencies:
     "@types/cookie-session": ^2.0.44
     "@types/express": ^4.17.17
@@ -1017,9 +1017,10 @@ __metadata:
     express-validator: ^7.0.1
     jsonwebtoken: ^9.0.1
     node-nats-streaming: ^0.3.2
-  checksum: 7f1dade93fc7924e1cc3f3fe37ecd9b447b8f45e28d6af9ae86f78ab7e200a9230c6fce01f3f612b62547fd858b755d5867b4def9554be39408f2fabcf5d5e32
-  languageName: node
-  linkType: hard
+    rimraf: ^5.0.1
+    typescript: ^5.2.2
+  languageName: unknown
+  linkType: soft
 
 "@forksofpower/ticketbooth-common@npm:1.0.22":
   version: 1.0.22
@@ -1036,23 +1037,6 @@ __metadata:
   checksum: 2dea39bd109a9eb0577c4da5531aaff7931bf3aefdaf9cf81677d0f85789c2b5b3e6c57f676a2488b72690dd0d635dc9c87c722aaa02c85fb1d8adda1cbbb65a
   languageName: node
   linkType: hard
-
-"@forksofpower/ticketbooth-common@workspace:lib/common":
-  version: 0.0.0-use.local
-  resolution: "@forksofpower/ticketbooth-common@workspace:lib/common"
-  dependencies:
-    "@types/cookie-session": ^2.0.44
-    "@types/express": ^4.17.17
-    "@types/jsonwebtoken": ^9.0.2
-    cookie-session: ^2.0.0
-    express: ^4.18.2
-    express-validator: ^7.0.1
-    jsonwebtoken: ^9.0.1
-    node-nats-streaming: ^0.3.2
-    rimraf: ^5.0.1
-    typescript: ^5.2.2
-  languageName: unknown
-  linkType: soft
 
 "@humanwhocodes/config-array@npm:^0.11.10":
   version: 0.11.11
@@ -3667,7 +3651,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "client@workspace:services/client"
   dependencies:
-    "@forksofpower/ticketbooth-common": 1.0.22
+    "@forksofpower/ticketbooth-common": 1.0.23
     "@tailwindcss/forms": ^0.5.5
     "@types/node": 20.4.3
     "@types/react": 18.2.15
@@ -3944,7 +3928,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-daisyui@latest:
+"daisyui@npm:latest":
   version: 3.6.4
   resolution: "daisyui@npm:3.6.4"
   dependencies:
@@ -7675,7 +7659,7 @@ daisyui@latest:
   version: 0.0.0-use.local
   resolution: "orders@workspace:services/orders"
   dependencies:
-    "@forksofpower/ticketbooth-common": 1.0.21
+    "@forksofpower/ticketbooth-common": 1.0.23
     "@types/cookie-session": ^2.0.44
     "@types/express": ^4.17.17
     "@types/jest": ^29.5.3
@@ -9058,7 +9042,7 @@ daisyui@latest:
   version: 0.0.0-use.local
   resolution: "tickets@workspace:services/tickets"
   dependencies:
-    "@forksofpower/ticketbooth-common": 1.0.21
+    "@forksofpower/ticketbooth-common": 1.0.23
     "@types/cookie-session": ^2.0.44
     "@types/express": ^4.17.17
     "@types/jest": ^29.5.3

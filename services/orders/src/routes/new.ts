@@ -1,5 +1,7 @@
+import "";
+
 import express, { Request, Response } from "express";
-import { body, param } from "express-validator";
+import { body } from "express-validator";
 
 import {
   BadRequestError,
@@ -29,6 +31,7 @@ router.post(
   async (req: Request, res: Response) => {
     const { ticketId } = req.body;
     // find the ticket the user is trying to order in the database
+    console.log(ticketId);
     const ticket = await Ticket.findById(ticketId);
     if (!ticket) {
       throw new NotFoundError();
