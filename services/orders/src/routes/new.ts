@@ -6,12 +6,12 @@ import { body } from "express-validator";
 import {
   BadRequestError,
   NotFoundError,
-  OrderCreatedPublisher,
   OrderStatus,
   requireAuth,
   validateRequest,
 } from "@forksofpower/ticketbooth-common";
 
+import { OrderCreatedPublisher } from "../events/publishers/order-created";
 import { Order } from "../models/order";
 import { Ticket } from "../models/ticket";
 import { natsWrapper } from "../nats-wrapper";

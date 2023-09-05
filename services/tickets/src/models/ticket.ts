@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { updateIfCurrentPlugin } from "mongoose-update-if-current";
 
 // Types
 interface TicketAttrs {
@@ -10,22 +11,12 @@ interface TicketDoc extends mongoose.Document {
   title: string;
   price: number;
   userId: string;
+  version: number;
 }
 interface TicketModel extends mongoose.Model<TicketDoc> {
   build(attrs: TicketAttrs): TicketDoc;
 }
 
-/**
- * __Mongoose Schema for Ticket__
- *
- * Required for Mongoose/TS interop
- * - schema using `mongoose#schema`
- * - `Attrs` interface for inputs
- * - `Doc` interface for mongoose Document properties +
- *    model fields + virtuals
- * - `Model` interface for mongoose Model properties + static method types
- * - `build` static method for creating new instance of Model with correct types
- */
 const ticketSchema = new mongoose.Schema(
   {
     title: {
@@ -52,6 +43,8 @@ const ticketSchema = new mongoose.Schema(
     },
   }
 );
+ticketSchema.set("versionKey", "version");
+ticketSchema.plugin(updateIfCurrentPlugin);
 
 // Model Static Methods
 ticketSchema.statics.build = (attrs: TicketAttrs) => {

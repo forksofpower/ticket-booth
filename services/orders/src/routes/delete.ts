@@ -3,10 +3,10 @@ import express, { Request, Response } from "express";
 import {
   NotAuthorizedError,
   NotFoundError,
-  OrderCancelledPublisher,
   OrderStatus,
 } from "@forksofpower/ticketbooth-common";
 
+import { OrderCancelledPublisher } from "../events/publishers/order-cancelled";
 import { Order } from "../models/order";
 import { natsWrapper } from "../nats-wrapper";
 
