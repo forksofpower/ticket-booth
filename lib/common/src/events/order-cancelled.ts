@@ -2,7 +2,7 @@ import { Message } from "node-nats-streaming";
 
 import { Listener, Publisher } from "./base";
 import { Subjects } from "./subjects";
-import { DomainEvent, OrderStatus } from "./types";
+import { DomainEvent } from "./types";
 
 /**
  * Event
