@@ -3919,7 +3919,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"daisyui@npm:latest":
+daisyui@latest:
   version: 3.6.5
   resolution: "daisyui@npm:3.6.5"
   dependencies:
