@@ -60,7 +60,7 @@ GET {{baseURL}}/tickets HTTP/1.1
 
 ### Get Ticket by ID
 
-@ticketId = 64f8f72f117e587b9507062c
+@ticketId = 64f94598acab320650c8eb53
 GET {{baseURL}}/tickets/{{ticketId}} HTTP/1.1
 
 ### Update Ticket
@@ -94,7 +94,7 @@ GET {{baseURL}}/orders HTTP/1.1
 
 ### Get Order by ID
 # @orderId = response.body.id
-@orderId = 64f8f75e21e700fc50395304
+@orderId = 64f945a733efcd9f20e9d281
 GET {{baseURL}}/orders/{{orderId}} HTTP/1.1
 
 ### Delete Order

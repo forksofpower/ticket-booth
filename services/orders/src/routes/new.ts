@@ -2,11 +2,7 @@ import express, { Request, Response } from "express";
 import { body } from "express-validator";
 
 import {
-  BadRequestError,
-  NotFoundError,
-  OrderStatus,
-  requireAuth,
-  validateRequest,
+    BadRequestError, NotFoundError, OrderStatus, requireAuth, validateRequest
 } from "@forksofpower/ticketbooth-common";
 
 import { OrderCreatedPublisher } from "../events/publishers/order-created";
