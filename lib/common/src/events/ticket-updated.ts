@@ -7,6 +7,7 @@ export interface TicketUpdatedEventData extends Versionable {
   title: string;
   price: number;
   userId: string;
+  orderId?: string;
 }
 export type TicketUpdatedEvent = DomainEvent<
   Subjects.TicketUpdated,
