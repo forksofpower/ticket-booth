@@ -3,9 +3,12 @@ import request from "supertest";
 
 import { app } from "../../app";
 import { Order, OrderStatus } from "../../models/order";
+import { stripe } from "../../stripe";
 // import { Ticket } from "../../models/ticket";
 // import { natsWrapper } from "../../nats-wrapper";
 import { authenticateUser } from "../../test/authenticate-user";
+
+jest.mock("../../stripe");
 
 describe("Charge: New", () => {
   it("has a route handler listening to /api/payments for post requests", async () => {
@@ -97,5 +100,30 @@ describe("Charge: New", () => {
         orderId: order.id,
       })
       .expect(400);
+  });
+  it("returns a 201 with valid inputs", async () => {
+    const userId = new mongoose.Types.ObjectId().toHexString();
+    const order = Order.build({
+      id: new mongoose.Types.ObjectId().toHexString(),
+      userId,
+      version: 0,
+      price: 20,
+      status: OrderStatus.Created,
+    });
+    await order.save();
+    await request(app)
+      .post("/api/payments")
+      .set("Cookie", authenticateUser(userId))
+      .send({
+        token: "tok_visa",
+        orderId: order.id,
+      })
+      .expect(201);
+
+    const chargeOptions = (stripe.charges.create as jest.Mock).mock.calls[0][0];
+    expect(chargeOptions).toBeDefined();
+    expect(chargeOptions.source).toEqual("tok_visa");
+    expect(chargeOptions.amount).toEqual(20 * 100);
+    expect(chargeOptions.currency).toEqual("usd");
   });
 });

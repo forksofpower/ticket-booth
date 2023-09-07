@@ -46,7 +46,7 @@ router.post(
         userEmail: req.currentUser!.email,
       },
     });
-    res.send({ success: true });
+    res.status(201).send({ success: true });
   }
 );
 
