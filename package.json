@@ -9,7 +9,6 @@
     "@yarnpkg/pnpify": "^4.0.0-rc.48"
   },
   "scripts": {
-    "test": "yarn workspaces foreach run test",
     "common:publish": "yarn workspace @forksofpower/ticketbooth-common run pub && yarn install && git add . && git commit -m 'chore: publish common'"
   }
 }
