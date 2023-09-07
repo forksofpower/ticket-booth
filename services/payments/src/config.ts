@@ -7,6 +7,9 @@ type Config = {
   server: {
     port: number;
   };
+  stripe: {
+    secretKey: string;
+  };
   nats: {
     url: string;
     clusterId: string;
@@ -21,6 +24,9 @@ export const config: Config = {
   },
   server: {
     port: Number(getEnv("PORT")),
+  },
+  stripe: {
+    secretKey: getEnv("STRIPE_SECRET_KEY"),
   },
   nats: {
     url: getEnv("NATS_URL"),
