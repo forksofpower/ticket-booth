@@ -8,7 +8,7 @@
   "license": "ISC",
   "scripts": {
     "start": "ts-node-dev --poll ./src/index.ts",
-    "test": "jest --no-cache",
+    "test": "echo \"\u001b[95mTesting: Tickets Service\u001b[37m\n\" && jest",
     "test:watch": "yarn test --watch-all",
     "lint": "eslint ."
   },
@@ -47,10 +47,6 @@
     "testEnvironment": "node",
     "setupFilesAfterEnv": [
       "./src/test/setup.ts"
-    ],
-    "ignorePatterns": [
-      "./node_modules/",
-      "./build/"
     ],
     "collectCoverage": true
   }
