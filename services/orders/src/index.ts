@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 
 import { app } from "./app";
 import { config } from "./config";
+import { ExpirationCompleteListener } from "./events/listeners/expiration-complete";
 import { TicketCreatedListener } from "./events/listeners/ticket-created";
 import { TicketUpdatedListener } from "./events/listeners/ticket-updated";
 import { natsWrapper } from "./nats-wrapper";
@@ -25,9 +26,11 @@ const start = async () => {
     });
     process.on("SIGINT", () => natsWrapper.client.close());
     process.on("SIGTERM", () => natsWrapper.client.close());
+
     // Listeners
     new TicketCreatedListener(natsWrapper.client).listen();
     new TicketUpdatedListener(natsWrapper.client).listen();
+    new ExpirationCompleteListener(natsWrapper.client).listen();
 
     // Connect to MongoDB
     await mongoose.connect(config.mongodb.uri);
