@@ -8,3 +8,6 @@ export * from "./ticket-updated";
 // Orders
 export * from "./order-cancelled";
 export * from "./order-created";
+
+// Expiration
+export * from "./expiration-complete";
