@@ -1,0 +1,27 @@
+import { Message } from "node-nats-streaming";
+
+import {
+  Listener,
+  OrderCancelledEvent,
+  OrderCancelledEventData,
+  Subjects,
+} from "@forksofpower/ticketbooth-common";
+
+import { Ticket } from "../../models/ticket";
+
+export class OrderCancelledListener extends Listener<OrderCancelledEvent> {
+  readonly subject = Subjects.OrderCancelled;
+  queueGroupName = "tickets-service";
+
+  async onMessage(data: OrderCancelledEventData, msg: Message) {
+    const ticket = await Ticket.findById(data.ticket.id);
+
+    if (!ticket) throw new Error("Ticket not found");
+
+    ticket.set({ orderId: undefined });
+
+    await ticket.save();
+
+    msg.ack();
+  }
+}
