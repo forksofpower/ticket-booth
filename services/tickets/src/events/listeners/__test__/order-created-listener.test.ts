@@ -49,6 +49,17 @@ async function setup() {
 }
 
 describe("OrderCreatedListener", () => {
+  it("publishes a ticket updated event", async () => {
+    const { listener, data, msg } = await setup();
+
+    await listener.onMessage(data, msg as unknown as Message);
+
+    expect(natsWrapper.client.publish).toHaveBeenCalled();
+    const ticketUpdateData = JSON.parse(
+      (natsWrapper.client.publish as jest.Mock).mock.calls[0][1]
+    );
+    expect(data.id).toEqual(ticketUpdateData.orderId);
+  });
   it("sets the orderId of the ticket", async () => {
     const { listener, ticket, data, msg } = await setup();
 

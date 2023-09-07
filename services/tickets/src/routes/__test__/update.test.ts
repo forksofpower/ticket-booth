@@ -2,9 +2,34 @@ import mongoose from "mongoose";
 import request from "supertest";
 
 import { app } from "../../app";
+import { Ticket } from "../../models/ticket";
 import { authenticateUser } from "../../test/authenticate-user";
 
 describe("Ticket: Update", () => {
+  it("rejects updates if the ticket is reserved", async () => {
+    const cookie = authenticateUser();
+    const response = await request(app)
+      .post("/api/tickets")
+      .set("Cookie", cookie)
+      .send({
+        title: "Test",
+        price: 20,
+      });
+
+    const ticket = await Ticket.findById(response.body.id);
+    await ticket!
+      .set({ orderId: new mongoose.Types.ObjectId().toHexString() })
+      .save();
+
+    await request(app)
+      .put(`/api/tickets/${response.body.id}`)
+      .set("Cookie", cookie)
+      .send({
+        title: "new title",
+        price: 100,
+      })
+      .expect(400);
+  });
   it("returns a 404 if the provided id does not exist", async () => {
     const id = new mongoose.Types.ObjectId().toHexString();
     await request(app)
@@ -90,5 +115,24 @@ describe("Ticket: Update", () => {
       .expect(200);
     expect(ticket.body.title).toEqual("new title");
     expect(ticket.body.price).toEqual(100);
+  });
+  it("publishes an event", async () => {
+    const cookie = authenticateUser();
+    const response = await request(app)
+      .post("/api/tickets")
+      .set("Cookie", cookie)
+      .send({
+        title: "Test",
+        price: 20,
+      });
+
+    await request(app)
+      .put(`/api/tickets/${response.body.id}`)
+      .set("Cookie", cookie)
+      .send({
+        title: "new title",
+        price: 100,
+      })
+      .expect(200);
   });
 });

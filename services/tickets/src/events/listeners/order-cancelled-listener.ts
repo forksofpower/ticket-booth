@@ -8,6 +8,7 @@ import {
 } from "@forksofpower/ticketbooth-common";
 
 import { Ticket } from "../../models/ticket";
+import { TicketUpdatedPublisher } from "../publishers/ticket-updated";
 
 export class OrderCancelledListener extends Listener<OrderCancelledEvent> {
   readonly subject = Subjects.OrderCancelled;
@@ -21,6 +22,15 @@ export class OrderCancelledListener extends Listener<OrderCancelledEvent> {
     ticket.set({ orderId: undefined });
 
     await ticket.save();
+
+    new TicketUpdatedPublisher(this.client).publish({
+      id: ticket.id,
+      version: ticket.version,
+      title: ticket.title,
+      price: ticket.price,
+      userId: ticket.userId,
+      orderId: ticket.orderId,
+    });
 
     msg.ack();
   }
