@@ -13,21 +13,16 @@ export class TicketUpdatedListener extends Listener<TicketUpdatedEvent> {
   readonly subject = Subjects.TicketUpdated;
   queueGroupName = "orders-service";
 
-  async onMessage(data: TicketUpdatedEventData, msg: Message): Promise<void> {
-    try {
-      const ticket = await Ticket.findOne({
-        _id: data.id,
-        version: data.version - 1,
-      });
-      if (!ticket) throw new Error("Ticket not found");
+  async onMessage(data: TicketUpdatedEventData, msg: Message) {
+    // Find the ticket
+    const ticket = await Ticket.findByEvent(data);
+    if (!ticket) throw new Error("Ticket not found");
 
-      ticket.set({ price: data.price, title: data.title });
+    // Update the ticket
+    ticket.set({ price: data.price, title: data.title });
+    await ticket.save();
 
-      await ticket.save();
-
-      msg.ack();
-    } catch (error) {
-      console.log(error);
-    }
+    // Acknowledge the message
+    msg.ack();
   }
 }
