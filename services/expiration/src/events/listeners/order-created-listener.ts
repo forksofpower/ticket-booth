@@ -14,7 +14,11 @@ export class OrderCreatedListener extends Listener<OrderCreatedEvent> {
     console.log("OrderCreated Event data!", data);
     const { id, expiresAt } = data;
     const delay = new Date(expiresAt).getTime() - new Date().getTime();
-    console.log(`Waiting ${delay}ms to process expiration for order ${id}`);
+    console.log(
+      `Waiting ${Math.floor(delay / 1000 / 60)} minutes ${
+        Math.floor(delay / 1000) % 60
+      } seconds to process expiration for order ${id}`
+    );
     await expirationQueue.add({ orderId: id }, { delay });
 
     msg.ack();
