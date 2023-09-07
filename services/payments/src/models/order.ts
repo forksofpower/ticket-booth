@@ -12,7 +12,7 @@ interface OrderAttrs extends Versionable {
   status: OrderStatus;
   price: number;
 }
-interface OrderDoc extends mongoose.Document {
+export interface OrderDoc extends mongoose.Document {
   status: OrderStatus;
   userId: string;
   price: number;
