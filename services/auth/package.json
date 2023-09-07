@@ -8,7 +8,7 @@
   "license": "ISC",
   "scripts": {
     "start": "ts-node-dev --poll ./src/index.ts",
-    "test": "echo \"\u001b[95mTesting: Auth Service\u001b[37m\n\" && jest",
+    "test": "echo \"\n\u001b[95mTesting: Auth Service\u001b[37m\n\" && jest",
     "test:watch": "yarn test --watch-all",
     "lint": "eslint ."
   },
