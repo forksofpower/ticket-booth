@@ -2,7 +2,6 @@ import mongoose from "mongoose";
 import request from "supertest";
 
 import { app } from "../../app";
-import { Order, OrderStatus } from "../../models/order";
 import { authenticateUser } from "../../test/authenticate-user";
 import { buildTicket } from "../../test/build-ticket";
 

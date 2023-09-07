@@ -9,10 +9,6 @@ import { Ticket } from "../../models/ticket";
 import { natsWrapper } from "../../nats-wrapper";
 import { authenticateUser } from "../../test/authenticate-user";
 
-// import { Order } from "../../models/order";
-// import { natsWrapper } from "../../nats-wrapper";
-// import { authenticateUser } from "../../test/authenticate-user";
-
 describe("Order: New", () => {
   it("returns an error if the ticket does not exist", async () => {
     const ticketId = new mongoose.Types.ObjectId();
@@ -27,6 +23,7 @@ describe("Order: New", () => {
   it("returns an error if the ticket is already reserved", async () => {
     // create a ticket
     const ticket = Ticket.build({
+      id: new mongoose.Types.ObjectId().toHexString(),
       title: "Concert",
       price: 20,
     });
@@ -54,6 +51,7 @@ describe("Order: New", () => {
   it("reserves a ticket", async () => {
     // create a ticket
     const ticket = Ticket.build({
+      id: new mongoose.Types.ObjectId().toHexString(),
       title: "Concert",
       price: 20,
     });
@@ -73,6 +71,7 @@ describe("Order: New", () => {
   it("emits an order:created event", async () => {
     // create a ticket
     const ticket = Ticket.build({
+      id: new mongoose.Types.ObjectId().toHexString(),
       title: "Concert",
       price: 20,
     });
@@ -80,7 +79,7 @@ describe("Order: New", () => {
     await ticket.save();
 
     // try to reserve the ticket
-    const order = await request(app)
+    await request(app)
       .post("/api/orders")
       .set("Cookie", authenticateUser())
       .send({ ticketId: ticket.id })

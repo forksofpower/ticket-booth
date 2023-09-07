@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import request from "supertest";
 
 import { app } from "../../app";
@@ -9,6 +10,7 @@ import { authenticateUser } from "../../test/authenticate-user";
 describe("Order: Delete", () => {
   it("marks an order as cancelled", async () => {
     const ticket = Ticket.build({
+      id: new mongoose.Types.ObjectId().toHexString(),
       title: "Concert",
       price: 20,
     });
@@ -34,6 +36,7 @@ describe("Order: Delete", () => {
 
   it("emits an order cancelled event", async () => {
     const ticket = Ticket.build({
+      id: new mongoose.Types.ObjectId().toHexString(),
       title: "Concert",
       price: 20,
     });
