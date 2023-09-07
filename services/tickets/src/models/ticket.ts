@@ -43,6 +43,7 @@ const ticketSchema = new mongoose.Schema(
     },
   }
 );
+// Enable OCC
 ticketSchema.set("versionKey", "version");
 ticketSchema.plugin(updateIfCurrentPlugin);
 

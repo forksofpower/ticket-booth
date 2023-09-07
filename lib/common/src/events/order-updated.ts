@@ -4,6 +4,7 @@ export interface OrderUpdatedEventData {
   id: string;
   ticketId: string;
   expiresAt: Date;
+  version: number;
   status: OrderStatus;
   userId: string;
 }

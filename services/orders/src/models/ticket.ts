@@ -5,6 +5,7 @@ import { Order, OrderStatus } from "./order";
 
 // Types
 interface TicketAttrs {
+  id: string;
   title: string;
   price: number;
 }
@@ -41,23 +42,19 @@ const ticketSchema = new mongoose.Schema(
     },
   }
 );
-
+// Enable OCC
 ticketSchema.set("versionKey", "version");
 ticketSchema.plugin(updateIfCurrentPlugin);
 // Model Static Methods
 ticketSchema.statics.build = (attrs: TicketAttrs) => {
-  return new Ticket(attrs);
+  return new Ticket({ id: attrs.id, price: attrs.price, title: attrs.title });
 };
 
 ticketSchema.methods.isReserved = async function () {
   const existingOrder = await Order.findOne({
     ticket: this,
     status: {
-      $in: [
-        OrderStatus.Created,
-        OrderStatus.AwaitingPayment,
-        OrderStatus.Complete,
-      ],
+      $nin: [OrderStatus.Cancelled],
     },
   });
 

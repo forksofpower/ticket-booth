@@ -9,29 +9,26 @@ import {
 
 import { Ticket } from "../../models/ticket";
 
-/**
- * Listener
- */
 export class TicketCreatedListener extends Listener<TicketCreatedEvent> {
   readonly subject = Subjects.TicketCreated;
   queueGroupName = "orders-service";
 
   async onMessage(
-    { title, price }: TicketCreatedEventData,
+    { title, price, id }: TicketCreatedEventData,
     msg: Message
   ): Promise<void> {
     try {
       const ticket = Ticket.build({
-        title: title,
-        price: price,
+        id,
+        title,
+        price,
       });
 
       await ticket.save();
+      // successful message
+      msg.ack();
     } catch (err) {
       console.error(err);
     }
-
-    // successful message
-    msg.ack();
   }
 }

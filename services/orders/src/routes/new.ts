@@ -1,5 +1,3 @@
-import "";
-
 import express, { Request, Response } from "express";
 import { body } from "express-validator";
 
@@ -31,9 +29,12 @@ router.post(
   ],
   validateRequest,
   async (req: Request, res: Response) => {
+    console.log(req.body);
     const { ticketId } = req.body;
+    // if (!ticketId) throw new NotFoundError();
+    console.log(ticketId);
     // find the ticket the user is trying to order in the database
-    const ticket = await Ticket.findById(ticketId);
+    const ticket = await Ticket.findById(ticketId as string);
     if (!ticket) {
       throw new NotFoundError();
     }
@@ -57,8 +58,7 @@ router.post(
     await order.save();
 
     new OrderCreatedPublisher(natsWrapper.client).publish({
-      id: order.id,
-      version: 0,
+      id: order._id,
       status: order.status,
       userId: order.userId,
       expiresAt: order.expiresAt.toISOString(),
