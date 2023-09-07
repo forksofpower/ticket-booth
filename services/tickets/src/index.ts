@@ -17,7 +17,7 @@ const start = async () => {
     // Connect to NATS Streaming Server
     await natsWrapper.connect(
       config.nats.clusterId,
-      "3245345",
+      config.nats.clientId,
       config.nats.url
     );
     natsWrapper.client.on("close", () => {});
