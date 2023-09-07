@@ -2323,7 +2323,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:^20.4.2":
+"@types/node@npm:*, @types/node@npm:>=8.1.0, @types/node@npm:^20.4.2":
   version: 20.5.9
   resolution: "@types/node@npm:20.5.9"
   checksum: 717490e94131722144878b4ca1a963ede1673bb8f2ef78c2f5b50b918df6dc9b35e7f8283e5c2a7a9f137730f7c08dc6228e53d4494a94c9ee16881e6ce6caed
@@ -8079,6 +8079,7 @@ __metadata:
     mongoose: ^7.4.0
     mongoose-update-if-current: ^1.4.0
     node-nats-streaming: ^0.3.2
+    stripe: ^13.5.0
     supertest: ^6.3.3
     ts-jest: ^29.1.1
     ts-node-dev: ^2.0.0
@@ -9111,6 +9112,16 @@ __metadata:
   version: 3.1.1
   resolution: "strip-json-comments@npm:3.1.1"
   checksum: 492f73e27268f9b1c122733f28ecb0e7e8d8a531a6662efbd08e22cccb3f9475e90a1b82cab06a392f6afae6d2de636f977e231296400d0ec5304ba70f166443
+  languageName: node
+  linkType: hard
+
+"stripe@npm:^13.5.0":
+  version: 13.5.0
+  resolution: "stripe@npm:13.5.0"
+  dependencies:
+    "@types/node": ">=8.1.0"
+    qs: ^6.11.0
+  checksum: 36c02a051d886a3f737c6e5b8c405470221cc59c256736269a0eb33e0b29d38771ddc66b835c41b8dd963f41441f2cca32af70e5dd84a31f72526e65d9cb8f39
   languageName: node
   linkType: hard
 

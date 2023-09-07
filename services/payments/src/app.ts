@@ -5,7 +5,7 @@ import express from "express";
 
 import { currentUser, errorHandler, NotFoundError } from "@forksofpower/ticketbooth-common";
 
-// import { routes } from "./routes";
+import { routes } from "./routes";
 
 // Configure Auth Application
 const app = express();
@@ -24,7 +24,7 @@ app.use(
 // Attach currentUser to request
 app.use(currentUser);
 // Configure Routes
-// app.use(routes);
+app.use(routes);
 // Configure Catch-All Route
 app.all("*", async () => {
   throw new NotFoundError();

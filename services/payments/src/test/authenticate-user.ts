@@ -7,10 +7,12 @@ import mongoose from "mongoose";
  * Helper function to signup and return cookie
  * @returns Promise<string[]> - Cookie array
  */
-export const authenticateUser = () => {
+export const authenticateUser = (
+  id: string = new mongoose.Types.ObjectId().toHexString()
+) => {
   // build a JWT payload
   const payload = {
-    id: new mongoose.Types.ObjectId().toHexString(),
+    id,
     email: "test@test.com",
   };
   // create the JWT
