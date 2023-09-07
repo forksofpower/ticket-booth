@@ -13,7 +13,9 @@ interface PaymentDoc extends mongoose.Document {
   stripeId: string;
 }
 
-interface PaymentModel extends mongoose.Model<PaymentDoc> {}
+interface PaymentModel extends mongoose.Model<PaymentDoc> {
+  build(attrs: PaymentAttrs): PaymentDoc;
+}
 
 const paymentSchema = new mongoose.Schema(
   {

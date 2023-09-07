@@ -6,6 +6,7 @@ import {
 } from "@forksofpower/ticketbooth-common";
 
 import { Order } from "../models/order";
+import { Payment } from "../models/payment";
 import { stripe } from "../stripe";
 
 const router = express.Router();
@@ -46,6 +47,19 @@ router.post(
         userEmail: req.currentUser!.email,
       },
     });
+
+    const stripeId = charge.id;
+
+    if (!stripeId) {
+      throw new BadRequestError("Payment Failed");
+    }
+    const payment = Payment.build({
+      order,
+      stripeId,
+    });
+
+    await payment.save();
+
     res.status(201).send({ success: true });
   }
 );

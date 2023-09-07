@@ -3,12 +3,16 @@ import request from "supertest";
 
 import { app } from "../../app";
 import { Order, OrderStatus } from "../../models/order";
+import { Payment } from "../../models/payment";
 import { stripe } from "../../stripe";
 // import { Ticket } from "../../models/ticket";
 // import { natsWrapper } from "../../nats-wrapper";
 import { authenticateUser } from "../../test/authenticate-user";
 
+// uncomment if using mocked stripe.js
 jest.mock("../../stripe");
+
+process.env.STRIPE_SECRET_KEY = "sk_test_S97XEgZJR1joNwOouvEtHUYl";
 
 describe("Charge: New", () => {
   it("has a route handler listening to /api/payments for post requests", async () => {
@@ -125,5 +129,13 @@ describe("Charge: New", () => {
     expect(chargeOptions.source).toEqual("tok_visa");
     expect(chargeOptions.amount).toEqual(20 * 100);
     expect(chargeOptions.currency).toEqual("usd");
+
+    const payment = await Payment.findOne({
+      stripeId: "1234567",
+      order,
+    }).populate("order");
+
+    expect(payment).not.toBeNull();
+    expect(payment?.stripeId).toEqual("1234567");
   });
 });
