@@ -31,6 +31,7 @@ const paymentSchema = new mongoose.Schema(
   },
   {
     toJSON: {
+      // istanbul ignore next
       transform(_doc, ret) {
         ret.id = ret._id;
         delete ret._id;

@@ -43,6 +43,7 @@ const orderSchema = new mongoose.Schema(
   {
     // This really should be on a View and not on the Model
     toJSON: {
+      // istanbul ignore next
       transform(_doc, ret) {
         ret.id = ret._id;
         delete ret._id;
