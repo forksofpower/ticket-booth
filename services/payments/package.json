@@ -1,5 +1,5 @@
 {
-  "name": "auth",
+  "name": "payments",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,7 +8,7 @@
   "license": "ISC",
   "scripts": {
     "start": "ts-node-dev --poll ./src/index.ts",
-    "test": "echo \"\n\u001b[95mTesting: Auth Service\u001b[37m\n\" && jest",
+    "test": "echo \"\n\u001b[95mTesting: Payments Service\u001b[37m\n\" && jest",
     "test:watch": "yarn test --watch-all",
     "lint": "eslint ."
   },
@@ -29,6 +29,9 @@
     "express-validator": "^7.0.1",
     "jsonwebtoken": "^9.0.1",
     "mongoose": "^7.4.0",
+    "mongoose-update-if-current": "^1.4.0",
+    "node-nats-streaming": "^0.3.2",
+    "stripe": "^13.5.0",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.1.6"
   },

@@ -8,12 +8,12 @@
   "license": "ISC",
   "scripts": {
     "start": "ts-node-dev --poll ./src/index.ts",
-    "test": "jest --no-cache",
+    "test": "echo \"\n\u001b[95mTesting: Expiration Service\u001b[37m\n\" && jest",
     "test:watch": "yarn test --watch-all",
     "lint": "eslint ."
   },
   "dependencies": {
-    "@forksofpower/ticketbooth-common": "^1.0.35",
+    "@forksofpower/ticketbooth-common": "^1.0.37",
     "@types/bull": "^4.10.0",
     "@typescript-eslint/eslint-plugin": "^6.4.1",
     "@typescript-eslint/parser": "^6.4.1",
@@ -33,13 +33,6 @@
   "jest": {
     "preset": "ts-jest",
     "testEnvironment": "node",
-    "setupFilesAfterEnv": [
-      "./src/test/setup.ts"
-    ],
-    "ignorePatterns": [
-      "./node_modules/",
-      "./build/"
-    ],
     "collectCoverage": true
   }
 }

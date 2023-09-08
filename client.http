@@ -99,3 +99,17 @@ GET {{baseURL}}/orders/{{orderId}} HTTP/1.1
 
 ### Delete Order
 DELETE {{baseURL}}/orders/{{orderId}} HTTP/1.1
+
+###############################################################################
+###
+### Payments
+###
+###############################################################################
+### Create Payment
+POST {{baseURL}}/payments HTTP/1.1
+Content-Type: application/json
+
+{
+  "token": "tok_visa",
+  "orderId": "{{orderId}}"
+}

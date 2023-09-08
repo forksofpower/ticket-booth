@@ -8,12 +8,12 @@
   "license": "ISC",
   "scripts": {
     "start": "ts-node-dev --poll ./src/index.ts",
-    "test": "jest --no-cache",
+    "test": "echo \"\n\u001b[95mTesting: Tickets Service\u001b[37m\n\" && jest",
     "test:watch": "yarn test --watch-all",
     "lint": "eslint ."
   },
   "dependencies": {
-    "@forksofpower/ticketbooth-common": "^1.0.35",
+    "@forksofpower/ticketbooth-common": "^1.0.37",
     "@types/cookie-session": "^2.0.44",
     "@types/express": "^4.17.17",
     "@types/jsonwebtoken": "^9.0.2",
@@ -47,10 +47,6 @@
     "testEnvironment": "node",
     "setupFilesAfterEnv": [
       "./src/test/setup.ts"
-    ],
-    "ignorePatterns": [
-      "./node_modules/",
-      "./build/"
     ],
     "collectCoverage": true
   }

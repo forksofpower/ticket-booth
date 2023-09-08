@@ -1,24 +1,21 @@
 import mongoose from "mongoose";
 import { updateIfCurrentPlugin } from "mongoose-update-if-current";
 
-import { OrderStatus } from "@forksofpower/ticketbooth-common";
-
-import { TicketDoc } from "./ticket";
+import { OrderStatus, Versionable } from "@forksofpower/ticketbooth-common";
 
 export { OrderStatus };
 
 // Types
-interface OrderAttrs {
+interface OrderAttrs extends Versionable {
+  id: string;
   userId: string;
-  expiresAt: Date;
   status: OrderStatus;
-  ticket: TicketDoc;
+  price: number;
 }
-interface OrderDoc extends mongoose.Document {
-  userId: string;
-  expiresAt: Date;
+export interface OrderDoc extends mongoose.Document {
   status: OrderStatus;
-  ticket: TicketDoc;
+  userId: string;
+  price: number;
   version: number;
 }
 interface OrderModel extends mongoose.Model<OrderDoc> {
@@ -38,12 +35,9 @@ const orderSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    expiresAt: {
-      type: mongoose.Schema.Types.Date,
-    },
-    ticket: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Ticket",
+    price: {
+      type: Number,
+      required: true,
     },
   },
   {
