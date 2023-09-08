@@ -15,17 +15,6 @@ interface UserModel extends mongoose.Model<UserDoc> {
   build(attrs: UserAttrs): UserDoc;
 }
 
-/**
- * __Mongoose Schema for User__
- *
- * Required for Mongoose/TS interop
- * - schema using `mongoose#schema`
- * - `Attrs` interface for inputs
- * - `Doc` interface for mongoose Document properties +
- *    model fields + virtuals
- * - `Model` interface for mongoose Model properties + static method types
- * - `build` static method for creating new instance of Model with correct types
- */
 const userSchema = new mongoose.Schema(
   {
     email: {
@@ -48,7 +37,7 @@ const userSchema = new mongoose.Schema(
       },
       versionKey: false,
     },
-  },
+  }
 );
 
 // Model Hooks
