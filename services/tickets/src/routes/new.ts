@@ -15,6 +15,8 @@ router.post(
   [
     body("title").notEmpty().withMessage("Title is required"),
     body("price")
+      .isNumeric()
+      .withMessage("Price must be a number")
       .isFloat({ gt: 0 })
       .withMessage("Price must be greater than 0"),
   ],

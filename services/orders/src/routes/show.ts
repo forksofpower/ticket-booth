@@ -4,16 +4,11 @@ import { param } from "express-validator";
 import {
   NotAuthorizedError,
   NotFoundError,
-  NotImplementedError,
   requireAuth,
   validateRequest,
 } from "@forksofpower/ticketbooth-common";
 
 import { Order } from "../models/order";
-
-// import { NotFoundError } from "@forksofpower/ticketbooth-common";
-
-// import { Order } from "../models/order";
 
 const router = express.Router();
 router.get(
