@@ -14,7 +14,7 @@ const buildClient = ({ req }: NextPageContext) => {
     });
   } else {
     // We are on the browser
-    // Requests can be made with a base url of ''
+    // Requests can be made with a base url of '/'
     return axios.create({
       baseURL: "/",
       withCredentials: true,

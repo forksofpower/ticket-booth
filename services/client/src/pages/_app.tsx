@@ -35,11 +35,6 @@ export type NextPageWithLayout<Props = {}, InitialProps = Props> = NextPage<
   InitialProps
 > & {
   getLayout?: (page: React.ReactNode) => React.ReactNode;
-  // getInitialProps?(
-  //   context: Context,
-  //   client: AxiosInstance,
-  //   currentUser: User
-  // ): InitialProps | Promise<InitialProps>;
 };
 
 type AppPropsWithLayout = AppProps & {
@@ -64,8 +59,8 @@ App.getInitialProps = async (context: AppContext) => {
     data: { currentUser },
   } = await client.get<{ currentUser: User }>(`/api/users/currentuser`);
 
-  const pageProps =
-    (await context.Component.getInitialProps?.(context.ctx)) || {};
+  const pageProps = {};
+  // (await context.Component.fetchData?.(context.ctx)) || {};
 
   return {
     pageProps,
