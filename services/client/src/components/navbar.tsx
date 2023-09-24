@@ -1,15 +1,17 @@
+"use client";
 import Link from "next/link";
 import React, { use } from "react";
 
 import { useCurrentUser } from "@/contexts/current-user";
+import { routes } from "@/routes";
 
 type Props = {};
 
 const NavBar = (props: Props) => {
-  const { currentUser, setCurrentUser } = useCurrentUser();
+  const { currentUser } = useCurrentUser();
 
   return (
-    <div className="navbar fixed top-0 z-50">
+    <div className="navbar top-0 z-50">
       <div className="flex-1">
         <a className="btn btn-ghost normal-case text-xl">TicketBooth</a>
       </div>
@@ -49,7 +51,7 @@ const NavBar = (props: Props) => {
         </div> */}
         {currentUser ? (
           <Link
-            href="/auth/signout"
+            href={routes.auth.signout()}
             className="btn btn-ghost normal-case text-l"
             // onClick={() => setCurrentUser(null)}
           >
@@ -58,7 +60,7 @@ const NavBar = (props: Props) => {
         ) : (
           <div>
             <Link
-              href="/auth/signin"
+              href={routes.auth.signin()}
               className="btn btn-ghost normal-case text-l"
             >
               Sign In

@@ -1,11 +1,12 @@
+"use client";
+import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { FieldErrors, useForm } from "react-hook-form";
 
 import { TextField } from "@/components/forms/fields/text-field";
 import useTickets, { NewTicketFormInput } from "@/hooks/use-tickets";
+import { routes } from "@/routes";
 import { normalizeErrorResponsesByField } from "@/utils/errors";
-
-import { NextPageWithLayout } from "../_app";
 
 type Props = {};
 
@@ -16,7 +17,7 @@ const NewTicketForm = () => {
     handleSubmit,
     formState: { errors: formErrors },
   } = useForm<NewTicketFormInput>();
-
+  const router = useRouter();
   const {
     actions: { createTicket },
     errors: { createTicketErrors },
@@ -45,6 +46,7 @@ const NewTicketForm = () => {
       title,
       price,
     });
+    router.push(routes.tickets.list());
   }
 
   return (
@@ -72,7 +74,7 @@ const NewTicketForm = () => {
   );
 };
 
-const NewTicket: NextPageWithLayout = (props: Props) => {
+const NewTicket = (props: Props) => {
   return (
     <div>
       <h1>Create A Ticket</h1>

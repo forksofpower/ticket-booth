@@ -1,16 +1,16 @@
 import axios from "axios";
-import { NextPageContext } from "next";
+import { IncomingHttpHeaders } from "http";
 
 import { isServer } from "./predicates";
 
-const buildClient = ({ req }: NextPageContext) => {
+const buildClient = (requestHeaders: IncomingHttpHeaders) => {
   if (isServer) {
     // We are on the server
     // Requests should be made to http://SERVICENAME.NAMESPACE.svc.cluster.local/ROUTE
     return axios.create({
       baseURL:
         "http://ingress-nginx-controller.ingress-nginx.svc.cluster.local",
-      headers: req!.headers,
+      headers: requestHeaders,
     });
   } else {
     // We are on the browser

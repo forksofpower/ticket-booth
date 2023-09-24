@@ -1,12 +1,14 @@
+"use client";
+import Link from "next/link";
 import React from "react";
+import { FaPlus } from "react-icons/fa6";
 
 import useTickets from "@/hooks/use-tickets";
-
-import { NextPageWithLayout } from "../_app";
+import { routes } from "@/routes";
 
 type Props = {};
 
-const TicketsPage: NextPageWithLayout = (props: Props) => {
+const TicketsPage = (props: Props) => {
   const {
     state: { tickets },
     actions: { listTickets },
@@ -18,6 +20,9 @@ const TicketsPage: NextPageWithLayout = (props: Props) => {
   return (
     <div className="bg-content">
       <h1>My Tickets</h1>
+      <Link href={routes.tickets.new()} className="btn text-l">
+        <FaPlus />
+      </Link>
       <div className="overflow-x-auto">
         <table className="table">
           <thead>
@@ -39,10 +44,6 @@ const TicketsPage: NextPageWithLayout = (props: Props) => {
       </div>
     </div>
   );
-};
-
-TicketsPage.getLayout = (page) => {
-  return page;
 };
 
 export default TicketsPage;
