@@ -2,9 +2,6 @@
 import React, { useEffect, useState } from "react";
 import { FieldErrors, useForm } from "react-hook-form";
 
-import useAuth from "@/hooks/use-auth";
-import { normalizeErrorResponsesByField } from "@/utils/errors";
-
 import { TextField } from "./fields/text-field";
 
 export interface SignInUserFormInput {
@@ -12,26 +9,33 @@ export interface SignInUserFormInput {
   password: string;
 }
 
-export interface SignInUserFormProps {}
+export interface SignInUserFormProps {
+  fieldErrors: FieldErrors<SignInUserFormInput>;
+  onSubmit: (input: SignInUserFormInput) => Promise<void> | void;
+}
 
-export const SignInUserForm: React.FC<SignInUserFormProps> = () => {
+export const SignInUserForm: React.FC<SignInUserFormProps> = ({
+  onSubmit,
+  fieldErrors,
+}) => {
   const [errors, setErrors] = useState<FieldErrors<SignInUserFormInput>>({});
-  const { signIn, signInErrors: requestErrors } = useAuth();
   const {
     register,
     handleSubmit,
     formState: { errors: formErrors },
   } = useForm<SignInUserFormInput>();
 
+  // TODO: Merge external fieldErrors and fieldErrors??
   useEffect(() => {
     setErrors(formErrors);
   }, [formErrors]);
 
+  // Replace form errors with external fieldErrors
   useEffect(() => {
-    if (requestErrors) {
-      setErrors(normalizeErrorResponsesByField(requestErrors));
+    if (fieldErrors) {
+      setErrors(fieldErrors);
     }
-  }, [requestErrors]);
+  }, [fieldErrors]);
 
   // register form fields with validation rules
   const emailField = register("email", {
@@ -42,17 +46,9 @@ export const SignInUserForm: React.FC<SignInUserFormProps> = () => {
       }
     },
   });
-
   const passwordField = register("password", {
     required: "Password is required",
   });
-
-  async function onSubmit({ email, password }: SignInUserFormInput) {
-    await signIn({
-      email,
-      password,
-    });
-  }
 
   return (
     <form className="space-y-4">
