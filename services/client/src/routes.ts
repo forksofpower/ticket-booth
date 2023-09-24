@@ -1,11 +1,15 @@
 export const routes = {
-  root(): string {
-    return "/";
+  root: () => "/",
+  // Auth
+  auth: {
+    signin: (redirectTo?: string) => `/signin?redirectTo=${redirectTo || "/"}`,
+    register: (redirectTo?: string) =>
+      `/register?redirectTo=${redirectTo || "/"}`,
   },
-  signin(redirectTo?: string): string {
-    return `/signin?redirectTo=${redirectTo || "/"}`;
-  },
-  register(redirectTo?: string): string {
-    return `/register?redirectTo=${redirectTo || "/"}`;
+  // Tickets
+  tickets: {
+    new: () => "tickets/new",
+    list: () => "tickets",
+    show: (ticketId: string) => `tickets/${ticketId}`,
   },
 };
