@@ -1,26 +1,26 @@
-"use client";
+import { headers } from "next/headers";
 import Link from "next/link";
 import React from "react";
 import { FaPlus } from "react-icons/fa6";
 
-import useTickets from "@/hooks/use-tickets";
+import { Ticket } from "@/hooks/use-tickets";
 import { routes } from "@/routes";
+import buildClient from "@/utils/build-client";
 
 type Props = {};
 
-const TicketsPage = (props: Props) => {
-  const {
-    state: { tickets },
-    actions: { listTickets },
-  } = useTickets();
+async function fetchTickets() {
+  const client = buildClient(Object.fromEntries(headers().entries()));
+  const res = await client.get<Ticket[]>(`/api/tickets`);
+  return res.data;
+}
 
-  React.useEffect(() => {
-    listTickets();
-  }, []);
+const TicketsPage = async (props: Props) => {
+  const tickets = await fetchTickets();
   return (
     <div className="bg-content">
       <h1>My Tickets</h1>
-      <Link href={routes.tickets.new()} className="btn text-l">
+      <Link href={routes.tickets.new()} className="btn btn-sm text-sm">
         <FaPlus />
       </Link>
       <div className="overflow-x-auto">
@@ -35,7 +35,11 @@ const TicketsPage = (props: Props) => {
             {tickets &&
               tickets.map((ticket) => (
                 <tr key={ticket.id} className="hover">
-                  <td>{ticket.title}</td>
+                  <td>
+                    <Link href={routes.tickets.show(ticket.id)}>
+                      {ticket.title}
+                    </Link>
+                  </td>
                   <td>{ticket.price}</td>
                 </tr>
               ))}
