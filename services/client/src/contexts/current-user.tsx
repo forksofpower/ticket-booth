@@ -1,9 +1,11 @@
+"use client";
 import React from "react";
 
 import { User } from "@/types/user";
 
 interface CurrentUserContextData {
   currentUser: User | null;
+  isSignedIn: boolean;
   setCurrentUser: React.Dispatch<React.SetStateAction<User | null>>;
 }
 
@@ -23,8 +25,18 @@ export const CurrentUserProvider: React.FC<CurrentUserProviderProps> = ({
   const [currentUser, setCurrentUser] = React.useState<User | null>(
     initialCurrentUser
   );
+  const [isSignedIn, setIsSignedIn] = React.useState<boolean>(
+    !!initialCurrentUser
+  );
+
+  React.useEffect(() => {
+    setIsSignedIn(currentUser ? true : false);
+  }, [currentUser]);
+
   return (
-    <CurrentUserContext.Provider value={{ currentUser, setCurrentUser }}>
+    <CurrentUserContext.Provider
+      value={{ currentUser, setCurrentUser, isSignedIn }}
+    >
       {children}
     </CurrentUserContext.Provider>
   );

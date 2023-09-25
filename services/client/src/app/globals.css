@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background-dot-color: #00000033;
+}
+
+body {
+  min-height: 100vh;
+  /* background: radial-gradient(var(--background-dot-color) 10%, transparent 11%);
+  background-attachment: fixed;
+  background-repeat: repeat;
+  background-size: 20px 20px; */
+}
+
+[data-theme="dark"] {
+  /* --background-dot-color: #ffffff18; */
+}

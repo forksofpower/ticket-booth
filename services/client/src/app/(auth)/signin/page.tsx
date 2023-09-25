@@ -1,14 +1,14 @@
+"use client";
 import React from "react";
 
-import SignInUserForm, { SignInUserFormInput } from "@/components/forms/signin-user-form";
-import AuthLayout from "@/components/layouts/auth-layout";
+import SignInUserForm, {
+  SignInUserFormInput,
+} from "@/components/forms/signin-user-form";
 import useAuth from "@/hooks/use-auth";
 import { routes } from "@/routes";
 import { normalizeErrorResponsesByField } from "@/utils/errors";
 
-import { NextPageWithLayout } from "../_app";
-
-const SigninPage: NextPageWithLayout = () => {
+export default function SigninPage() {
   const { signIn, signInErrors: responseErrors } = useAuth();
 
   async function onSubmit(data: SignInUserFormInput) {
@@ -23,8 +23,4 @@ const SigninPage: NextPageWithLayout = () => {
       />
     </>
   );
-};
-SigninPage.getLayout = (page) => {
-  return <AuthLayout>{page}</AuthLayout>;
-};
-export default SigninPage;
+}

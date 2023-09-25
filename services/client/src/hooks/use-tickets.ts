@@ -1,3 +1,4 @@
+import axios from "axios";
 import React from "react";
 
 import { useRequest } from "./use-request";
@@ -16,7 +17,12 @@ export interface Ticket {
 }
 
 const useTickets = () => {
+  const client = axios.create({
+    baseURL: "/",
+    withCredentials: true,
+  });
   const [tickets, setTickets] = React.useState<Ticket[]>();
+  const [currentTicket, setCurrentTicket] = React.useState<Ticket>();
   const { doRequest: createTicket, errors: createTicketErrors } = useRequest<
     NewTicketFormInput,
     Ticket
@@ -42,12 +48,25 @@ const useTickets = () => {
     },
   });
 
+  async function showTicketById(ticketId: string) {
+    const response = await client.get<Ticket>(`/tickets/${ticketId}`);
+    const ticket = response.data;
+    if (!ticket) {
+      console.error(`Error fetching ticket: ${ticketId}`);
+      return;
+    }
+
+    setCurrentTicket(ticket);
+  }
   return {
     state: {
       tickets,
+      currentTicket,
     },
     actions: {
       listTickets,
+      setCurrentTicket,
+      showTicketById,
       createTicket,
     },
     errors: {

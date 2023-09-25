@@ -1,17 +1,25 @@
+"use client";
+import Image from "next/image";
 import Link from "next/link";
 import React, { use } from "react";
 
-import { useCurrentUser } from "@/contexts/current-user";
+import useAuth from "@/hooks/use-auth";
+import { routes } from "@/routes";
 
 type Props = {};
 
 const NavBar = (props: Props) => {
-  const { currentUser, setCurrentUser } = useCurrentUser();
+  const { isSignedIn, user, signOut } = useAuth();
 
   return (
-    <div className="navbar fixed top-0 z-50">
+    <div className="navbar top-0 z-50">
       <div className="flex-1">
-        <a className="btn btn-ghost normal-case text-xl">TicketBooth</a>
+        <Link
+          href={isSignedIn ? routes.tickets.list() : routes.root()}
+          className="btn btn-ghost normal-case text-xl"
+        >
+          TicketBooth
+        </Link>
       </div>
       <div className="flex-none">
         {/* <div className="dropdown dropdown-end">
@@ -47,18 +55,27 @@ const NavBar = (props: Props) => {
             </div>
           </div>
         </div> */}
-        {currentUser ? (
-          <Link
-            href="/auth/signout"
-            className="btn btn-ghost normal-case text-l"
-            // onClick={() => setCurrentUser(null)}
-          >
-            Sign Out
-          </Link>
+        {isSignedIn ? (
+          <div className="flex">
+            <Image
+              src="https://source.boringavatars.com/pixel/40/patrickjones.pmj@gmail.com?square"
+              alt="user avatar"
+              height={40}
+              width={40}
+              className="mask mask-circle"
+            />
+
+            <button
+              onClick={async () => await signOut()}
+              className="btn btn-ghost normal-case text-l"
+            >
+              Sign Out
+            </button>
+          </div>
         ) : (
           <div>
             <Link
-              href="/auth/signin"
+              href={routes.auth.signin()}
               className="btn btn-ghost normal-case text-l"
             >
               Sign In
