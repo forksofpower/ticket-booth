@@ -6,6 +6,15 @@ const nextConfig = {
     config.watchOptions.poll = 300;
     return config;
   },
+  images: {
+    dangerouslyAllowSVG: true,
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "source.boringavatars.com",
+      },
+    ],
+  },
 };
 
 module.exports = nextConfig;
