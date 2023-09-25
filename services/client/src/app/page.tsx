@@ -6,8 +6,6 @@ import RegisterUserForm from "@/components/forms/register-user-form";
 import useAuth from "@/hooks/use-auth";
 import { User } from "@/types/user";
 
-import { NextPageWithLayout } from "../__pages/_app";
-
 interface HomePageProps {
   currentUser?: User;
 }

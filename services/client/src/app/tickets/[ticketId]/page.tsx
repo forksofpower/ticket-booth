@@ -1,27 +1,31 @@
-"use client";
+import { headers } from "next/headers";
 import React from "react";
 
-import CountDownTimer from "@/components/countdown-timer";
+import { Ticket } from "@/hooks/use-tickets";
+import buildClient from "@/utils/build-client";
 
-type ShowTicketProps = {
+type ShowTicketPageProps = {
   params: {
     ticketId: string;
   };
 };
 
-const ShowTicket = (props: ShowTicketProps) => {
-  const ticketId = props.params.ticketId;
-  const [test, setTest] = React.useState(false);
+async function fetchTicket(ticketId: string) {
+  const client = buildClient(Object.fromEntries(headers().entries()));
+  const res = await client.get<Ticket>(`/api/tickets/${ticketId}`);
+  return res.data;
+}
+
+const ShowTicketPage = async ({
+  params: { ticketId },
+}: ShowTicketPageProps) => {
+  const ticket = await fetchTicket(ticketId);
   return (
     <>
-      {/* <CountDownTimer
-        expiresAt={new Date().setMinutes(new Date().getMinutes() + 1)}
-        onCountdownComplete={() => setTest(true)}
-      />
-      {test && <div>Countdown Complete!</div>} */}
-      <h1>Ticket: {ticketId}</h1>
+      <h1>{ticket.title}</h1>
+      <p>price: ${ticket.price}</p>
     </>
   );
 };
 
-export default ShowTicket;
+export default ShowTicketPage;
