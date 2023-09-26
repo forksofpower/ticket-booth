@@ -3,7 +3,7 @@ import { FieldErrors } from "react-hook-form";
 import { ErrorResponseData } from "@/types/response-error-data";
 
 export function normalizeErrorResponsesByField(
-  responseErrors: ErrorResponseData["errors"],
+  responseErrors: ErrorResponseData["errors"]
 ) {
   return responseErrors.reduce<FieldErrors>((acc, e) => {
     if (e.field) {

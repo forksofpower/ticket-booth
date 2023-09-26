@@ -1,7 +1,10 @@
 import { Message } from "node-nats-streaming";
 
 import {
-    Listener, OrderCancelledEvent, OrderCancelledEventData, Subjects
+  Listener,
+  OrderCancelledEvent,
+  OrderCancelledEventData,
+  Subjects,
 } from "@forksofpower/ticketbooth-common";
 
 import { Ticket } from "../../models/ticket";

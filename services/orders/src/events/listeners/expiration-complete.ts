@@ -1,7 +1,11 @@
 import { Message } from "node-nats-streaming";
 
 import {
-    ExpirationCompleteEvent, ExpirationCompleteEventData, Listener, OrderStatus, Subjects
+  ExpirationCompleteEvent,
+  ExpirationCompleteEventData,
+  Listener,
+  OrderStatus,
+  Subjects,
 } from "@forksofpower/ticketbooth-common";
 
 import { Order } from "../../models/order";

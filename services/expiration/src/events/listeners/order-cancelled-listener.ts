@@ -1,6 +1,10 @@
 import { Message } from "node-nats-streaming";
 
-import { Listener, OrderCancelledEvent, Subjects } from "@forksofpower/ticketbooth-common";
+import {
+  Listener,
+  OrderCancelledEvent,
+  Subjects,
+} from "@forksofpower/ticketbooth-common";
 
 export class OrderCancelledListener extends Listener<OrderCancelledEvent> {
   readonly subject = Subjects.OrderCancelled;

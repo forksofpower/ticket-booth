@@ -2,7 +2,11 @@ import express, { Request, Response } from "express";
 import { body } from "express-validator";
 
 import {
-    BadRequestError, NotFoundError, OrderStatus, requireAuth, validateRequest
+  BadRequestError,
+  NotFoundError,
+  OrderStatus,
+  requireAuth,
+  validateRequest,
 } from "@forksofpower/ticketbooth-common";
 
 import { OrderCreatedPublisher } from "../events/publishers/order-created";
@@ -10,7 +14,7 @@ import { Order } from "../models/order";
 import { Ticket } from "../models/ticket";
 import { natsWrapper } from "../nats-wrapper";
 
-const EXPIRATION_WINDOW_SECONDS = 15 * 60;
+const EXPIRATION_WINDOW_SECONDS = 1 * 60;
 
 const router = express.Router();
 
@@ -50,6 +54,7 @@ router.post(
     });
 
     await order.save();
+    await Order.populate(order, { path: "ticket" });
 
     new OrderCreatedPublisher(natsWrapper.client).publish({
       id: order._id,

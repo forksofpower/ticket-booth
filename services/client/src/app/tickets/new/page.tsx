@@ -7,6 +7,7 @@ import { TextField } from "@/components/forms/fields/text-field";
 import useTickets, { NewTicketFormInput } from "@/hooks/use-tickets";
 import { routes } from "@/routes";
 import { normalizeErrorResponsesByField } from "@/utils/errors";
+import { clientRedirect } from "@/utils/redirect";
 
 type Props = {};
 
@@ -46,7 +47,7 @@ const NewTicketForm = () => {
       title,
       price,
     });
-    router.push(routes.tickets.list());
+    clientRedirect(routes.tickets.list());
   }
 
   return (
@@ -82,9 +83,4 @@ const NewTicket = (props: Props) => {
     </div>
   );
 };
-
-// NewTicket.getInitialProps = async (ctx, client, currentUser) => {
-//   return {};
-// };
-
 export default NewTicket;

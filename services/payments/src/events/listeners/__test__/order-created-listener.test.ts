@@ -1,7 +1,10 @@
 import mongoose from "mongoose";
 import { Message } from "node-nats-streaming";
 
-import { OrderCreatedEventData, OrderStatus } from "@forksofpower/ticketbooth-common";
+import {
+  OrderCreatedEventData,
+  OrderStatus,
+} from "@forksofpower/ticketbooth-common";
 
 import { Order } from "../../../models/order";
 import { natsWrapper } from "../../../nats-wrapper";

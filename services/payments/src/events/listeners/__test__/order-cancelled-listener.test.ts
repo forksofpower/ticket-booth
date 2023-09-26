@@ -1,7 +1,10 @@
 import mongoose from "mongoose";
 import { Message } from "node-nats-streaming";
 
-import { OrderCancelledEventData, OrderStatus } from "@forksofpower/ticketbooth-common";
+import {
+  OrderCancelledEventData,
+  OrderStatus,
+} from "@forksofpower/ticketbooth-common";
 
 import { Order } from "../../../models/order";
 import { natsWrapper } from "../../../nats-wrapper";
@@ -19,6 +22,7 @@ async function setup() {
     version: 0,
   });
   await order.save();
+
   // create a fake data event
   const data: OrderCancelledEventData = {
     id: order.id,

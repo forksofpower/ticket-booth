@@ -1,7 +1,10 @@
 import { Message } from "node-nats-streaming";
 
 import {
-    Listener, OrderCreatedEvent, OrderCreatedEventData, Subjects
+  Listener,
+  OrderCreatedEvent,
+  OrderCreatedEventData,
+  Subjects,
 } from "@forksofpower/ticketbooth-common";
 
 import { expirationQueue } from "../../queues/expiration-queue";

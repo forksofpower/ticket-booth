@@ -2,7 +2,10 @@ import express, { Request, Response } from "express";
 import { body } from "express-validator";
 import jwt from "jsonwebtoken";
 
-import { BadRequestError, validateRequest } from "@forksofpower/ticketbooth-common";
+import {
+  BadRequestError,
+  validateRequest,
+} from "@forksofpower/ticketbooth-common";
 
 import { config } from "../config";
 import { User } from "../models/user";
