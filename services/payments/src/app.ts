@@ -3,7 +3,11 @@ import "express-async-errors";
 import cookieSession from "cookie-session";
 import express from "express";
 
-import { currentUser, errorHandler, NotFoundError } from "@forksofpower/ticketbooth-common";
+import {
+  currentUser,
+  errorHandler,
+  NotFoundError,
+} from "@forksofpower/ticketbooth-common";
 
 import { routes } from "./routes";
 
