@@ -4,6 +4,8 @@ import React from "react";
 import { Ticket } from "@/hooks/use-tickets";
 import buildClient from "@/utils/build-client";
 
+import PurchaseTicketButton from "./purchase-ticket-button";
+
 type ShowTicketPageProps = {
   params: {
     ticketId: string;
@@ -24,6 +26,7 @@ const ShowTicketPage = async ({
     <>
       <h1>{ticket.title}</h1>
       <p>price: ${ticket.price}</p>
+      <PurchaseTicketButton ticketId={ticket.id} />
     </>
   );
 };
