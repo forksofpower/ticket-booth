@@ -1,4 +1,7 @@
+"use client";
 import React from "react";
+
+import useCountDown, { CounterStatus } from "@/hooks/use-countdown";
 
 const CountDownDigit: React.FC<{ value: number }> = ({ value }) => {
   return (
@@ -7,33 +10,40 @@ const CountDownDigit: React.FC<{ value: number }> = ({ value }) => {
     </span>
   );
 };
+function getMillisecondsUntilExpiration(expiresAt: string | number) {
+  return new Date(expiresAt).getTime() - new Date().getTime();
+}
 
 const CountDownTimer: React.FC<{
   expiresAt: number | string;
-  onCountdownComplete: () => void;
-}> = ({ expiresAt, onCountdownComplete }) => {
-  const [timeLeft, setTimeLeft] = React.useState<number>();
+  onCountdownComplete?: () => void;
+  options?: {
+    countDownCompleteDelay?: number;
+  };
+}> = ({ expiresAt, onCountdownComplete, options }) => {
+  const [timeLeft, counterStatus, actions] = useCountDown(
+    getMillisecondsUntilExpiration(expiresAt)
+  );
+
   React.useEffect(() => {
-    const findTimeLeft = () => {
-      // TODO: number is working here?
-      let msLeft = Math.max(
-        0,
-        (new Date(expiresAt) as unknown as number) -
-          (new Date() as unknown as number)
-      );
-      setTimeLeft(Math.round(msLeft));
-    };
-    findTimeLeft();
-
-    const interval = setInterval(findTimeLeft, 1000);
-
-    if (timeLeft === 0) {
-      console.log("Countdown Complete!");
-      onCountdownComplete();
-      clearInterval(interval);
-    }
-    return () => clearInterval(interval);
+    actions.start();
   }, []);
+
+  React.useEffect(() => {
+    if (counterStatus === CounterStatus.Finished && timeLeft === 0) {
+      // optional delay allows for the countdown to finish animating
+      if (onCountdownComplete) {
+        setTimeout(onCountdownComplete, options?.countDownCompleteDelay || 0);
+      }
+      actions.pause();
+    }
+  }, [
+    actions,
+    counterStatus,
+    onCountdownComplete,
+    options?.countDownCompleteDelay,
+    timeLeft,
+  ]);
   return (
     <>
       {timeLeft !== undefined && (
