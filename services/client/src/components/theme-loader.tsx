@@ -1,15 +1,10 @@
-import Script from "next/script";
 import React from "react";
 
-export enum Theme {
-  LIGHT = "light",
-  DARK = "dark",
-  AUTO = "auto",
-}
+import { Theme } from "@/types/theme";
 
 export interface ThemeLoaderProps
   extends React.ComponentPropsWithoutRef<"script"> {
-  forceTheme?: Theme;
+  forceTheme?: boolean;
   defaultTheme?: Theme;
   localStorageKey?: string;
 }
@@ -24,18 +19,7 @@ export const getScript = ({
 >) => {
   return forceTheme
     ? `document.documentElement.setAttribute("data-theme", '${defaultTheme}');`
-    : `try {
-      console.log("trying to get theme from local storage");
-    var _colorScheme = window.localStorage.getItem("${localStorageKey}");
-    console.log("got theme from local storage:", _colorScheme);
-    var colorScheme = _colorScheme === "light" || _colorScheme === "dark" || _colorScheme === "auto" ? _colorScheme : "${defaultTheme}";
-    var computedColorScheme = colorScheme !== "auto" ? colorScheme : window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-    console.log("computed color scheme:", computedColorScheme);
-    document.documentElement.setAttribute("data-theme", computedColorScheme);
-  } catch (e) {
-    console.log("ERROR IN SCRIPT:", e);
-  }
-`;
+    : `try{var a=window.localStorage.getItem("${localStorageKey}");var e=a==="light"||a==="dark"||a==="auto"?a:"${defaultTheme}";var r=e!=="auto"?e:window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";document.documentElement.setAttribute("data-theme",r)}catch(t){}`;
 };
 
 const ThemeLoader: React.FC<ThemeLoaderProps> = ({
