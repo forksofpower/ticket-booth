@@ -1,8 +1,7 @@
 import { headers } from "next/headers";
-import React from "react";
 
 import { Ticket } from "@/hooks/use-tickets";
-import buildClient from "@/utils/build-client";
+import serverClient from "@/utils/server-client";
 
 import PurchaseTicketButton from "./purchase-ticket-button";
 
@@ -13,8 +12,7 @@ type ShowTicketPageProps = {
 };
 
 async function fetchTicket(ticketId: string) {
-  const client = buildClient(Object.fromEntries(headers().entries()));
-  const res = await client.get<Ticket>(`/api/tickets/${ticketId}`);
+  const res = await serverClient.get<Ticket>(`/api/tickets/${ticketId}`);
   return res.data;
 }
 
