@@ -1,76 +1,76 @@
 "use client";
+
+import cx from "classnames";
 import Image from "next/image";
 import Link from "next/link";
-import React, { use } from "react";
+import React from "react";
 
 import useAuth from "@/hooks/use-auth";
+import useScrollPosition from "@/hooks/use-scroll";
 import { routes } from "@/routes";
+import { isClient } from "@/utils/predicates";
 
 type Props = {};
 
 const NavBar = (props: Props) => {
-  const { isSignedIn, user, signOut } = useAuth();
+  const { isSignedIn, signOut } = useAuth();
+  const scrollY = useScrollPosition();
+
+  async function handleSignOut() {
+    return signOut();
+  }
 
   return (
-    <div className="navbar top-0 z-50">
+    <div
+      className={cx(
+        "navbar px-4 fixed top-0 z-30 transition-shadow duration-100 bg-opacity-90 backdrop-blur bg-base-100",
+        {
+          "shadow-md": scrollY >= 40,
+        }
+      )}
+    >
       <div className="flex-1">
         <Link
           href={isSignedIn ? routes.tickets.list() : routes.root()}
-          className="btn btn-ghost normal-case text-xl"
+          className="normal-case text-xl"
         >
           TicketBooth
         </Link>
       </div>
       <div className="flex-none">
-        {/* <div className="dropdown dropdown-end">
-          <label tabIndex={0} className="btn btn-ghost btn-circle">
-            <div className="indicator">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
-                />
-              </svg>
-              <span className="badge badge-sm indicator-item">8</span>
-            </div>
-          </label>
-          <div
-            tabIndex={0}
-            className="mt-3 z-[1] card card-compact dropdown-content w-52 bg-base-100 shadow"
-          >
-            <div className="card-body">
-              <span className="font-bold text-lg">8 Items</span>
-              <span className="text-info">Subtotal: $999</span>
-              <div className="card-actions">
-                <button className="btn btn-primary btn-block">View cart</button>
-              </div>
-            </div>
-          </div>
-        </div> */}
         {isSignedIn ? (
           <div className="flex">
-            <Image
-              src="https://source.boringavatars.com/pixel/40/patrickjones.pmj@gmail.com?square"
-              alt="user avatar"
-              height={40}
-              width={40}
-              className="mask mask-circle"
-            />
+            <div className="dropdown dropdown-end">
+              <label
+                tabIndex={0}
+                className="btn btn-ghost btn-circle avatar z-50"
+              >
+                <div className="w-10 rounded-full">
+                  <Image
+                    priority
+                    src="https://source.boringavatars.com/pixel/31/patrickjones.pmj@gmail.com?square"
+                    alt="user avatar"
+                    height={40}
+                    width={40}
+                  />
+                </div>
+              </label>
+              <ul
+                tabIndex={0}
+                className="menu menu-sm dropdown-content bg-base-200 z-[1] p-2 mt-3 shadow rounded-box w-52"
+              >
+                <li>
+                  <Link className="justify-between" href={"/settings"}>
+                    Settings
+                    <span className="badge badge-primary">New</span>
+                  </Link>
+                </li>
 
-            <button
-              onClick={async () => await signOut()}
-              className="btn btn-ghost normal-case text-l"
-            >
-              Sign Out
-            </button>
+                <li>
+                  <a onClick={async () => await handleSignOut()}>Sign Out</a>
+                </li>
+              </ul>
+            </div>
           </div>
         ) : (
           <div>
@@ -82,33 +82,6 @@ const NavBar = (props: Props) => {
             </Link>
           </div>
         )}
-        {/* <div className="dropdown dropdown-end">
-          <label
-            tabIndex={0}
-            className="btn btn-ghost btn-circle avatar placeholder"
-          >
-            <div className="bg-neutral-focus text-neutral-content rounded-full w-10">
-              <span className="text-xs">P</span>
-            </div>
-          </label>
-          <ul
-            tabIndex={0}
-            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
-          >
-            <li>
-              <a className="justify-between">
-                Profile
-                <span className="badge badge-primary">New</span>
-              </a>
-            </li>
-            <li>
-              <a>Settings</a>
-            </li>
-            <li>
-              <a>Logout</a>
-            </li>
-          </ul>
-        </div> */}
       </div>
     </div>
   );

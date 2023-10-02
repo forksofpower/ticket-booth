@@ -31,7 +31,7 @@ export default async function RootLayout({
             <header>
               <NavBar />
             </header>
-            <main>{children}</main>
+            <main className="py-24">{children}</main>
           </ThemeProvider>
         </CurrentUserProvider>
       </body>
