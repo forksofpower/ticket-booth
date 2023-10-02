@@ -1,38 +1,26 @@
 "use client";
+
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { FieldErrors, useForm } from "react-hook-form";
 
 import { TextField } from "@/components/forms/fields/text-field";
-import useTickets, { NewTicketFormInput } from "@/hooks/use-tickets";
+import { NewTicketFormInput } from "@/hooks/use-tickets";
 import { routes } from "@/routes";
 import { normalizeErrorResponsesByField } from "@/utils/errors";
-import { clientRedirect } from "@/utils/redirect";
-
-type Props = {};
 
 const NewTicketForm = () => {
+  const router = useRouter();
   const [errors, setErrors] = useState<FieldErrors<NewTicketFormInput>>({});
   const {
     register,
     handleSubmit,
     formState: { errors: formErrors },
   } = useForm<NewTicketFormInput>();
-  const router = useRouter();
-  const {
-    actions: { createTicket },
-    errors: { createTicketErrors },
-  } = useTickets();
 
   useEffect(() => {
     setErrors(formErrors);
   }, [formErrors]);
-
-  useEffect(() => {
-    if (createTicketErrors) {
-      setErrors(normalizeErrorResponsesByField(createTicketErrors));
-    }
-  }, [createTicketErrors]);
 
   const titleField = register("title", {
     required: "Title is required",
@@ -42,40 +30,50 @@ const NewTicketForm = () => {
     required: "Price is required",
   });
 
-  async function onSubmit({ title, price }: NewTicketFormInput) {
-    await createTicket({
-      title,
-      price,
+  async function onSubmit(formData: NewTicketFormInput) {
+    console.log(formData);
+
+    const response = await fetch("/api/tickets", {
+      method: "POST",
+      body: JSON.stringify(formData),
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
     });
-    clientRedirect(routes.tickets.list());
+    const data = await response.json();
+
+    if (data.errors) {
+      setErrors(normalizeErrorResponsesByField(data.errors));
+    } else {
+      setTimeout(() => {
+        router.push(routes.tickets.list());
+      }, 1000);
+    }
   }
 
   return (
-    <form className="space-y-4">
+    <form className="space-y-4" method="POST" onSubmit={handleSubmit(onSubmit)}>
       <TextField
         field="title"
         label="Title"
-        type="text"
         register={titleField}
         error={errors.title}
       />
       <TextField
         field="price"
         label="Price"
-        type="text"
         register={priceField}
         error={errors.price}
       />
       <div className="form-control">
-        <button className="btn btn-primary" onClick={handleSubmit(onSubmit)}>
-          Submit
-        </button>
+        <button className="btn btn-primary">Submit</button>
       </div>
     </form>
   );
 };
 
-const NewTicket = (props: Props) => {
+const NewTicket = () => {
   return (
     <div>
       <h1>Create A Ticket</h1>
