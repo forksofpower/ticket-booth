@@ -4,7 +4,7 @@ import { FieldError, UseFormRegisterReturn } from "react-hook-form";
 export const TextField: React.FC<{
   field: string;
   label?: string;
-  register: UseFormRegisterReturn;
+  register?: UseFormRegisterReturn;
   errorPlacement?: "left" | "right";
   placeholder?: string;
   type?: "text" | "password";
@@ -32,7 +32,7 @@ export const TextField: React.FC<{
         className={cx("input input-bordered focus:input-primary", {
           "input-error": error,
         })}
-        {...register}
+        {...(register && register)}
         {...props}
       />
       <label className="label">

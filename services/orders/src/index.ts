@@ -21,8 +21,9 @@ const start = async () => {
       config.nats.url
     );
     natsWrapper.client.on("close", (data) => {
-      console.log("NATS connection closed", data);
-      console.log("data: ", data);
+      throw new Error("NATS connection closed");
+      // console.log("NATS connection closed", data);
+      // console.log("data: ", data);
     });
     process.on("SIGINT", () => natsWrapper.client.close());
     process.on("SIGTERM", () => natsWrapper.client.close());

@@ -135,6 +135,13 @@ const HomePage: React.FC<HomePageProps> = () => {
                 </div>
               </div>
             </div>
+            <div className="h-[100vh] bg-teal-700">0</div>
+            <div className="h-[100vh] bg-teal-600">1</div>
+            <div className="h-[100vh] bg-teal-500">2</div>
+            <div className="h-[100vh] bg-teal-400">3</div>
+            <div className="h-[100vh] bg-teal-300">4</div>
+            <div className="h-[100vh] bg-teal-200">5</div>
+            <div className="h-[100vh] bg-teal-100">6</div>
           </div>
         </div>
       </div>
