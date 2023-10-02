@@ -30,18 +30,18 @@ const TitleCard = ({ title, children, topMargin, TopSideButtons }: Props) => {
   return (
     <div
       className={cx(
-        "card w-full p-6 bg-base-100 shadow-xl",
+        "card bg-base-100 w-full p-6 shadow-xl",
         topMargin || "mt-6"
       )}
     >
       <Subtitle inline={!!TopSideButtons}>
         {title}
         {TopSideButtons && (
-          <div className="inline-block float-right">{TopSideButtons}</div>
+          <div className="float-right inline-block">{TopSideButtons}</div>
         )}
       </Subtitle>
       <div className="divider mt-2"></div>
-      <div className="h-full w-full pb-6 bg-base-100">{children}</div>
+      <div className="bg-base-100 h-full w-full pb-6">{children}</div>
     </div>
   );
 };

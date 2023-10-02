@@ -28,10 +28,9 @@ export default async function RootLayout({
       <body>
         <CurrentUserProvider currentUser={currentUser}>
           <ThemeProvider>
-            <header>
-              <NavBar />
-            </header>
-            <main className="py-24">{children}</main>
+            <NavBar />
+
+            <main className="relative py-24">{children}</main>
           </ThemeProvider>
         </CurrentUserProvider>
       </body>

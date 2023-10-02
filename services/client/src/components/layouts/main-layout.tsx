@@ -14,7 +14,7 @@ const MainLayout = ({ children }: MainLayoutProps) => {
       </header>
       <main>{children}</main>
       <div className="h-[100vh]">Test</div>
-      <footer className="footer p-10 bg-base-200 text-base-content">
+      <footer className="footer bg-base-200 text-base-content p-10">
         <div>
           <svg
             width="50"

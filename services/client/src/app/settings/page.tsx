@@ -10,10 +10,10 @@ const SettingsPage = (props: SettingsPageProps) => {
   return (
     <div className="container mx-auto">
       <TitleCard title="Settings">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
           <div className="form-control">
             <label className="label">
-              <span className="text-base label-text">UI Theme</span>
+              <span className="label-text text-base">UI Theme</span>
             </label>
             <ThemeToggle />
           </div>

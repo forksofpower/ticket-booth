@@ -8,7 +8,6 @@ import React from "react";
 import useAuth from "@/hooks/use-auth";
 import useScrollPosition from "@/hooks/use-scroll";
 import { routes } from "@/routes";
-import { isClient } from "@/utils/predicates";
 
 type Props = {};
 
@@ -16,14 +15,10 @@ const NavBar = (props: Props) => {
   const { isSignedIn, signOut } = useAuth();
   const scrollY = useScrollPosition();
 
-  async function handleSignOut() {
-    return signOut();
-  }
-
   return (
-    <div
+    <header
       className={cx(
-        "navbar px-4 fixed top-0 z-30 transition-shadow duration-100 bg-opacity-90 backdrop-blur bg-base-100",
+        "navbar bg-base-100 sticky top-0 z-50 w-full bg-opacity-90 backdrop-blur transition-shadow duration-100 lg:container",
         {
           "shadow-md": scrollY >= 40,
         }
@@ -32,7 +27,7 @@ const NavBar = (props: Props) => {
       <div className="flex-1">
         <Link
           href={isSignedIn ? routes.tickets.list() : routes.root()}
-          className="normal-case text-xl"
+          className="text-xl normal-case"
         >
           TicketBooth
         </Link>
@@ -57,7 +52,7 @@ const NavBar = (props: Props) => {
               </label>
               <ul
                 tabIndex={0}
-                className="menu menu-sm dropdown-content bg-base-200 z-[1] p-2 mt-3 shadow rounded-box w-52"
+                className="menu menu-sm dropdown-content bg-base-200 rounded-box z-[1] mt-3 w-52 p-2 shadow"
               >
                 <li>
                   <Link className="justify-between" href={"/settings"}>
@@ -67,7 +62,7 @@ const NavBar = (props: Props) => {
                 </li>
 
                 <li>
-                  <a onClick={async () => await handleSignOut()}>Sign Out</a>
+                  <a onClick={async () => await signOut()}>Sign Out</a>
                 </li>
               </ul>
             </div>
@@ -76,14 +71,14 @@ const NavBar = (props: Props) => {
           <div>
             <Link
               href={routes.auth.signin()}
-              className="btn btn-ghost normal-case text-l"
+              className="btn btn-ghost text-l normal-case"
             >
               Sign In
             </Link>
           </div>
         )}
       </div>
-    </div>
+    </header>
   );
 };
 

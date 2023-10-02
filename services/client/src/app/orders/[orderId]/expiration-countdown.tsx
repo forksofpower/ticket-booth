@@ -32,7 +32,7 @@ const OrderExpiration: React.FC<{ order: Order }> = ({ order }) => {
       />
       <dialog id="countdown-complete-modal" ref={modalRef} className="modal">
         <div className="modal-box">
-          <h3 className="font-bold text-lg">Order Expired</h3>
+          <h3 className="text-lg font-bold">Order Expired</h3>
           <p className="py-4">
             The order expired before you completed the purchase!
           </p>

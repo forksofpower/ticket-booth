@@ -13,7 +13,7 @@ const HomePage: React.FC<HomePageProps> = () => {
   const { isSignedIn } = useAuth();
   return (
     <div>
-      <div className="hero min-h-[60vh] bg-base-200">
+      <div className="hero bg-base-200 min-h-[60vh]">
         {!isSignedIn ? (
           <div className="hero-content flex-col lg:flex-row-reverse">
             <div className="text-center lg:text-left">
@@ -24,7 +24,7 @@ const HomePage: React.FC<HomePageProps> = () => {
                 repudiandae et a id nisi.
               </p>
             </div>
-            <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100 p-4">
+            <div className="card bg-base-100 w-full max-w-sm flex-shrink-0 p-4 shadow-2xl">
               <RegisterUserForm />
             </div>
           </div>
@@ -36,12 +36,12 @@ const HomePage: React.FC<HomePageProps> = () => {
       </div>
       <div className="bg-primary-content">
         <div className="container mx-auto px-4">
-          <div className="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 items-center gap-12">
+          <div className="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
+            <div className="grid items-center gap-12 sm:grid-cols-2 lg:grid-cols-4">
               <div>
-                <div className="relative flex justify-center items-center w-12 h-12 bg-white rounded-xl before:absolute before:-inset-px before:-z-[1] before:bg-gradient-to-br before:from-blue-600 before:via-transparent before:to-violet-600 before:rounded-xl dark:bg-slate-900">
+                <div className="relative flex h-12 w-12 items-center justify-center rounded-xl bg-white before:absolute before:-inset-px before:-z-[1] before:rounded-xl before:bg-gradient-to-br before:from-blue-600 before:via-transparent before:to-violet-600 dark:bg-slate-900">
                   <svg
-                    className="w-7 h-7 text-blue-600 dark:text-blue-500"
+                    className="h-7 w-7 text-blue-600 dark:text-blue-500"
                     xmlns="http://www.w3.org/2000/svg"
                     width="16"
                     height="16"
@@ -63,9 +63,9 @@ const HomePage: React.FC<HomePageProps> = () => {
               </div>
 
               <div>
-                <div className="relative flex justify-center items-center w-12 h-12 bg-white rounded-xl before:absolute before:-inset-px before:-z-[1] before:bg-gradient-to-br before:from-blue-600 before:via-transparent before:to-violet-600 before:rounded-xl dark:bg-slate-900">
+                <div className="relative flex h-12 w-12 items-center justify-center rounded-xl bg-white before:absolute before:-inset-px before:-z-[1] before:rounded-xl before:bg-gradient-to-br before:from-blue-600 before:via-transparent before:to-violet-600 dark:bg-slate-900">
                   <svg
-                    className="w-7 h-7 text-blue-600 dark:text-blue-500"
+                    className="h-7 w-7 text-blue-600 dark:text-blue-500"
                     xmlns="http://www.w3.org/2000/svg"
                     width="16"
                     height="16"
@@ -88,9 +88,9 @@ const HomePage: React.FC<HomePageProps> = () => {
               </div>
 
               <div>
-                <div className="relative flex justify-center items-center w-12 h-12 bg-white rounded-xl before:absolute before:-inset-px before:-z-[1] before:bg-gradient-to-br before:from-blue-600 before:via-transparent before:to-violet-600 before:rounded-xl dark:bg-slate-900">
+                <div className="relative flex h-12 w-12 items-center justify-center rounded-xl bg-white before:absolute before:-inset-px before:-z-[1] before:rounded-xl before:bg-gradient-to-br before:from-blue-600 before:via-transparent before:to-violet-600 dark:bg-slate-900">
                   <svg
-                    className="w-7 h-7 text-blue-600 dark:text-blue-500"
+                    className="h-7 w-7 text-blue-600 dark:text-blue-500"
                     xmlns="http://www.w3.org/2000/svg"
                     width="16"
                     height="16"
@@ -112,9 +112,9 @@ const HomePage: React.FC<HomePageProps> = () => {
               </div>
 
               <div>
-                <div className="relative flex justify-center items-center w-12 h-12 bg-white rounded-xl before:absolute before:-inset-px before:-z-[1] before:bg-gradient-to-br before:from-blue-600 before:via-transparent before:to-violet-600 before:rounded-xl dark:bg-slate-900">
+                <div className="relative flex h-12 w-12 items-center justify-center rounded-xl bg-white before:absolute before:-inset-px before:-z-[1] before:rounded-xl before:bg-gradient-to-br before:from-blue-600 before:via-transparent before:to-violet-600 dark:bg-slate-900">
                   <svg
-                    className="w-7 h-7 text-blue-600 dark:text-blue-500"
+                    className="h-7 w-7 text-blue-600 dark:text-blue-500"
                     xmlns="http://www.w3.org/2000/svg"
                     width="16"
                     height="16"

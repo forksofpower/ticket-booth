@@ -23,7 +23,7 @@ export const TextField: React.FC<{
     <div className="form-control">
       {label && (
         <label className="label pt-0">
-          <span className="text-base label-text">{label}</span>
+          <span className="label-text text-base">{label}</span>
         </label>
       )}
       <input

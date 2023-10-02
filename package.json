@@ -12,5 +12,8 @@
     "format": "npx prettier -w \"./**/*.{js,jsx,ts,tsx}\"",
     "test:all": "yarn workspaces foreach -p run test --colors",
     "common:publish": "yarn workspace @forksofpower/ticketbooth-common run pub && yarn install && git add . && git commit -m 'chore: publish common'"
+  },
+  "devDependencies": {
+    "prettier": "^3.0.3"
   }
 }
