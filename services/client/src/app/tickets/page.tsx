@@ -2,6 +2,7 @@ import { headers } from "next/headers";
 import Link from "next/link";
 import { FaPlus } from "react-icons/fa6";
 
+import TitleCard from "@/components/cards/TitleCard";
 import { Ticket } from "@/hooks/use-tickets";
 import { routes } from "@/routes";
 import buildClient from "@/utils/build-client";
@@ -18,12 +19,13 @@ async function fetchTickets() {
 const TicketsPage = async () => {
   const tickets = await fetchTickets();
   return (
-    <div className="bg-content container">
-      <h1>My Tickets</h1>
-      <Link href={routes.tickets.new()} className="btn btn-sm text-sm">
-        <FaPlus />
-      </Link>
-      <TicketList tickets={tickets} />
+    <div className="page-container">
+      <TitleCard title="My Tickets" topMargin={"mt-0"}>
+        <Link href={routes.tickets.new()} className="btn btn-sm text-sm">
+          <FaPlus />
+        </Link>
+        <TicketList tickets={tickets} />
+      </TitleCard>
     </div>
   );
 };

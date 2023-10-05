@@ -16,8 +16,8 @@ spec:
           image: forksofpower/tb-client
           resources:
             limits:
-              memory: "1Gi"
-              cpu: "1.0"
+              memory: "2Gi"
+              cpu: "2.0"
           ports:
             - containerPort: 3000
 ---

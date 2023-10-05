@@ -17,6 +17,7 @@ export async function requestHandler(req: NextRequest) {
 
   const response = await fetch(url, payload);
 
+  console.log(response.body);
   if (response.ok && revalidate) {
     try {
       revalidatePath(revalidate);

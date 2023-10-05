@@ -21,7 +21,7 @@ export default async function RootLayout({
   } = await client.get<{ currentUser: User }>(`/api/users/currentuser`);
 
   return (
-    <html lang="en" suppressHydrationWarning={true}>
+    <html lang="en" suppressHydrationWarning={true} className="overflow-auto">
       <head>
         <ThemeLoader defaultTheme={Theme.LIGHT} />
       </head>
@@ -29,8 +29,7 @@ export default async function RootLayout({
         <CurrentUserProvider currentUser={currentUser}>
           <ThemeProvider>
             <NavBar />
-
-            <main className="relative py-24">{children}</main>
+            {children}
           </ThemeProvider>
         </CurrentUserProvider>
       </body>

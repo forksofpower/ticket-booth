@@ -2,16 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background-dot-color: #00000033;
+@layer components {
+  .page-container {
+    @apply container pt-20;
+  }
 }
 
-body {
-  min-height: 100vh;
-  /* background: radial-gradient(var(--background-dot-color) 10%, transparent 11%);
-  background-attachment: fixed;
-  background-repeat: repeat;
-  background-size: 20px 20px; */
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
 }
 
 [data-theme="dark"] {

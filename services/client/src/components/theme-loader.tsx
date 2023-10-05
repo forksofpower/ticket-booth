@@ -19,7 +19,15 @@ export const getScript = ({
 >) => {
   return forceTheme
     ? `document.documentElement.setAttribute("data-theme", '${defaultTheme}');`
-    : `try{var a=window.localStorage.getItem("${localStorageKey}");var e=a==="light"||a==="dark"||a==="auto"?a:"${defaultTheme}";var r=e!=="auto"?e:window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";document.documentElement.setAttribute("data-theme",r)}catch(t){}`;
+    : `
+    try {
+      const stored = window.localStorage.getItem("${localStorageKey}");
+      let theme = a === "light" || a ==="dark" || a === "auto" ? a : "${defaultTheme}";
+      if (theme === "auto") {
+        theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      }
+      document.documentElement.setAttribute("data-theme", theme);
+    } catch(t) {}`;
 };
 
 const ThemeLoader: React.FC<ThemeLoaderProps> = ({
@@ -34,6 +42,7 @@ const ThemeLoader: React.FC<ThemeLoaderProps> = ({
     : Theme.LIGHT;
   return (
     <script
+      id="theme-loader-script"
       dangerouslySetInnerHTML={{
         __html: getScript({
           forceTheme,

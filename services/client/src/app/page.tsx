@@ -1,5 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 "use client";
+import cx from "classnames";
 import React from "react";
 
 import RegisterUserForm from "@/components/forms/register-user-form";
@@ -9,10 +10,22 @@ import { User } from "@/types/user";
 interface HomePageProps {
   currentUser?: User;
 }
-const HomePage: React.FC<HomePageProps> = () => {
+
+// tailwind requires full class names to be present in the html
+const panels = [
+  "bg-teal-700",
+  "bg-teal-600",
+  "bg-teal-500",
+  "bg-teal-400",
+  "bg-teal-300",
+  "bg-teal-200",
+  "bg-teal-100",
+];
+
+function Hero() {
   const { isSignedIn } = useAuth();
   return (
-    <div>
+    <>
       <div className="hero bg-base-200 min-h-[60vh]">
         {!isSignedIn ? (
           <div className="hero-content flex-col lg:flex-row-reverse">
@@ -34,118 +47,29 @@ const HomePage: React.FC<HomePageProps> = () => {
           </div>
         )}
       </div>
-      <div className="bg-primary-content">
-        <div className="container mx-auto px-4">
-          <div className="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
-            <div className="grid items-center gap-12 sm:grid-cols-2 lg:grid-cols-4">
-              <div>
-                <div className="relative flex h-12 w-12 items-center justify-center rounded-xl bg-white before:absolute before:-inset-px before:-z-[1] before:rounded-xl before:bg-gradient-to-br before:from-blue-600 before:via-transparent before:to-violet-600 dark:bg-slate-900">
-                  <svg
-                    className="h-7 w-7 text-blue-600 dark:text-blue-500"
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    fill="currentColor"
-                    viewBox="0 0 16 16"
-                  >
-                    <path d="M11 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h6zM5 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H5z" />
-                    <path d="M8 14a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
-                  </svg>
-                </div>
-                <div className="mt-5">
-                  <h3 className="text-lg font-semibold text-gray-800 dark:text-white">
-                    Responsive
-                  </h3>
-                  <p className="mt-1 text-gray-600 dark:text-gray-400">
-                    Responsive, and mobile-first project on the web
-                  </p>
-                </div>
-              </div>
-
-              <div>
-                <div className="relative flex h-12 w-12 items-center justify-center rounded-xl bg-white before:absolute before:-inset-px before:-z-[1] before:rounded-xl before:bg-gradient-to-br before:from-blue-600 before:via-transparent before:to-violet-600 dark:bg-slate-900">
-                  <svg
-                    className="h-7 w-7 text-blue-600 dark:text-blue-500"
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    fill="currentColor"
-                    viewBox="0 0 16 16"
-                  >
-                    <path d="M9.465 10H12a2 2 0 1 1 0 4H9.465c.34-.588.535-1.271.535-2 0-.729-.195-1.412-.535-2z" />
-                    <path d="M6 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 1a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm.535-10a3.975 3.975 0 0 1-.409-1H4a1 1 0 0 1 0-2h2.126c.091-.355.23-.69.41-1H4a2 2 0 1 0 0 4h2.535z" />
-                    <path d="M14 4a4 4 0 1 1-8 0 4 4 0 0 1 8 0z" />
-                  </svg>
-                </div>
-                <div className="mt-5">
-                  <h3 className="text-lg font-semibold text-gray-800 dark:text-white">
-                    Customizable
-                  </h3>
-                  <p className="mt-1 text-gray-600 dark:text-gray-400">
-                    Components are easily customized and extendable
-                  </p>
-                </div>
-              </div>
-
-              <div>
-                <div className="relative flex h-12 w-12 items-center justify-center rounded-xl bg-white before:absolute before:-inset-px before:-z-[1] before:rounded-xl before:bg-gradient-to-br before:from-blue-600 before:via-transparent before:to-violet-600 dark:bg-slate-900">
-                  <svg
-                    className="h-7 w-7 text-blue-600 dark:text-blue-500"
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    fill="currentColor"
-                    viewBox="0 0 16 16"
-                  >
-                    <path d="M5.5 7a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5zM5 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5z" />
-                    <path d="M9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.5L9.5 0zm0 1v2A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z" />
-                  </svg>
-                </div>
-                <div className="mt-5">
-                  <h3 className="text-lg font-semibold text-gray-800 dark:text-white">
-                    Documentation
-                  </h3>
-                  <p className="mt-1 text-gray-600 dark:text-gray-400">
-                    Every component and plugin is well documented
-                  </p>
-                </div>
-              </div>
-
-              <div>
-                <div className="relative flex h-12 w-12 items-center justify-center rounded-xl bg-white before:absolute before:-inset-px before:-z-[1] before:rounded-xl before:bg-gradient-to-br before:from-blue-600 before:via-transparent before:to-violet-600 dark:bg-slate-900">
-                  <svg
-                    className="h-7 w-7 text-blue-600 dark:text-blue-500"
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    fill="currentColor"
-                    viewBox="0 0 16 16"
-                  >
-                    <path d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
-                    <path d="M5 6a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
-                  </svg>
-                </div>
-                <div className="mt-5">
-                  <h3 className="text-lg font-semibold text-gray-800 dark:text-white">
-                    24/7 Support
-                  </h3>
-                  <p className="mt-1 text-gray-600 dark:text-gray-400">
-                    Contact us 24 hours a day, 7 days a week
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="h-[100vh] bg-teal-700">0</div>
-            <div className="h-[100vh] bg-teal-600">1</div>
-            <div className="h-[100vh] bg-teal-500">2</div>
-            <div className="h-[100vh] bg-teal-400">3</div>
-            <div className="h-[100vh] bg-teal-300">4</div>
-            <div className="h-[100vh] bg-teal-200">5</div>
-            <div className="h-[100vh] bg-teal-100">6</div>
-          </div>
-        </div>
-      </div>
-    </div>
+    </>
+  );
+}
+const HomePage: React.FC<HomePageProps> = () => {
+  return (
+    <>
+      <div className="scroller"></div>
+      <Hero />
+      {panels.map((bgColor, index) => (
+        <div
+          key={`panel-${index}`}
+          className={cx("h-[100vh]", bgColor, {
+            "snap-end": index === panels.length - 1,
+          })}
+        ></div>
+      ))}
+      <div />
+      <footer className="footer footer-center text-accent-content  fixed bottom-0 left-0 right-0 -z-50 h-48 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-pink-500 via-red-500 to-yellow-500 p-4">
+        <aside>
+          <p className="font-bold">Copyright © 2023 - Patrick Jones</p>
+        </aside>
+      </footer>
+    </>
   );
 };
 export default HomePage;

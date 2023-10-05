@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { FieldErrors, useForm } from "react-hook-form";
 
+import TitleCard from "@/components/cards/TitleCard";
 import { TextField } from "@/components/forms/fields/text-field";
 import { NewTicketFormInput } from "@/hooks/use-tickets";
 import { routes } from "@/routes";
@@ -47,7 +48,7 @@ const NewTicketForm = () => {
       setErrors(normalizeErrorResponsesByField(data.errors));
     } else {
       setTimeout(() => {
-        router.push(routes.tickets.list());
+        router.push(routes.tickets.show(data.id));
       }, 1000);
     }
   }
@@ -75,9 +76,10 @@ const NewTicketForm = () => {
 
 const NewTicket = () => {
   return (
-    <div>
-      <h1>Create A Ticket</h1>
-      <NewTicketForm />
+    <div className="page-container">
+      <TitleCard title="Create A Ticket" topMargin={"mt-0"}>
+        <NewTicketForm />
+      </TitleCard>
     </div>
   );
 };

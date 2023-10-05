@@ -1,6 +1,7 @@
 import { headers } from "next/headers";
 import React from "react";
 
+import TitleCard from "@/components/cards/TitleCard";
 // import CountDownTimer from "@/components/countdown-timer";
 import buildClient from "@/utils/build-client";
 
@@ -34,12 +35,14 @@ const ShowOrderPage = async ({ params: { orderId } }: ShowOrderPageProps) => {
   const order = await fetchOrder(orderId);
   // console.log(order);
   return (
-    <div>
-      <h1>Order: {order.id}</h1>
-      <h1>{order.ticket.title}</h1>
-      <p>status: {order.status}</p>
-      <p>price: ${order.ticket.price}</p>
-      <OrderExpiration order={order} />
+    <div className="page-container">
+      <TitleCard title="Order Details" topMargin={"mt-0"}>
+        <h1>Order: {order.id}</h1>
+        <h1>{order.ticket.title}</h1>
+        <p>status: {order.status}</p>
+        <p>price: ${order.ticket.price}</p>
+        <OrderExpiration order={order} />
+      </TitleCard>
     </div>
   );
 };

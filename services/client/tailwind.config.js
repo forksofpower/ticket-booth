@@ -6,6 +6,7 @@ module.exports = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
     "../../node_modules/preline/**/*.js",
   ],
+  // darkMode: ["class", "[data-theme='dark']"],
   theme: {
     minHeight: {
       "1/2": "50%",
