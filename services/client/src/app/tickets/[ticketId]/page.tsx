@@ -24,16 +24,14 @@ const ShowTicketPage = async ({
 }: ShowTicketPageProps) => {
   const ticket = await fetchTicket(ticketId);
   return (
-    <>
-      <div className="page-container">
-        <TitleCard title="Ticket Details" topMargin={"mt-0"}>
-          <h1>{ticket.title}</h1>
-          <p>price: ${ticket.price}</p>
-          <div className="divider"></div>
-          <PurchaseTicketButton ticketId={ticket.id} />
-        </TitleCard>
-      </div>
-    </>
+    <div className="page-container">
+      <TitleCard title="Ticket Details" topMargin={"mt-0"}>
+        <h1>{ticket.title}</h1>
+        <p>price: ${ticket.price}</p>
+        <div className="divider"></div>
+        <PurchaseTicketButton ticketId={ticket.id} />
+      </TitleCard>
+    </div>
   );
 };
 

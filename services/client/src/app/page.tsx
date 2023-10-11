@@ -1,15 +1,10 @@
 /* eslint-disable react/no-unescaped-entities */
 "use client";
-import cx from "classnames";
 import React from "react";
 
 import RegisterUserForm from "@/components/forms/register-user-form";
 import useAuth from "@/hooks/use-auth";
-import { User } from "@/types/user";
-
-interface HomePageProps {
-  currentUser?: User;
-}
+import cn from "@/utils/classnames";
 
 // tailwind requires full class names to be present in the html
 const panels = [
@@ -50,21 +45,23 @@ function Hero() {
     </>
   );
 }
-const HomePage: React.FC<HomePageProps> = () => {
+const HomePage = () => {
   return (
     <>
-      <div className="scroller"></div>
       <Hero />
       {panels.map((bgColor, index) => (
         <div
           key={`panel-${index}`}
-          className={cx("h-[100vh]", bgColor, {
+          className={cn("h-[100vh]", bgColor, {
             "snap-end": index === panels.length - 1,
           })}
         ></div>
       ))}
       <div />
-      <footer className="footer footer-center text-accent-content  fixed bottom-0 left-0 right-0 -z-50 h-48 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-pink-500 via-red-500 to-yellow-500 p-4">
+      <footer
+        className="bg-gradient-radial footer footer-center text-accent-content fixed bottom-0 left-0 right-0 -z-50 h-48
+      from-pink-500 via-red-500 to-yellow-500 p-4"
+      >
         <aside>
           <p className="font-bold">Copyright © 2023 - Patrick Jones</p>
         </aside>
@@ -72,4 +69,5 @@ const HomePage: React.FC<HomePageProps> = () => {
     </>
   );
 };
+
 export default HomePage;

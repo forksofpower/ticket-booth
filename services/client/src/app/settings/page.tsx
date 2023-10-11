@@ -2,7 +2,7 @@
 import React from "react";
 
 import TitleCard from "@/components/cards/TitleCard";
-import ThemeToggle from "@/components/theme-toggle";
+import ThemeToggle from "@/components/theme/theme-toggle";
 
 type SettingsPageProps = {};
 

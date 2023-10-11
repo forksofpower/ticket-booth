@@ -5,7 +5,8 @@ import { FieldErrors, useForm } from "react-hook-form";
 import useAuth from "@/hooks/use-auth";
 import { normalizeErrorResponsesByField } from "@/utils/errors";
 
-import { TextField } from "./fields/text-field";
+import Input from "./input";
+import Label, { LabelText } from "./label";
 
 export interface RegisterUserFormInput {
   email: string;
@@ -76,34 +77,53 @@ export const RegisterUserForm = () => {
   });
 
   return (
-    <form autoComplete="false">
-      <TextField
-        field="email"
-        placeholder="Email Address"
-        error={errors.email}
-        register={emailField}
-      />
-      <TextField
-        field="password"
-        placeholder="Password"
-        type="password"
-        error={errors.password}
-        register={passwordField}
-      />
-      <TextField
-        field="confirmPassword"
-        placeholder="Confirm Password"
-        type="password"
-        error={errors.confirmPassword}
-        register={confirmPasswordField}
-      />
-
-      <div className="form-control pt-3">
-        <button onClick={handleSubmit(onSubmit)} className="btn btn-primary">
-          Register
-        </button>
+    <>
+      <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+        <h2 className="text-base-content mt-10 text-center text-2xl font-bold leading-9 tracking-tight">
+          Sign Up
+        </h2>
       </div>
-    </form>
+      <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+        <form autoComplete="false" className="space-y-0">
+          <div className="form-control">
+            <Label className="pb-1" title="Email" />
+            <Input type="email" {...emailField} />
+            <Label className="mt-1 min-h-[1rem] py-0">
+              <LabelText className="text-error text-xs">
+                {errors.email?.message}
+              </LabelText>
+            </Label>
+          </div>
+          <div className="form-control">
+            <Label className="pb-1" title="Password" />
+            <Input type="password" {...passwordField} />
+            <Label className="mt-1 min-h-[1rem] py-0">
+              <LabelText className="text-error text-xs">
+                {errors.password?.message}
+              </LabelText>
+            </Label>
+          </div>
+          <div className="form-control">
+            <Label className="pb-1" title="Confirm Password" />
+            <Input type="password" {...confirmPasswordField} />
+            <Label className="mt-1 min-h-[1rem] py-0">
+              <LabelText className="text-error text-xs">
+                {errors.confirmPassword?.message}
+              </LabelText>
+            </Label>
+          </div>
+
+          <div className="form-control pt-3">
+            <button
+              onClick={handleSubmit(onSubmit)}
+              className="btn btn-primary"
+            >
+              Register
+            </button>
+          </div>
+        </form>
+      </div>
+    </>
   );
 };
 

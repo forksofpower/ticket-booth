@@ -1,5 +1,6 @@
-import cx from "classnames";
 import React from "react";
+
+import cn from "@/utils/classnames";
 
 type Props = {
   title: string;
@@ -17,7 +18,7 @@ const Subtitle = ({
 }) => {
   return (
     <h2
-      className={cx("text-xl font-semibold", {
+      className={cn("text-xl font-semibold", {
         "inline-block": inline,
       })}
     >
@@ -29,7 +30,7 @@ const Subtitle = ({
 const TitleCard = ({ title, children, topMargin, TopSideButtons }: Props) => {
   return (
     <div
-      className={cx(
+      className={cn(
         "card bg-base-100 w-full p-6 shadow-xl",
         topMargin || "mt-6"
       )}
