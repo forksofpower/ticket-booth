@@ -6,6 +6,11 @@
   .page-container {
     @apply container pt-20;
   }
+
+  /* Fix tailwindcss/forms styles overwriting daisyui */
+  [type="radio"]:checked.btn {
+    background-image: none;
+  }
 }
 
 @layer utilities {

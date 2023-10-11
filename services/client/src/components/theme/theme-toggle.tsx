@@ -2,11 +2,10 @@
 import React from "react";
 
 import { useTheme } from "@/contexts/theme";
-
-import { Theme } from "../types/theme";
+import { Theme } from "@/types/theme";
 
 const ThemeToggle = () => {
-  const { theme, setTheme, autoMode } = useTheme();
+  const { theme, setTheme } = useTheme();
 
   function onChange(e: React.ChangeEvent<HTMLInputElement>) {
     if (e.target.checked) {
@@ -27,13 +26,10 @@ const ThemeToggle = () => {
     );
   }
 
-  return (
-    <div className="join">
-      <ThemeRadioButton theme={Theme.LIGHT} />
-      <ThemeRadioButton theme={Theme.DARK} />
-      <ThemeRadioButton theme={Theme.AUTO} />
-    </div>
+  const themeRadioButtons = [Theme.LIGHT, Theme.DARK, Theme.AUTO].map(
+    (theme) => <ThemeRadioButton key={theme} theme={theme} />
   );
+  return <div className="join">{themeRadioButtons}</div>;
 };
 
 export default ThemeToggle;

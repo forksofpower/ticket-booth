@@ -35,8 +35,8 @@ const ThemeLoader: React.FC<ThemeLoaderProps> = ({
   defaultTheme,
   localStorageKey,
 }) => {
-  const _defaultTheme = ["light", "dark", "auto"].includes(
-    defaultTheme as string
+  const _defaultTheme = [Theme.LIGHT, Theme.DARK, Theme.AUTO].includes(
+    defaultTheme as Theme
   )
     ? defaultTheme
     : Theme.LIGHT;
