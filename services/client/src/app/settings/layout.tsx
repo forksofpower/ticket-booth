@@ -1,5 +1,4 @@
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { Route } from "next";
 import React from "react";
 
 import NavLink from "@/components/nav-link";
@@ -8,7 +7,12 @@ type Props = {
   children: React.ReactNode;
 };
 
-const settingsMenuItems = [
+type SettingsMenuItem = {
+  label: string;
+  href: Route;
+};
+
+const settingsMenuItems: SettingsMenuItem[] = [
   {
     label: "General",
     href: "/settings",

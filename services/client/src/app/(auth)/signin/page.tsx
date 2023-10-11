@@ -12,7 +12,7 @@ export default function SigninPage() {
   const { signIn, signInErrors: responseErrors } = useAuth();
 
   async function onSubmit(data: SignInUserFormInput) {
-    await signIn(data, routes.tickets.new());
+    await signIn(data, routes.listTickets());
   }
 
   return (

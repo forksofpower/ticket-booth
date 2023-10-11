@@ -22,9 +22,7 @@ function TicketList({ tickets }: TicketListProps) {
           tickets.map((ticket) => (
             <tr key={ticket.id} className="hover">
               <td>
-                <Link href={routes.tickets.show(ticket.id)}>
-                  {ticket.title}
-                </Link>
+                <Link href={routes.showTicket(ticket.id)}>{ticket.title}</Link>
               </td>
               <td>{ticket.price}</td>
             </tr>

@@ -1,8 +1,12 @@
 "use client";
+
+import { Route } from "next";
 import { useRouter } from "next/navigation";
 
 import { RegisterUserFormInput } from "@/components/forms/register-user-form";
-import { SignInUserFormInput as UserSignInRequestBody } from "@/components/forms/signin-user-form";
+import {
+  SignInUserFormInput as UserSignInRequestBody,
+} from "@/components/forms/signin-user-form";
 import { useCurrentUser } from "@/contexts/current-user";
 import { routes } from "@/routes";
 import { User } from "@/types/user";
@@ -48,14 +52,14 @@ const useAuth = () => {
     method: "get",
   });
 
-  async function signOut(redirectTo?: string) {
+  async function signOut(redirectTo?: Route) {
     await doSignOut();
     setCurrentUser(null);
     // setIsSignedIn(false);
     router.push(redirectTo || routes.root());
   }
 
-  async function register(body: RegisterUserFormInput, redirectTo?: string) {
+  async function register(body: RegisterUserFormInput, redirectTo?: Route) {
     const user = await doRegister(body);
     if (user) {
       setCurrentUser(user);
@@ -63,13 +67,13 @@ const useAuth = () => {
     }
     router.push(redirectTo || routes.root());
   }
-  async function signIn(body: UserSignInRequestBody, redirectTo?: string) {
+  async function signIn(body: UserSignInRequestBody, redirectTo?: Route) {
     const user = await doSignIn(body);
     if (user) {
       setCurrentUser(user);
       // setIsSignedIn(true);
+      router.push(redirectTo || routes.root());
     }
-    router.push(redirectTo || routes.root());
   }
 
   return {

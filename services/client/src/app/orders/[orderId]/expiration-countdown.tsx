@@ -14,7 +14,7 @@ const OrderExpiration: React.FC<{ order: Order }> = ({ order }) => {
 
   function closeModal() {
     modalRef.current?.close();
-    router.push(routes.tickets.show(order.ticket.id));
+    router.push(routes.showTicket(order.ticket.id));
   }
   function openModal() {
     modalRef.current?.showModal();

@@ -1,6 +1,5 @@
 "use client";
 
-import cx from "classnames";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -8,6 +7,7 @@ import React from "react";
 import useAuth from "@/hooks/use-auth";
 import useScrollPosition from "@/hooks/use-scroll";
 import { routes } from "@/routes";
+import cn from "@/utils/classnames";
 
 type Props = {};
 
@@ -17,14 +17,17 @@ const NavBar = (props: Props) => {
 
   return (
     <nav
-      className={cx("navbar fixed top-0 z-50 w-full transition duration-500 ", {
-        "bg-base-100/80 shadow-md backdrop-blur": scrollY >= 40,
-      })}
+      className={cn(
+        "navbar fixed top-0 z-50 w-full transition-shadow duration-500 ",
+        {
+          "bg-base-100/80 shadow-md backdrop-blur": scrollY >= 40,
+        }
+      )}
     >
       <div className="container">
         <div className="flex-1">
           <Link
-            href={isSignedIn ? routes.tickets.list() : routes.root()}
+            href={isSignedIn ? "/tickets" : "/"}
             className="text-xl normal-case"
           >
             TicketBooth
@@ -68,7 +71,7 @@ const NavBar = (props: Props) => {
           ) : (
             <div>
               <Link
-                href={routes.auth.signin()}
+                href={routes.signin()}
                 className="btn btn-ghost text-l normal-case"
               >
                 Sign In

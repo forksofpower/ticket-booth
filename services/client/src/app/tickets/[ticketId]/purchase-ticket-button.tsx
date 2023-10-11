@@ -14,7 +14,7 @@ const PurchaseTicketButton: React.FC<{ ticketId: string }> = ({ ticketId }) => {
       ticketId,
     },
     onSuccess: (order) => {
-      router.push(routes.orders.show(order.id));
+      router.push(routes.showOrder(order.id));
     },
   });
   return (

@@ -1,14 +1,15 @@
 "use client";
-
-import cx from "classnames";
+import type { Route } from "next";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-function NavLink(props: { href: string; children: React.ReactNode }) {
+import cn from "@/utils/classnames";
+
+function NavLink(props: { href: Route; children: React.ReactNode }) {
   const pathname = usePathname();
   return (
     <Link
-      className={cx({
+      className={cn({
         active: pathname == props.href,
       })}
       href={props.href}
