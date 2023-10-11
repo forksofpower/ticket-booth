@@ -1,12 +1,10 @@
 /** @type {import('tailwindcss').Config} */
+
 module.exports = {
   content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-    "../../node_modules/preline/**/*.js",
   ],
-  // darkMode: ["class", "[data-theme='dark']"],
   theme: {
     minHeight: {
       "1/2": "50%",
@@ -15,6 +13,9 @@ module.exports = {
       center: true,
     },
     extend: {
+      colors: {
+        google: "#DB4437",
+      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
@@ -22,7 +23,12 @@ module.exports = {
       },
     },
   },
-  plugins: [require("@tailwindcss/typography"), require("daisyui")],
+  plugins: [
+    require("daisyui"),
+    require("tailwindcss-brand-colors"),
+    require("@tailwindcss/forms"),
+    require("@tailwindcss/typography"),
+  ],
   daisyui: {
     logs: false,
     themes: false,

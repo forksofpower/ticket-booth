@@ -3,7 +3,7 @@ import "./globals.css";
 import { headers } from "next/headers";
 
 import NavBar from "@/components/navbar";
-import ThemeLoader from "@/components/theme-loader";
+import ThemeLoader from "@/components/theme/theme-loader";
 import { CurrentUserProvider } from "@/contexts/current-user";
 import { ThemeProvider } from "@/contexts/theme";
 import { Theme } from "@/types/theme";
@@ -12,8 +12,10 @@ import buildClient from "@/utils/build-client";
 
 export default async function RootLayout({
   children,
+  modal,
 }: {
   children: React.ReactNode;
+  modal?: React.ReactNode;
 }) {
   const client = buildClient(Object.fromEntries(headers().entries()));
   const {
@@ -30,6 +32,7 @@ export default async function RootLayout({
           <ThemeProvider>
             <NavBar />
             {children}
+            {modal}
           </ThemeProvider>
         </CurrentUserProvider>
       </body>
