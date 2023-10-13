@@ -1,3 +1,4 @@
+import { changePasswordRouter } from "./change-password";
 import { currentUserRouter } from "./current-user";
 import { signinRouter } from "./signin";
 import { signoutRouter } from "./signout";
@@ -8,4 +9,5 @@ export const routes = [
   signinRouter,
   signoutRouter,
   signupRouter,
+  changePasswordRouter,
 ];

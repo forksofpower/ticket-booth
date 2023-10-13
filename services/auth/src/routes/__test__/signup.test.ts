@@ -10,6 +10,8 @@ describe("Auth: Signup", () => {
       .send({
         email: "test@testing.com",
         password: "password",
+        firstName: "John",
+        lastName: "Doe",
       })
       .expect(201);
   });
@@ -19,6 +21,8 @@ describe("Auth: Signup", () => {
       .post("/api/users/signup")
       .send({
         password: "password",
+        firstName: "John",
+        lastName: "Doe",
       })
       .expect(400);
 
@@ -26,6 +30,8 @@ describe("Auth: Signup", () => {
       .post("/api/users/signup")
       .send({
         email: "test@testing.com",
+        firstName: "John",
+        lastName: "Doe",
       })
       .expect(400);
   });
@@ -36,6 +42,8 @@ describe("Auth: Signup", () => {
       .send({
         email: "test@testing.com",
         password: "password",
+        firstName: "John",
+        lastName: "Doe",
       })
       .expect(201);
     await request(app)
@@ -43,6 +51,8 @@ describe("Auth: Signup", () => {
       .send({
         email: "test@testing.com",
         password: "password",
+        firstName: "John",
+        lastName: "Doe",
       })
       .expect(400);
   });

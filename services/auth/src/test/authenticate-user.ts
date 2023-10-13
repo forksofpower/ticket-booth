@@ -7,12 +7,16 @@ import { app } from "../app";
  * @returns Promise<string[]> - Cookie array
  */
 export const authenticateUser = async () => {
-  const email = "test@testing.com";
-  const password = "password";
+  const user = {
+    email: "test@testing.com",
+    password: "password",
+    firstName: "John",
+    lastName: "Doe",
+  };
 
   const response = await request(app)
     .post("/api/users/signup")
-    .send({ email, password })
+    .send(user)
     .expect(201);
 
   const cookie = response.get("Set-Cookie");

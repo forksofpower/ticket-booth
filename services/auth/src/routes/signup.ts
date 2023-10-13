@@ -20,10 +20,16 @@ router.post(
       .trim()
       .isLength({ min: 4, max: 20 })
       .withMessage("Password must be between 4 and 20 characters"),
+    body("firstName")
+      .isAlphanumeric()
+      .withMessage("First name must be alphanumeric"),
+    body("lastName")
+      .isAlphanumeric()
+      .withMessage("Last name must be alphanumeric"),
   ],
   validateRequest,
   async (req: Request, res: Response) => {
-    const { email, password } = req.body;
+    const { email, password, firstName, lastName } = req.body;
 
     // Prevent duplicate emails
     const existingUser = await User.findOne({ email });
@@ -42,6 +48,8 @@ router.post(
     const user = User.build({
       email,
       password,
+      firstName,
+      lastName,
     });
     await user.save();
 
