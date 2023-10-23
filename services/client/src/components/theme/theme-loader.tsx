@@ -22,7 +22,7 @@ export const getScript = ({
     : `
     try {
       const stored = window.localStorage.getItem("${localStorageKey}");
-      let theme = a === "light" || a ==="dark" || a === "auto" ? a : "${defaultTheme}";
+      let theme = stored === "light" || a ==="dark" || a === "auto" ? stored : "${defaultTheme}";
       if (theme === "auto") {
         theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
       }

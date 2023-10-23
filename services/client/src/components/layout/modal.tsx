@@ -41,7 +41,7 @@ export default function Modal({ children }: { children: React.ReactNode }) {
   }, [onKeyDown]);
 
   return (
-    <dialog className="modal modal-open">
+    <dialog className="modal modal-open md:modal-middle modal-bottom">
       <div className="modal-backdrop" ref={overlay}></div>
       <div ref={wrapper} className="modal-box">
         {children}

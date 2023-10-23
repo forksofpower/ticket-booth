@@ -12,7 +12,7 @@ import cn from "@/utils/classnames";
 type Props = {};
 
 const NavBar = (props: Props) => {
-  const { isSignedIn, signOut } = useAuth();
+  const { isSignedIn, signOut, user } = useAuth();
   const scrollY = useScrollPosition();
 
   return (
@@ -44,7 +44,7 @@ const NavBar = (props: Props) => {
                   <div className="w-10 rounded-full">
                     <Image
                       priority
-                      src="https://source.boringavatars.com/pixel/31/patrickjones.pmj@gmail.com?square"
+                      src={`https://source.boringavatars.com/pixel/40/${user?.email}?square`}
                       alt="user avatar"
                       height={40}
                       width={40}
