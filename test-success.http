@@ -5,10 +5,32 @@ POST {{baseURL}}/users/signup HTTP/1.1
 Content-Type: application/json
 
 {
-  "email": "forksofpower@gmail.com",
+  "firstName": "John",
+  "lastName": "Doe",
+  "email": "patrickjones.pmj@gmail.com",
   "password": "12345678"
 }
 
+### Get Current User
+GET {{baseURL}}/users/currentuser HTTP/1.1
+
+### Update Current User
+PATCH {{baseURL}}/users/currentuser HTTP/1.1
+Content-Type: application/json
+
+{
+  "firstName": "Forks",
+  "lastName": "Of Power"
+}
+
+### Change Password
+POST {{baseURL}}/users/change-password HTTP/1.1
+Content-Type: application/json
+
+{
+  "currentPassword": "12345678",
+  "newPassword": "123456789"
+}
 
 ### Create Ticket
 # @name createTicket

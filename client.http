@@ -36,6 +36,15 @@ Content-Type: application/json
 ### Get Current User
 GET {{baseURL}}/users/currentuser HTTP/1.1
 
+### Update Current User
+PATCH {{baseURL}}/users/currentuser HTTP/1.1
+Content-Type: application/json
+
+{
+  "firstName": "Forks",
+  "lastName": "Of Power"
+}
+
 ### Sign-Out Current User
 GET {{baseURL}}/users/signout HTTP/1.1
 
@@ -43,7 +52,7 @@ GET {{baseURL}}/users/signout HTTP/1.1
 ###############################################################################
 ###
 ### Tickets
-### 
+###
 ###############################################################################
 
 ### Create Ticket
@@ -76,7 +85,7 @@ Content-Type: application/json
 DELETE {{baseURL}}/tickets/{{ticketId}} HTTP/1.1
 
 ###############################################################################
-### 
+###
 ### Orders
 ###
 ###############################################################################
