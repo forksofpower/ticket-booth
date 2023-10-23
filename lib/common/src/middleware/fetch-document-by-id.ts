@@ -1,10 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import { Model as MongooseModel } from "mongoose";
 
-import {
-  BadRequestError,
-  NotFoundError,
-} from "@forksofpower/ticketbooth-common";
+import { BadRequestError, NotFoundError } from "../errors";
 
 export function fetchDocumentById(
   schema: typeof MongooseModel,
