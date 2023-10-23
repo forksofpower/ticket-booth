@@ -16,7 +16,11 @@ export class OrderCreatedListener extends Listener<OrderCreatedEvent> {
   async onMessage(data: OrderCreatedEventData, msg: Message) {
     console.log("OrderCreated Event data!", data);
     const { id, expiresAt } = data;
-    const delay = new Date(expiresAt).getTime() - new Date().getTime();
+    const delay = Math.max(
+      new Date(expiresAt).getTime() - new Date().getTime(),
+      0
+    );
+
     console.log(
       `Waiting ${Math.floor(delay / 1000 / 60)} minutes ${
         Math.floor(delay / 1000) % 60
