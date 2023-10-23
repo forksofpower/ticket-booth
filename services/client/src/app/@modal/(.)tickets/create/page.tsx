@@ -1,16 +1,22 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import React from "react";
 
 import NewTicketForm from "@/components/forms/new-ticket-form";
-import Modal from "@/components/modal";
+import Modal from "@/components/layout/modal";
+import { useConfirmNavigation } from "@/contexts/navigation";
 
 export default function CreateTicketModal() {
-  const router = useRouter();
+  const router = useConfirmNavigation();
   return (
     <Modal>
-      <NewTicketForm escapeForm={router.back} />
+      <button
+        onClick={router.back}
+        className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
+      >
+        ✕
+      </button>
+      <NewTicketForm onCancel={router.back} />
     </Modal>
   );
 }

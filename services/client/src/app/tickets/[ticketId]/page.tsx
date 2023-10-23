@@ -14,7 +14,7 @@ type ShowTicketPageProps = {
 
 async function fetchTicket(ticketId: string) {
   const res = await buildClient(Object.fromEntries(headers())).get<Ticket>(
-    `/api/tickets/${ticketId}?revalidate=/api/tickets`
+    `/api/tickets/${ticketId}`
   );
   return res.data;
 }
