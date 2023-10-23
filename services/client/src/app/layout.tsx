@@ -2,7 +2,7 @@ import "./globals.css";
 
 import { headers } from "next/headers";
 
-import NavBar from "@/components/navbar";
+import NavBar from "@/components/nav/navbar";
 import ThemeLoader from "@/components/theme/theme-loader";
 import { CurrentUserProvider } from "@/contexts/current-user";
 import { ThemeProvider } from "@/contexts/theme";

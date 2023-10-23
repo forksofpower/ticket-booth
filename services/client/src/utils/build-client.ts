@@ -19,7 +19,7 @@ const buildClient = (requestHeaders?: IncomingHttpHeaders) => {
     // We are on the browser
     // Requests can be made with a base url of '/'
     return axios.create({
-      baseURL: "https://api.ticket-booth.example.com",
+      baseURL: "https://ticket-booth.example.com",
       withCredentials: true,
     });
   }
