@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@forksofpower/ticketbooth-common": "^1.0.37",
+    "@forksofpower/ticketbooth-common": "1.0.39",
     "@tailwindcss/forms": "^0.5.6",
     "@tailwindcss/typography": "^0.5.10",
     "@types/node": "20.4.3",
