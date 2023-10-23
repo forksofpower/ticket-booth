@@ -1,17 +1,23 @@
 import express, { Request, Response } from "express";
+import { param } from "express-validator";
 
-import { NotFoundError } from "@forksofpower/ticketbooth-common";
+import {
+  fetchDocumentById,
+  validateRequest,
+} from "@forksofpower/ticketbooth-common";
 
 import { Ticket } from "../models/ticket";
 
 const router = express.Router();
-router.get("/api/tickets/:id", async (req: Request, res: Response) => {
-  const ticket = await Ticket.findById(req.params.id);
-  if (!ticket) {
-    throw new NotFoundError();
-  }
 
-  res.send(ticket);
-});
+router.get(
+  "/api/tickets/:id",
+  param("id").isMongoId().withMessage("Ticket ID must be a valid Mongo ID"),
+  validateRequest,
+  fetchDocumentById(Ticket),
+  async (req: Request, res: Response) => {
+    res.send(req.document);
+  }
+);
 
 export { router as showTicketRouter };

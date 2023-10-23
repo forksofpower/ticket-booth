@@ -1,10 +1,10 @@
 import express, { Request, Response } from "express";
-import { body } from "express-validator";
+import { body, param } from "express-validator";
 
 import {
   BadRequestError,
+  fetchDocumentById,
   NotAuthorizedError,
-  NotFoundError,
   requireAuth,
   validateRequest,
 } from "@forksofpower/ticketbooth-common";
@@ -19,15 +19,16 @@ router.put(
   "/api/tickets/:id",
   requireAuth,
   [
+    param("id").isMongoId().withMessage("Ticket ID must be a valid Mongo ID"),
     body("title").notEmpty().withMessage("Title is required"),
     body("price")
       .isFloat({ gt: 0 })
       .withMessage("Price must be greater than 0"),
   ],
   validateRequest,
+  fetchDocumentById(Ticket),
   async (req: Request, res: Response) => {
-    const ticket = await Ticket.findById(req.params.id);
-    if (!ticket) throw new NotFoundError();
+    const ticket = req.document!;
 
     if (ticket.userId !== req.currentUser?.id) {
       throw new NotAuthorizedError();
