@@ -4,9 +4,7 @@ import { Route } from "next";
 import { useRouter } from "next/navigation";
 
 import { RegisterUserFormInput } from "@/components/forms/register-user-form";
-import {
-  SignInUserFormInput as UserSignInRequestBody,
-} from "@/components/forms/signin-user-form";
+import { SignInUserFormInput as UserSignInRequestBody } from "@/components/forms/signin-user-form";
 import { useCurrentUser } from "@/contexts/current-user";
 import { routes } from "@/routes";
 import { User } from "@/types/user";
