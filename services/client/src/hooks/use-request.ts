@@ -21,12 +21,16 @@ export const useRequest = <RequestBody = any, ResponseBody = any>({
   const [errors, setErrors] = React.useState<ErrorResponseData["errors"]>();
   const [isLoading, setIsLoading] = React.useState(false);
 
+  const client = axios.create({
+    baseURL: "https://ticket-booth.example.com",
+    // withCredentials: true,
+  });
   const doRequest = async (
     body?: RequestBody
   ): Promise<ResponseBody | void> => {
     setIsLoading(true);
     try {
-      const response = await axios[method]<
+      const response = await client[method]<
         RequestBody,
         AxiosResponse<ResponseBody>
       >(url, body || initialBody, config);
@@ -38,7 +42,10 @@ export const useRequest = <RequestBody = any, ResponseBody = any>({
       return response.data;
     } catch (error) {
       if (error instanceof AxiosError) {
-        setErrors((error?.response?.data as ErrorResponseData).errors);
+        console.log(error.response?.data);
+        if (error.response?.data.errors) {
+          setErrors((error?.response?.data as ErrorResponseData).errors);
+        }
       } else console.error(error);
     }
     setIsLoading(false);
