@@ -5,9 +5,9 @@ import { FaFacebookF, FaGithub, FaGoogle, FaXTwitter } from "react-icons/fa6";
 
 import cn from "@/utils/classnames";
 
+import Input from "../form-elements/input";
+import Label, { LabelText } from "../form-elements/label";
 import Icon, { Size } from "../icon";
-import Input from "./input";
-import Label, { LabelText } from "./label";
 
 export interface SignInUserFormInput {
   email: string;

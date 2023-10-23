@@ -5,18 +5,27 @@ import { FieldErrors, useForm } from "react-hook-form";
 import useAuth from "@/hooks/use-auth";
 import { normalizeErrorResponsesByField } from "@/utils/errors";
 
-import Input from "./input";
-import Label, { LabelText } from "./label";
+import Input from "../form-elements/input";
+import Label, { LabelText } from "../form-elements/label";
 
 export interface RegisterUserFormInput {
+  firstName: string;
+  lastName: string;
   email: string;
   password: string;
   confirmPassword: string;
 }
 
-export const RegisterUserForm = () => {
+export interface RegisterUserFormProps {
+  fieldErrors: FieldErrors<RegisterUserFormInput>;
+  onSubmit: (input: RegisterUserFormInput) => Promise<void> | void;
+}
+
+export const RegisterUserForm: React.FC<RegisterUserFormProps> = ({
+  fieldErrors,
+  onSubmit,
+}) => {
   const [errors, setErrors] = useState<FieldErrors<RegisterUserFormInput>>({});
-  const { register: registerUser, registerErrors: requestErrors } = useAuth();
 
   const {
     register,
@@ -25,29 +34,40 @@ export const RegisterUserForm = () => {
     formState: { errors: formErrors },
   } = useForm<RegisterUserFormInput>();
 
-  async function onSubmit({
-    email,
-    password,
-    confirmPassword,
-  }: RegisterUserFormInput) {
-    await registerUser({
-      email,
-      password,
-      confirmPassword,
-    });
-  }
-
   useEffect(() => {
     setErrors(formErrors);
   }, [formErrors]);
 
   useEffect(() => {
-    if (requestErrors) {
-      setErrors(normalizeErrorResponsesByField(requestErrors));
+    if (fieldErrors) {
+      setErrors(fieldErrors);
     }
-  }, [requestErrors]);
+  }, [fieldErrors]);
 
   // register form fields with validation rules
+
+  const firstNameField = register("firstName", {
+    required: "First Name is required",
+    minLength: {
+      value: 2,
+      message: "First Name must be at least 2 characters long",
+    },
+    maxLength: {
+      value: 32,
+      message: "First Name cannot be longer than 32 characters",
+    },
+  });
+  const lastNameField = register("lastName", {
+    required: "Last Name is required",
+    minLength: {
+      value: 2,
+      message: "Last Name must be at least 2 characters long",
+    },
+    maxLength: {
+      value: 32,
+      message: "Last Name cannot be longer than 32 characters",
+    },
+  });
   const emailField = register("email", {
     required: "Email is required",
     validate: (value) => {
@@ -85,6 +105,24 @@ export const RegisterUserForm = () => {
       </div>
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
         <form autoComplete="false" className="space-y-0">
+          <div className="form-control">
+            <Label className="pb-1" title="First Name" />
+            <Input type="text" {...firstNameField} />
+            <Label className="mt-1 min-h-[1rem] py-0">
+              <LabelText className="text-error text-xs">
+                {errors.firstName?.message}
+              </LabelText>
+            </Label>
+          </div>
+          <div className="form-control">
+            <Label className="pb-1" title="Last Name" />
+            <Input type="text" {...lastNameField} />
+            <Label className="mt-1 min-h-[1rem] py-0">
+              <LabelText className="text-error text-xs">
+                {errors.lastName?.message}
+              </LabelText>
+            </Label>
+          </div>
           <div className="form-control">
             <Label className="pb-1" title="Email" />
             <Input type="email" {...emailField} />

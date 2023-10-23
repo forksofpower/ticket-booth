@@ -3,18 +3,15 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { FieldErrors, useForm } from "react-hook-form";
 
-import { NewTicketFormInput } from "@/hooks/use-tickets";
+import { useRequest } from "@/hooks/use-request";
+import { NewTicketFormInput, Ticket } from "@/hooks/use-tickets";
 import { routes } from "@/routes";
 import { normalizeErrorResponsesByField } from "@/utils/errors";
 
-import Input from "./input";
-import Label, { LabelText } from "./label";
+import Input from "../form-elements/input";
+import Label, { LabelText } from "../form-elements/label";
 
-export default function NewTicketForm({
-  escapeForm,
-}: {
-  escapeForm: () => void;
-}) {
+export default function NewTicketForm({ onCancel }: { onCancel: () => void }) {
   const router = useRouter();
   const [errors, setErrors] = useState<FieldErrors<NewTicketFormInput>>({});
 
@@ -23,6 +20,24 @@ export default function NewTicketForm({
     handleSubmit,
     formState: { errors: formErrors },
   } = useForm<NewTicketFormInput>();
+
+  const { doRequest: createTicket, errors: createTicketErrors } = useRequest<
+    NewTicketFormInput,
+    Ticket
+  >({
+    url: "/api/tickets",
+    method: "post",
+    config: {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      withCredentials: true,
+    },
+  });
+
+  // useEffect(() => {
+  //   setErrors(normalizeErrorResponsesByField(createTicketErrors!));
+  // }, [createTicketErrors]);
 
   useEffect(() => {
     setErrors(formErrors);
@@ -37,30 +52,19 @@ export default function NewTicketForm({
   });
 
   async function onSubmit(formData: NewTicketFormInput) {
-    const response = await fetch("/api/tickets", {
-      method: "POST",
-      body: JSON.stringify(formData),
-      credentials: "include",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    const data = await response.json();
+    const data = await createTicket(formData);
 
-    if (data.errors) {
-      setErrors(normalizeErrorResponsesByField(data.errors));
+    if (createTicketErrors) {
+      setErrors(normalizeErrorResponsesByField(createTicketErrors));
     } else {
       setTimeout(() => {
-        router.push(routes.showTicket(data.id));
+        router.push(routes.listTickets());
       }, 1000);
     }
   }
 
   return (
-    <form
-      // method="POST"
-      className="space-y-4"
-    >
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
       <div className="form-control">
         <Label className="pb-1" title="Ticket Title" />
         <Input type="text" {...titleField} />
@@ -84,17 +88,15 @@ export default function NewTicketForm({
       </div>
       <div className="form-control">
         <button
+          type="button"
           className="btn btn-secondary btn-outline"
-          onClick={() => escapeForm()}
+          onClick={onCancel}
         >
           Go to Tickets
         </button>
       </div>
       <div className="form-control">
-        <button
-          onClick={() => handleSubmit(onSubmit)}
-          className="btn btn-primary"
-        >
+        <button type="submit" className="btn btn-primary">
           Submit
         </button>
       </div>
