@@ -1,9 +1,11 @@
 import express, { Request, Response } from "express";
+import { param } from "express-validator";
 
 import {
+  fetchDocumentById,
   NotAuthorizedError,
-  NotFoundError,
   OrderStatus,
+  validateRequest,
 } from "@forksofpower/ticketbooth-common";
 
 import { OrderCancelledPublisher } from "../events/publishers/order-cancelled";
@@ -12,24 +14,29 @@ import { natsWrapper } from "../nats-wrapper";
 
 const router = express.Router();
 
-router.delete("/api/orders/:id", async (req: Request, res: Response) => {
-  const order = await Order.findById(req.params.id).populate("ticket");
-  if (!order) throw new NotFoundError();
-  if (order.userId !== req.currentUser!.id) throw new NotAuthorizedError();
+router.delete(
+  "/api/orders/:id",
+  param("id").isMongoId().withMessage("Order ID must be valid"),
+  validateRequest,
+  fetchDocumentById(Order),
+  async (req: Request, res: Response) => {
+    const order = req.order!;
+    if (order.userId !== req.currentUser!.id) throw new NotAuthorizedError();
 
-  order.status = OrderStatus.Cancelled;
-  await order.save();
+    order.status = OrderStatus.Cancelled;
+    await order.save();
 
-  // publish an event saying this was cancelled!
-  new OrderCancelledPublisher(natsWrapper.client).publish({
-    id: order.id,
-    version: order.version,
-    ticket: {
-      id: order.ticket.id,
-    },
-  });
+    // publish an event saying this was cancelled!
+    new OrderCancelledPublisher(natsWrapper.client).publish({
+      id: order.id,
+      version: order.version,
+      ticket: {
+        id: order.ticket.id,
+      },
+    });
 
-  return res.status(204).send(order);
-});
+    return res.status(204).send(order);
+  }
+);
 
 export { router as deleteOrderRouter };

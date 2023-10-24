@@ -2,8 +2,8 @@ import express, { Request, Response } from "express";
 import { param } from "express-validator";
 
 import {
+  fetchDocumentById,
   NotAuthorizedError,
-  NotFoundError,
   requireAuth,
   validateRequest,
 } from "@forksofpower/ticketbooth-common";
@@ -21,9 +21,10 @@ router.get(
       .withMessage("correctly formatted Ticket ID must be provided"),
   ],
   validateRequest,
+  fetchDocumentById(Order),
   async (req: Request, res: Response) => {
-    const order = await Order.findById(req.params.id).populate("ticket");
-    if (!order) throw new NotFoundError();
+    const order = await req.order!.populate("ticket");
+
     if (order.userId !== req.currentUser!.id) throw new NotAuthorizedError();
     console.log(JSON.stringify(order.toJSON(), null, 2));
     res.send(order);

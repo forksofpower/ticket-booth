@@ -20,7 +20,7 @@ export function fetchDocumentById(
     if (!document) {
       throw new NotFoundError();
     }
-    req.documents = { [label]: document };
+    (req as any)[label] = document;
 
     next();
   };

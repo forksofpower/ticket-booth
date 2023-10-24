@@ -19,7 +19,7 @@ router.put(
   "/api/tickets/:id",
   requireAuth,
   [
-    param("id").isMongoId().withMessage("Ticket ID must be a valid Mongo ID"),
+    param("id").isMongoId().withMessage("Ticket ID must be valid"),
     body("title").notEmpty().withMessage("Title is required"),
     body("price")
       .isFloat({ gt: 0 })
@@ -28,7 +28,7 @@ router.put(
   validateRequest,
   fetchDocumentById(Ticket),
   async (req: Request, res: Response) => {
-    const ticket = req.document!;
+    const ticket = req.ticket!;
 
     if (ticket.userId !== req.currentUser?.id) {
       throw new NotAuthorizedError();
