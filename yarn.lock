@@ -4148,7 +4148,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"daisyui@npm:latest":
+daisyui@latest:
   version: 3.9.3
   resolution: "daisyui@npm:3.9.3"
   dependencies:
@@ -4652,7 +4652,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-config-next@npm:latest":
+eslint-config-next@latest:
   version: 13.5.6
   resolution: "eslint-config-next@npm:13.5.6"
   dependencies:
@@ -8708,7 +8708,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-dom@npm:latest":
+react-dom@latest:
   version: 18.2.0
   resolution: "react-dom@npm:18.2.0"
   dependencies:
@@ -8787,7 +8787,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react@npm:latest":
+react@latest:
   version: 18.2.0
   resolution: "react@npm:18.2.0"
   dependencies:
