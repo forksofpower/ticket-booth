@@ -30,6 +30,7 @@ router.put(
   async (req: Request, res: Response) => {
     const ticket = req.context.ticket;
 
+    console.log(ticket);
     if (ticket.userId !== req.currentUser?.id) {
       throw new NotAuthorizedError();
     }

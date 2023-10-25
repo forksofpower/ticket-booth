@@ -33,7 +33,6 @@ async function fetchOrder(orderId: string) {
 
 const ShowOrderPage = async ({ params: { orderId } }: ShowOrderPageProps) => {
   const order = await fetchOrder(orderId);
-  // console.log(order);
   return (
     <div className="page-container">
       <TitleCard title="Order Details" topMargin={"mt-0"}>

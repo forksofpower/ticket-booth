@@ -31,18 +31,18 @@ export function fetchDocumentById(
 
     request[rootKey] ||= {};
 
-    schema
-      .findById(id)
-      .then((doc) => {
-        if (!doc) throw new NotFoundError();
-        console.log("document", doc);
-        // set the document on the request object using the label as the key
+    try {
+      schema.findById(id).then((doc) => {
+        if (!doc) {
+          // use next() to pass the error to the error handler
+          next(new NotFoundError());
+        }
+        // set the document on the request object
         request[rootKey][key] = doc;
-        console.log("request", request[rootKey]);
         next();
-      })
-      .catch((reason) => {
-        throw new NotFoundError();
       });
+    } catch (error) {
+      throw new NotFoundError();
+    }
   };
 }

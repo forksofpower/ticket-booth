@@ -12,7 +12,7 @@ const router = express.Router();
 
 router.get(
   "/api/tickets/:id",
-  param("id").isMongoId().withMessage("Order ID must be valid"),
+  [param("id").isMongoId().withMessage("Ticket ID must be valid")],
   validateRequest,
   fetchDocumentById(Ticket),
   async (req: Request, res: Response) => {
