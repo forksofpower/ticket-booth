@@ -28,7 +28,7 @@ router.put(
   validateRequest,
   fetchDocumentById(Ticket),
   async (req: Request, res: Response) => {
-    const ticket = req.ticket!;
+    const ticket = req.context.ticket;
 
     if (ticket.userId !== req.currentUser?.id) {
       throw new NotAuthorizedError();

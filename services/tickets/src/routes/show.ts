@@ -16,7 +16,7 @@ router.get(
   validateRequest,
   fetchDocumentById(Ticket),
   async (req: Request, res: Response) => {
-    res.send(req.ticket);
+    res.send(req.context.ticket);
   }
 );
 

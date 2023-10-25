@@ -20,7 +20,7 @@ router.delete(
   validateRequest,
   fetchDocumentById(Order),
   async (req: Request, res: Response) => {
-    const order = req.order!;
+    const order = req.context.order;
     if (order.userId !== req.currentUser!.id) throw new NotAuthorizedError();
 
     order.status = OrderStatus.Cancelled;

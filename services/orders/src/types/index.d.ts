@@ -1,9 +1,13 @@
 import { OrderDoc } from "../models/order";
 
-declare global {
-  namespace Express {
-    export interface Request {
-      order?: OrderDoc;
-    }
+declare module "express-serve-static-core" {
+  interface Request {
+    context: {
+      currentUser?: {
+        id: string;
+        email: string;
+      };
+      order: OrderDoc;
+    };
   }
 }

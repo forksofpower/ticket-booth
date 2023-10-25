@@ -23,10 +23,9 @@ router.get(
   validateRequest,
   fetchDocumentById(Order),
   async (req: Request, res: Response) => {
-    const order = await req.order!.populate("ticket");
+    const order = await req.context.order!.populate("ticket");
 
     if (order.userId !== req.currentUser!.id) throw new NotAuthorizedError();
-    console.log(JSON.stringify(order.toJSON(), null, 2));
     res.send(order);
   }
 );
