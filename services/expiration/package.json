@@ -13,7 +13,7 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "@forksofpower/ticketbooth-common": "1.0.40",
+    "@forksofpower/ticketbooth-common": "1.0.41",
     "@types/bull": "^4.10.0",
     "@typescript-eslint/eslint-plugin": "^6.4.1",
     "@typescript-eslint/parser": "^6.4.1",

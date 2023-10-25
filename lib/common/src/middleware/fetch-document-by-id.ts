@@ -31,7 +31,6 @@ export function fetchDocumentById(
 
     request[rootKey] ||= {};
 
-    console.log("context", request[rootKey]);
     schema
       .findById(id)
       .then((doc) => {
@@ -39,12 +38,11 @@ export function fetchDocumentById(
         console.log("document", doc);
         // set the document on the request object using the label as the key
         request[rootKey][key] = doc;
-        console.log("request", request);
+        console.log("request", request[rootKey]);
+        next();
       })
       .catch((reason) => {
         throw new NotFoundError();
       });
-
-    next();
   };
 }

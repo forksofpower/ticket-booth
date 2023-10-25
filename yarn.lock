@@ -1040,9 +1040,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@forksofpower/ticketbooth-common@npm:1.0.40":
-  version: 1.0.40
-  resolution: "@forksofpower/ticketbooth-common@npm:1.0.40"
+"@forksofpower/ticketbooth-common@npm:1.0.41":
+  version: 1.0.41
+  resolution: "@forksofpower/ticketbooth-common@npm:1.0.41"
   dependencies:
     "@types/cookie-session": ^2.0.44
     "@types/express": ^4.17.17
@@ -1052,7 +1052,7 @@ __metadata:
     express-validator: ^7.0.1
     jsonwebtoken: ^9.0.1
     node-nats-streaming: ^0.3.2
-  checksum: 77808f20bb1302fa8e30f0d379524eb72bc216e5cb25e2aa72e52c0e8fa91f5e5b5cbfb48c5dc18a13b42fa619576093cf718c76a87aff4724667cc8e981b3ac
+  checksum: a034823a1d1eccf528179489a78ff2de2680a28979870383009c623c0376135e8971f64916bab356c99d2b3b30bf31a4bf50ffcd4951e4a407b12c97b0a6eff7
   languageName: node
   linkType: hard
 
@@ -3276,7 +3276,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "auth@workspace:services/auth"
   dependencies:
-    "@forksofpower/ticketbooth-common": 1.0.40
+    "@forksofpower/ticketbooth-common": 1.0.41
     "@types/cookie-session": ^2.0.44
     "@types/express": ^4.17.17
     "@types/jest": ^29.5.3
@@ -3812,7 +3812,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "client@workspace:services/client"
   dependencies:
-    "@forksofpower/ticketbooth-common": 1.0.40
+    "@forksofpower/ticketbooth-common": 1.0.41
     "@tailwindcss/forms": ^0.5.6
     "@tailwindcss/typography": ^0.5.10
     "@types/node": 20.4.3
@@ -5075,7 +5075,7 @@ eslint-config-next@latest:
   version: 0.0.0-use.local
   resolution: "expiration@workspace:services/expiration"
   dependencies:
-    "@forksofpower/ticketbooth-common": 1.0.40
+    "@forksofpower/ticketbooth-common": 1.0.41
     "@types/bull": ^4.10.0
     "@types/jest": ^29.5.3
     "@types/node": ^20.4.2
@@ -8173,7 +8173,7 @@ eslint-config-next@latest:
   version: 0.0.0-use.local
   resolution: "orders@workspace:services/orders"
   dependencies:
-    "@forksofpower/ticketbooth-common": 1.0.40
+    "@forksofpower/ticketbooth-common": 1.0.41
     "@types/cookie-session": ^2.0.44
     "@types/express": ^4.17.17
     "@types/jest": ^29.5.3
@@ -8345,7 +8345,7 @@ eslint-config-next@latest:
   version: 0.0.0-use.local
   resolution: "payments@workspace:services/payments"
   dependencies:
-    "@forksofpower/ticketbooth-common": 1.0.40
+    "@forksofpower/ticketbooth-common": 1.0.41
     "@types/cookie-session": ^2.0.44
     "@types/express": ^4.17.17
     "@types/jest": ^29.5.3
@@ -9901,7 +9901,7 @@ react@latest:
   version: 0.0.0-use.local
   resolution: "tickets@workspace:services/tickets"
   dependencies:
-    "@forksofpower/ticketbooth-common": 1.0.40
+    "@forksofpower/ticketbooth-common": 1.0.41
     "@types/cookie-session": ^2.0.44
     "@types/express": ^4.17.17
     "@types/jest": ^29.5.3
