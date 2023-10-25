@@ -1040,7 +1040,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@forksofpower/ticketbooth-common@1.0.40, @forksofpower/ticketbooth-common@workspace:lib/common":
+"@forksofpower/ticketbooth-common@npm:1.0.40":
+  version: 1.0.40
+  resolution: "@forksofpower/ticketbooth-common@npm:1.0.40"
+  dependencies:
+    "@types/cookie-session": ^2.0.44
+    "@types/express": ^4.17.17
+    "@types/jsonwebtoken": ^9.0.2
+    cookie-session: ^2.0.0
+    express: ^4.18.2
+    express-validator: ^7.0.1
+    jsonwebtoken: ^9.0.1
+    node-nats-streaming: ^0.3.2
+  checksum: 77808f20bb1302fa8e30f0d379524eb72bc216e5cb25e2aa72e52c0e8fa91f5e5b5cbfb48c5dc18a13b42fa619576093cf718c76a87aff4724667cc8e981b3ac
+  languageName: node
+  linkType: hard
+
+"@forksofpower/ticketbooth-common@workspace:lib/common":
   version: 0.0.0-use.local
   resolution: "@forksofpower/ticketbooth-common@workspace:lib/common"
   dependencies:
@@ -4148,7 +4164,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"daisyui@npm:latest":
+daisyui@latest:
   version: 3.9.3
   resolution: "daisyui@npm:3.9.3"
   dependencies:
@@ -4652,7 +4668,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-config-next@npm:latest":
+eslint-config-next@latest:
   version: 13.5.6
   resolution: "eslint-config-next@npm:13.5.6"
   dependencies:
@@ -8708,7 +8724,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-dom@npm:latest":
+react-dom@latest:
   version: 18.2.0
   resolution: "react-dom@npm:18.2.0"
   dependencies:
@@ -8787,7 +8803,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react@npm:latest":
+react@latest:
   version: 18.2.0
   resolution: "react@npm:18.2.0"
   dependencies:
