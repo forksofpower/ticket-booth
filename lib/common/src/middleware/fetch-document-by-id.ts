@@ -17,6 +17,7 @@ export function fetchDocumentById(
   } = {}
 ) {
   return function (req: Request, res: Response, next: NextFunction) {
+    const request = req as any;
     const {
       idParamName = "id",
       rootKey = "context",
@@ -28,14 +29,22 @@ export function fetchDocumentById(
       throw new BadRequestError(`Param ${idParamName} is required`);
     }
 
-    schema.findById(id).then((doc) => {
-      console.log("document", doc);
-      if (!doc) {
+    request[rootKey] ||= {};
+
+    console.log("context", request[rootKey]);
+    schema
+      .findById(id)
+      .then((doc) => {
+        if (!doc) throw new NotFoundError();
+        console.log("document", doc);
+        // set the document on the request object using the label as the key
+        request[rootKey][key] = doc;
+        console.log("request", request);
+      })
+      .catch((reason) => {
         throw new NotFoundError();
-      }
-      // set the document on the request object using the label as the key
-      (req as any)[rootKey][key] = doc;
-      next();
-    });
+      });
+
+    next();
   };
 }
