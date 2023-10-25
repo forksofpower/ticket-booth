@@ -16,26 +16,26 @@ export function fetchDocumentById(
     idParamName?: string;
   } = {}
 ) {
-  return async function (req: Request, res: Response, next: NextFunction) {
+  return function (req: Request, res: Response, next: NextFunction) {
     const {
       idParamName = "id",
       rootKey = "context",
       key = schema.modelName.toLowerCase(),
     } = options;
 
-    if (!req.params[idParamName]) {
+    const id = req.params[idParamName];
+    if (!id) {
       throw new BadRequestError(`Param ${idParamName} is required`);
     }
 
-    const document = await schema.findById(req.params[idParamName]);
-
-    if (!document) {
-      throw new NotFoundError();
-    }
-
-    // set the document on the request object using the label as the key
-    (req as any)[rootKey][key] = document;
-
-    next();
+    schema.findById(id).then((doc) => {
+      console.log("document", doc);
+      if (!doc) {
+        throw new NotFoundError();
+      }
+      // set the document on the request object using the label as the key
+      (req as any)[rootKey][key] = doc;
+      next();
+    });
   };
 }
