@@ -1,9 +1,9 @@
 import mongoose from "mongoose";
 import request from "supertest";
 
-import { app } from "../../app";
-import { authenticateUser } from "../../test/authenticate-user";
-import { buildTicket } from "../../test/build-ticket";
+import { app } from "@/app";
+import { authenticateUser } from "@/test/authenticate-user";
+import { buildTicket } from "@/test/build-ticket";
 
 describe("Order: Show", () => {
   it("returns a 404 if the ticket is not found", async () => {

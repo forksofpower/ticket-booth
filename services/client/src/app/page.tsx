@@ -33,7 +33,7 @@ function Hero() {
               </p>
             </div>
             <div className="card bg-base-100 w-full max-w-sm flex-shrink-0 p-4 shadow-2xl">
-              <RegisterUserForm />
+              {/* <RegisterUserForm /> */}
             </div>
           </div>
         ) : (

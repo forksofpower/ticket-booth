@@ -1,10 +1,10 @@
 import mongoose from "mongoose";
 import { Message } from "node-nats-streaming";
 
+import { Ticket } from "@/models/ticket";
+import { natsWrapper } from "@/nats-wrapper";
 import { TicketUpdatedEventData } from "@forksofpower/ticketbooth-common";
 
-import { Ticket } from "../../../models/ticket";
-import { natsWrapper } from "../../../nats-wrapper";
 import { TicketUpdatedListener } from "../ticket-updated";
 
 async function setup() {

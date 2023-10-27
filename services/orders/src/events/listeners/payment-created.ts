@@ -1,5 +1,6 @@
 import { Message } from "node-nats-streaming";
 
+import { Order } from "@/models/order";
 import {
   Listener,
   OrderStatus,
@@ -7,8 +8,6 @@ import {
   PaymentCreatedEventData,
   Subjects,
 } from "@forksofpower/ticketbooth-common";
-
-import { Order } from "../../models/order";
 
 export class PaymentCreatedListener extends Listener<PaymentCreatedEvent> {
   readonly subject = Subjects.PaymentCreated;

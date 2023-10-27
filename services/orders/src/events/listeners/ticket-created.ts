@@ -1,13 +1,12 @@
 import { Message } from "node-nats-streaming";
 
+import { Ticket } from "@/models/ticket";
 import {
   Listener,
   Subjects,
   TicketCreatedEvent,
   TicketCreatedEventData,
 } from "@forksofpower/ticketbooth-common";
-
-import { Ticket } from "../../models/ticket";
 
 export class TicketCreatedListener extends Listener<TicketCreatedEvent> {
   readonly subject = Subjects.TicketCreated;

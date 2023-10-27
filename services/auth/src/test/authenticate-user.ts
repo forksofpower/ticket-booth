@@ -1,6 +1,6 @@
 import request from "supertest";
 
-import { app } from "../app";
+import { app } from "@/app";
 
 /**
  * Helper function to signup and return cookie

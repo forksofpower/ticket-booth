@@ -1,11 +1,14 @@
 import mongoose from "mongoose";
 import { Message } from "node-nats-streaming";
 
-import { ExpirationCompleteEventData } from "@forksofpower/ticketbooth-common";
+import { Order } from "@/models/order";
+import { Ticket } from "@/models/ticket";
+import { natsWrapper } from "@/nats-wrapper";
+import {
+  ExpirationCompleteEventData,
+  OrderStatus,
+} from "@forksofpower/ticketbooth-common";
 
-import { Order, OrderStatus } from "../../../models/order";
-import { Ticket } from "../../../models/ticket";
-import { natsWrapper } from "../../../nats-wrapper";
 import { ExpirationCompleteListener } from "../expiration-complete";
 
 const setup = async () => {

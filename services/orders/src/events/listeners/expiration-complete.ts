@@ -1,5 +1,6 @@
 import { Message } from "node-nats-streaming";
 
+import { Order } from "@/models/order";
 import {
   ExpirationCompleteEvent,
   ExpirationCompleteEventData,
@@ -8,7 +9,6 @@ import {
   Subjects,
 } from "@forksofpower/ticketbooth-common";
 
-import { Order } from "../../models/order";
 import { OrderCancelledPublisher } from "../publishers/order-cancelled";
 
 export class ExpirationCompleteListener extends Listener<ExpirationCompleteEvent> {

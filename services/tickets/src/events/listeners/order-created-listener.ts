@@ -1,5 +1,6 @@
 import { Message } from "node-nats-streaming";
 
+import { Ticket } from "@/models/ticket";
 import {
   Listener,
   OrderCreatedEvent,
@@ -7,7 +8,6 @@ import {
   Subjects,
 } from "@forksofpower/ticketbooth-common";
 
-import { Ticket } from "../../models/ticket";
 import { TicketUpdatedPublisher } from "../publishers/ticket-updated";
 
 export class OrderCreatedListener extends Listener<OrderCreatedEvent> {

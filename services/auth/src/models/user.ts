@@ -1,6 +1,6 @@
 import mongoose, { MongooseError } from "mongoose";
 
-import { Password } from "../services/password";
+import { Password } from "@/services/password";
 
 const PASSWORD_HISTORY_LENGTH = 5;
 

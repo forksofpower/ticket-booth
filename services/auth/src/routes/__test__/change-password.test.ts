@@ -1,7 +1,7 @@
 import request from "supertest";
 
-import { app } from "../../app";
-import { authenticateUser } from "../../test/authenticate-user";
+import { app } from "@/app";
+import { authenticateUser } from "@/test/authenticate-user";
 
 describe("Auth: Change Password", () => {
   it("returns a 401 if not authenticated", async () => {

@@ -5,7 +5,6 @@ import mongoose from "mongoose";
 dotenv.config({ path: "../../.env" });
 
 jest.mock("../nats-wrapper");
-// jest.mock("getEnv", () => "test");
 
 let mongo: MongoMemoryServer;
 /**

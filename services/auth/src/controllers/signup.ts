@@ -1,10 +1,9 @@
 import { Request, Response } from "express";
 import jwt from "jsonwebtoken";
 
+import { config } from "@/config";
+import { User } from "@/models/user";
 import { RequestValidationError } from "@forksofpower/ticketbooth-common";
-
-import { config } from "../config";
-import { User } from "../models/user";
 
 export async function signupController(req: Request, res: Response) {
   const { email, password, firstName, lastName } = req.body;

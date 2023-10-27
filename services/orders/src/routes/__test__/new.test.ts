@@ -1,13 +1,12 @@
 import mongoose from "mongoose";
 import request from "supertest";
 
+import { app } from "@/app";
+import { Order } from "@/models/order";
+import { Ticket } from "@/models/ticket";
+import { natsWrapper } from "@/nats-wrapper";
+import { authenticateUser } from "@/test";
 import { OrderStatus } from "@forksofpower/ticketbooth-common";
-
-import { app } from "../../app";
-import { Order } from "../../models/order";
-import { Ticket } from "../../models/ticket";
-import { natsWrapper } from "../../nats-wrapper";
-import { authenticateUser } from "../../test/authenticate-user";
 
 describe("Order: New", () => {
   it("returns an error if the ticket does not exist", async () => {

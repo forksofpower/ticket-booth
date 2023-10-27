@@ -12,6 +12,7 @@ export default function RegisterPage() {
   const { register, registerErrors: responseErrors } = useAuth();
 
   async function onSubmit(data: RegisterUserFormInput) {
+    console.log("register form data", data);
     await register(data);
   }
 

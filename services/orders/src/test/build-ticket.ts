@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-import { Ticket } from "../models/ticket";
+import { Ticket } from "@/models/ticket";
 
 export const buildTicket = async () => {
   const ticket = Ticket.build({

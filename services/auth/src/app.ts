@@ -8,7 +8,7 @@ import express from "express";
 import { errorHandler, NotFoundError } from "@forksofpower/ticketbooth-common";
 
 import { healthCheck } from "./health";
-import { routes } from "./routes/";
+import router from "./routes/";
 
 // Configure Auth Application
 const app = express();
@@ -26,7 +26,7 @@ app.use(
 );
 
 // Configure Routes
-app.use(routes);
+app.use(router);
 // Health Check
 app.use(healthCheck);
 // Configure Catch-All Route

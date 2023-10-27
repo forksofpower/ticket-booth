@@ -1,13 +1,22 @@
 import mongoose from "mongoose";
 
-import { app } from "./app";
-import { config } from "./config";
-import { ExpirationCompleteListener } from "./events/listeners/expiration-complete";
-import { TicketCreatedListener } from "./events/listeners/ticket-created";
-import { TicketUpdatedListener } from "./events/listeners/ticket-updated";
-import { natsWrapper } from "./nats-wrapper";
+import { app } from "@/app";
+import { config } from "@/config";
+import {
+  ExpirationCompleteListener,
+  TicketCreatedListener,
+  TicketUpdatedListener,
+} from "@/events/listeners";
+import { natsWrapper } from "@/nats-wrapper";
 
 const port = config.server.port;
+
+const listeners = [
+  TicketCreatedListener,
+  TicketUpdatedListener,
+  ExpirationCompleteListener,
+  ExpirationCompleteListener,
+];
 
 const start = async () => {
   if (!config.jwtSecret) throw new Error("JWT_SECRET is undefined");
@@ -21,21 +30,27 @@ const start = async () => {
       config.nats.url
     );
     natsWrapper.client.on("close", (data) => {
+      console.log("NATS connection closed", data);
       throw new Error("NATS connection closed");
-      // console.log("NATS connection closed", data);
-      // console.log("data: ", data);
     });
-    process.on("SIGINT", () => natsWrapper.client.close());
-    process.on("SIGTERM", () => natsWrapper.client.close());
 
-    // Listeners
-    new TicketCreatedListener(natsWrapper.client).listen();
-    new TicketUpdatedListener(natsWrapper.client).listen();
-    new ExpirationCompleteListener(natsWrapper.client).listen();
+    // Start Event Listeners
+    for (const listener of listeners) {
+      new listener(natsWrapper.client).listen();
+    }
 
     // Connect to MongoDB
-    await mongoose.connect(config.mongodb.uri);
+    const mongoConn = await mongoose.connect(config.mongodb.uri);
     console.log("Connected to MongoDB");
+
+    // Graceful Shutdown
+    const cleanUp = async () => {
+      natsWrapper.client.close();
+      await mongoConn.connection.close();
+    };
+
+    process.on("SIGINT", cleanUp);
+    process.on("SIGTERM", cleanUp);
   } catch (error) {
     console.error(error);
   }

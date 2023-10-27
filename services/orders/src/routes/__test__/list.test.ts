@@ -1,10 +1,9 @@
 import request from "supertest";
 
-import { app } from "../../app";
-import { authenticateUser } from "../../test/authenticate-user";
-import { buildTicket } from "../../test/build-ticket";
+import { app } from "@/app";
+import { authenticateUser, buildTicket } from "@/test";
 
-describe("Ticket: List", () => {
+describe("Orders: List", () => {
   it("fetches orders for a particular user", async () => {
     // create three tickets
     const ticketOne = await buildTicket();

@@ -1,10 +1,9 @@
 import { Request, Response } from "express";
 import { MongooseError } from "mongoose";
 
+import { User, UserModelErrors } from "@/models/user";
 import { Password } from "@/services/password";
 import { BadRequestError } from "@forksofpower/ticketbooth-common";
-
-import { User, UserModelErrors } from "../models/user";
 
 export async function changePasswordController(req: Request, res: Response) {
   const { currentPassword, newPassword } = req.body;
