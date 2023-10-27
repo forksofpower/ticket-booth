@@ -1,11 +1,68 @@
-import { deleteOrderRouter } from "./delete";
-import { listOrderRouter } from "./list";
-import { createOrderRouter } from "./new";
-import { showOrderRouter } from "./show";
+import express from "express";
+import { body, param } from "express-validator";
 
-export const routes = [
-  createOrderRouter,
-  showOrderRouter,
-  listOrderRouter,
-  deleteOrderRouter,
-];
+import {
+  deleteOrderController,
+  listOrdersController,
+  newOrderController,
+  showOrderController,
+} from "@/controllers";
+import { requireAuth, validateRequest } from "@forksofpower/ticketbooth-common";
+
+const router = express.Router();
+
+const validators = {
+  params: {
+    id: param("id")
+      .notEmpty()
+      .withMessage("ID must be provided")
+      .isMongoId()
+      .withMessage("ID must be correctly formatted"),
+  },
+  body: {
+    ticketId: body("ticketId")
+      .notEmpty()
+      .withMessage("ticketId must be provided")
+      .isMongoId()
+      .withMessage("ticketId must be correctly formatted"),
+  },
+};
+
+/**
+ * List Orders
+ */
+router.get("/api/orders", requireAuth, listOrdersController);
+
+/**
+ * New Order
+ */
+router.post(
+  "/api/orders",
+  requireAuth,
+  [validators.body.ticketId],
+  validateRequest,
+  newOrderController
+);
+
+/**
+ * Show Order
+ */
+router.get(
+  "/api/orders/:id",
+  requireAuth,
+  [validators.params.id],
+  validateRequest,
+  showOrderController
+);
+
+/**
+ * Delete Order
+ */
+router.delete(
+  "/api/orders/:id",
+  [validators.params.id],
+  validateRequest,
+  deleteOrderController
+);
+
+export default router;

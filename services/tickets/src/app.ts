@@ -9,9 +9,9 @@ import {
   NotFoundError,
 } from "@forksofpower/ticketbooth-common";
 
-import { routes } from "./routes";
+import router from "./routes";
 
-// Configure Auth Application
+// Configure Application
 const app = express();
 // Allow traffic from nginx proxy
 app.set("trust proxy", true);
@@ -28,7 +28,7 @@ app.use(
 // Attach currentUser to request
 app.use(currentUser);
 // Configure Routes
-app.use(routes);
+app.use(router);
 // Configure Catch-All Route
 app.all("*", async () => {
   throw new NotFoundError();

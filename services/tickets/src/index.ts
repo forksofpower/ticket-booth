@@ -3,8 +3,12 @@ import mongoose from "mongoose";
 
 import { app } from "./app";
 import { config } from "./config";
-import { OrderCancelledListener } from "./events/listeners/order-cancelled-listener";
-import { OrderCreatedListener } from "./events/listeners/order-created-listener";
+import {
+  OrderCancelledListener,
+} from "./events/listeners/order-cancelled-listener";
+import {
+  OrderCreatedListener,
+} from "./events/listeners/order-created-listener";
 import { natsWrapper } from "./nats-wrapper";
 
 const port = process.env.PORT || 4000;
@@ -37,6 +41,7 @@ const start = async () => {
 
   app.listen(port, () => {
     console.log(`listening on port ${port}`);
+    console.log(app.routes);
   });
 };
 start();

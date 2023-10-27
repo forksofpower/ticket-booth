@@ -1,12 +1,10 @@
-import mongoose, { mongo } from "mongoose";
+import mongoose from "mongoose";
 import request from "supertest";
 
 import { app } from "../../app";
 import { Order, OrderStatus } from "../../models/order";
 import { Payment } from "../../models/payment";
 import { stripe } from "../../stripe";
-// import { Ticket } from "../../models/ticket";
-// import { natsWrapper } from "../../nats-wrapper";
 import { authenticateUser } from "../../test/authenticate-user";
 
 // uncomment if using mocked stripe.js
