@@ -1,24 +1,27 @@
 {
   "name": "@forksofpower/ticketbooth-common",
-  "version": "1.0.43",
+  "version": "1.0.46",
   "description": "",
-  "main": "./build/index.js",
-  "types": "./build/index.d.ts",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "author": "",
   "license": "ISC",
   "files": [
-    "build/**/*"
+    "dist/**/*"
   ],
   "scripts": {
-    "clean": "rimraf ./build/*",
+    "clean": "rimraf ./dist/*",
     "build": "npm run clean && tsc",
     "pub": "npm version patch && npm run build && npm publish"
   },
   "devDependencies": {
+    "eslint-config-prettier": "^9.0.0",
     "rimraf": "^5.0.1",
+    "tsconfig-paths": "^4.2.0",
     "typescript": "^5.2.2"
   },
   "dependencies": {
+    "@ticketbooth/configs": "^1.0.0",
     "@types/cookie-session": "^2.0.44",
     "@types/express": "^4.17.17",
     "@types/jsonwebtoken": "^9.0.2",
