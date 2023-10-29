@@ -1,9 +1,7 @@
 import { Request, Response } from "express";
 import stripe from "stripe";
 
-import {
-  PaymentCreatedPublisher,
-} from "@/events/publishers/payment-created-publisher";
+import { PaymentCreatedPublisher } from "@/events/publishers/payment-created-publisher";
 import { Order } from "@/models/order";
 import { Payment } from "@/models/payment";
 import { natsWrapper } from "@/nats-wrapper";
@@ -30,8 +28,9 @@ export async function newPaymentController(req: Request, res: Response) {
   if (order.status === OrderStatus.Cancelled) {
     throw new BadRequestError("Cannot pay for a cancelled order");
   }
-  const charges = new stripe.ChargesResource();
-  const charge = await charges.create({
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  const charge = await stripe.charges.create({
     currency: "usd",
     source: token,
     amount: order.price * 100,

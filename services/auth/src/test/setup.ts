@@ -2,7 +2,11 @@ import dotenv from "dotenv";
 import { MongoMemoryServer } from "mongodb-memory-server";
 import mongoose from "mongoose";
 
-dotenv.config({ path: "../../.env" });
+try {
+  dotenv.config({ path: "../../.env" });
+} catch (e) {
+  throw new Error(e as string);
+}
 
 let mongo: MongoMemoryServer;
 /**

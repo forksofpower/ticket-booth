@@ -11,7 +11,7 @@ describe("Auth: Change Password", () => {
         currentPassword: "password",
         newPassword: "newpassword",
       })
-      .expect(400);
+      .expect(401);
   });
   it("returns a 400 if current password is not provided", async () => {
     const cookie = await authenticateUser();

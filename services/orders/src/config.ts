@@ -1,21 +1,7 @@
 import { getEnv } from "@forksofpower/ticketbooth-common";
 
-type Config = {
-  mongodb: {
-    uri: string;
-  };
-  server: {
-    port: number;
-  };
-  nats: {
-    url: string;
-    clusterId: string;
-    clientId: string;
-  };
-  jwtSecret: string;
-};
-
-export const config: Config = {
+export const config = {
+  nodeEnv: getEnv("NODE_ENV"),
   mongodb: {
     uri: getEnv("MONGO_URI"),
   },

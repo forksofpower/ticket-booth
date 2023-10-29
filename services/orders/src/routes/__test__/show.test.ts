@@ -6,7 +6,7 @@ import { authenticateUser } from "@/test/authenticate-user";
 import { buildTicket } from "@/test/build-ticket";
 
 describe("Order: Show", () => {
-  it("returns a 404 if the ticket is not found", async () => {
+  it("returns a 404 if the order is not found", async () => {
     const orderId = new mongoose.Types.ObjectId().toHexString();
 
     await request(app)
@@ -14,7 +14,7 @@ describe("Order: Show", () => {
       .set("Cookie", authenticateUser())
       .expect(404);
   });
-  it("returns the ticket if the ticket is found", async () => {
+  it("returns the order if the order is found", async () => {
     const ticket = await buildTicket();
 
     const user = authenticateUser();

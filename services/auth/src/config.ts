@@ -1,6 +1,4 @@
-import { getEnv } from "@forksofpower/ticketbooth-common";
-
-type Config = {
+interface Config {
   server: {
     port: number;
   };
@@ -8,14 +6,14 @@ type Config = {
     uri: string;
   };
   jwtSecret: string;
-};
+}
 
 export const config: Config = {
   mongodb: {
-    uri: getEnv("MONGO_URI"),
+    uri: process.env.MONGO_URI!,
   },
   server: {
-    port: Number(getEnv("PORT")),
+    port: Number(process.env.PORT!),
   },
-  jwtSecret: getEnv("JWT_SECRET"),
+  jwtSecret: process.env.JWT_SECRET!,
 };

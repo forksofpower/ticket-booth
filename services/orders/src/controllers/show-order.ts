@@ -14,6 +14,6 @@ export async function showOrderController(req: Request, res: Response) {
   const order = await Order.findById(id).populate("ticket");
   if (!order) throw new NotFoundError();
 
-  if (order.userId !== id) throw new NotAuthorizedError();
+  if (order.userId !== req.currentUser!.id) throw new NotAuthorizedError();
   res.send(order);
 }

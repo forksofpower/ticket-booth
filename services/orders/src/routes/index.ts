@@ -7,7 +7,11 @@ import {
   newOrderController,
   showOrderController,
 } from "@/controllers";
-import { requireAuth, validateRequest } from "@forksofpower/ticketbooth-common";
+import {
+  currentUser,
+  requireAuth,
+  validateRequest,
+} from "@forksofpower/ticketbooth-common";
 
 const router = express.Router();
 
@@ -38,6 +42,7 @@ router.get("/api/orders", requireAuth, listOrdersController);
  */
 router.post(
   "/api/orders",
+  currentUser,
   requireAuth,
   [validators.body.ticketId],
   validateRequest,
@@ -49,6 +54,7 @@ router.post(
  */
 router.get(
   "/api/orders/:id",
+  currentUser,
   requireAuth,
   [validators.params.id],
   validateRequest,
@@ -61,6 +67,8 @@ router.get(
 router.delete(
   "/api/orders/:id",
   [validators.params.id],
+  currentUser,
+  requireAuth,
   validateRequest,
   deleteOrderController
 );

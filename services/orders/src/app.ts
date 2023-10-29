@@ -9,6 +9,7 @@ import {
   NotFoundError,
 } from "@forksofpower/ticketbooth-common";
 
+import { config } from "./config";
 import router from "./routes";
 
 // Configure Auth Application
@@ -22,7 +23,7 @@ app.use(
   cookieSession({
     signed: false,
     sameSite: "none",
-    secure: process.env.NODE_ENV !== "test",
+    secure: config.nodeEnv !== "test",
   })
 );
 // Attach currentUser to request

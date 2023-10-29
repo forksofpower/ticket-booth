@@ -34,6 +34,7 @@ router.post(
   ],
   validateRequest,
   currentUser,
+  requireAuth,
   changePasswordController
 );
 
