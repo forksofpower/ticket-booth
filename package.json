@@ -15,7 +15,6 @@
     "publish:tsconfig": "yarn workspace @ticketbooth/tsconfig run pub && yarn install && git add . && git commit -m 'chore: publish tsconfig'"
   },
   "devDependencies": {
-    "eslint-config-prettier": "^9.0.0",
     "prettier": "^3.0.3"
   },
   "prettier": "@ticketbooth/configs/prettier-config"
