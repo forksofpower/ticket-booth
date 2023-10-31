@@ -25,6 +25,7 @@ const start = async () => {
     new OrderCancelledListener(natsWrapper.client).listen();
   } catch (error) {
     console.error(error);
+    console.error(error);
   }
 };
 start();

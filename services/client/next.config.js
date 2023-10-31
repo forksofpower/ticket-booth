@@ -4,10 +4,10 @@ const nextConfig = {
     typedRoutes: true,
   },
   reactStrictMode: true,
-  // webpack: (config) => {
-  //   config.watchOptions.poll = 300;
-  //   return config;
-  // },
+  webpack: (config) => {
+    config.watchOptions.poll = 300;
+    return config;
+  },
   output: "standalone",
   images: {
     dangerouslyAllowSVG: true,

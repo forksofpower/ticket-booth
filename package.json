@@ -9,13 +9,14 @@
     "@yarnpkg/pnpify": "^4.0.0-rc.48"
   },
   "scripts": {
-    "format": "npx prettier -w \"./**/*.{js,jsx,ts,tsx}\" --log-level=warn",
-    "test:all": "yarn workspaces foreach run test --colors",
+    "format": "prettier -w \"./**/*.{js,jsx,ts,tsx}\" --log-level=warn",
+    "test": "yarn workspaces foreach run test --colors",
     "publish:common": "yarn workspace @forksofpower/ticketbooth-common run pub && yarn install && git add . && git commit -m 'chore: publish common'",
-    "publish:tsconfig": "yarn workspace @ticketbooth/tsconfig run pub && yarn install && git add . && git commit -m 'chore: publish tsconfig'"
+    "publish:configs": "yarn workspace @ticketbooth/configs run release && yarn install && git add . && git commit -m 'chore: publish configs'"
   },
   "devDependencies": {
-    "prettier": "^3.0.3"
+    "prettier": "^3.0.3",
+    "tsconfig-paths": "^4.2.0"
   },
   "prettier": "@ticketbooth/configs/prettier-config"
 }

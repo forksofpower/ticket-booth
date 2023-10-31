@@ -1,0 +1,241 @@
+Generating tags...
+ - forksofpower/tb-auth -> forksofpower/tb-auth:3cfeca8-dirty
+ - forksofpower/tb-client -> forksofpower/tb-client:3cfeca8-dirty
+ - forksofpower/tb-tickets -> forksofpower/tb-tickets:3cfeca8-dirty
+ - forksofpower/tb-payments -> forksofpower/tb-payments:3cfeca8-dirty
+ - forksofpower/tb-expiration -> forksofpower/tb-expiration:3cfeca8-dirty
+ - forksofpower/tb-orders -> forksofpower/tb-orders:3cfeca8-dirty
+Checking cache...
+ - forksofpower/tb-auth: Found Locally
+ - forksofpower/tb-client: Found Locally
+ - forksofpower/tb-tickets: Found Locally
+ - forksofpower/tb-payments: Found Locally
+ - forksofpower/tb-expiration: Found Locally
+ - forksofpower/tb-orders: Found Locally
+Tags used in deployment:
+ - forksofpower/tb-auth -> forksofpower/tb-auth:70634bad95c7c880a1673e6da1222ebee62b64bf7772598cec006b0bd6408d09
+ - forksofpower/tb-client -> forksofpower/tb-client:ae3b4e22b1d97c5bcf5ce36b1f3efb26e20a9683e77f90bbc33b569353ace65a
+ - forksofpower/tb-tickets -> forksofpower/tb-tickets:a1e2cd4c63252e07c0ddb8c2b0789ac46165c0b5ddfd4cb0b6437ae325574391
+ - forksofpower/tb-payments -> forksofpower/tb-payments:74f2b9fc2a1cf15cab792db1f046698715efb829643d3821e4e486c64de74070
+ - forksofpower/tb-expiration -> forksofpower/tb-expiration:8a82b8d9e689b6da9ee51923d319c75a515dac5d2f39e927cbe41971ba8d247f
+ - forksofpower/tb-orders -> forksofpower/tb-orders:99347e2f60509e5226b05786ccefcb5098398d2a22ed24c10ec96002ee2354dc
+Starting deploy...
+ - deployment.apps/auth-depl created
+ - service/auth-srv created
+ - deployment.apps/auth-mongo-depl created
+ - service/auth-mongo-srv created
+ - deployment.apps/client-depl created
+ - service/client-srv created
+ - deployment.apps/expiration-depl created
+ - deployment.apps/expiration-redis-depl created
+ - service/expiration-redis-srv created
+ - ingress.networking.k8s.io/ingress-service created
+ - deployment.apps/nats-depl created
+ - service/nats-srv created
+ - deployment.apps/orders-depl created
+ - service/orders-srv created
+ - deployment.apps/orders-mongo-depl created
+ - service/orders-mongo-srv created
+ - deployment.apps/payments-depl created
+ - service/payments-srv created
+ - deployment.apps/payments-mongo-depl created
+ - service/payments-mongo-srv created
+ - deployment.apps/tickets-depl created
+ - service/tickets-srv created
+ - deployment.apps/tickets-mongo-depl created
+ - service/tickets-mongo-srv created
+Waiting for deployments to stabilize...
+ - deployment/auth-mongo-depl is ready. [11/12 deployment(s) still pending]
+ - deployment/tickets-depl is ready. [10/12 deployment(s) still pending]
+ - deployment/orders-depl is ready. [9/12 deployment(s) still pending]
+ - deployment/client-depl is ready. [8/12 deployment(s) still pending]
+ - deployment/payments-depl is ready. [7/12 deployment(s) still pending]
+ - deployment/auth-depl is ready. [6/12 deployment(s) still pending]
+ - deployment/expiration-depl is ready. [5/12 deployment(s) still pending]
+ - deployment/expiration-redis-depl is ready. [4/12 deployment(s) still pending]
+ - deployment/nats-depl: creating container nats
+    - pod/nats-depl-fff5dd68b-5m2ml: creating container nats
+ - deployment/orders-mongo-depl: creating container orders-mongo
+    - pod/orders-mongo-depl-76bb6cd7dd-n7bzg: creating container orders-mongo
+ - deployment/payments-mongo-depl: creating container payments-mongo
+    - pod/payments-mongo-depl-69db77c4bd-p2qg7: creating container payments-mongo
+ - deployment/tickets-mongo-depl: creating container tickets-mongo
+    - pod/tickets-mongo-depl-6b7fb789cd-4knw8: creating container tickets-mongo
+ - deployment/nats-depl is ready. [3/12 deployment(s) still pending]
+ - deployment/payments-mongo-depl is ready. [2/12 deployment(s) still pending]
+ - deployment/orders-mongo-depl is ready. [1/12 deployment(s) still pending]
+ - deployment/tickets-mongo-depl is ready.
+Deployments stabilized in 7.119 seconds
+Listing files to watch...
+ - forksofpower/tb-auth
+ - forksofpower/tb-client
+ - forksofpower/tb-tickets
+ - forksofpower/tb-payments
+ - forksofpower/tb-expiration
+ - forksofpower/tb-orders
+Press Ctrl+C to exit
+[expiration]
+[expiration]> expiration@1.0.0 start
+[tickets]
+[tickets]> tickets@1.0.0 start
+[auth]
+[client]yarn run v1.22.19
+[payments]
+[expiration]> ts-node-dev --poll -r tsconfig-paths/register ./src/index.ts
+[expiration]
+[expiration][INFO] 04:51:13 ts-node-dev ver. 2.0.0 (using ts-node ver. 10.9.1, typescript ver. 5.2.2)
+[tickets]> ts-node-dev --poll -r tsconfig-paths/register ./src/index.ts
+[tickets]
+[tickets][INFO] 04:51:13 ts-node-dev ver. 2.0.0 (using ts-node ver. 10.9.1, typescript ver. 5.2.2)
+[auth]> auth@1.0.0 start
+[auth]> ts-node-dev --poll -r tsconfig-paths/register ./src/index.ts
+[auth]
+[orders]
+[payments]> payments@1.0.0 start
+[client]$ next dev
+[client]Attention: Next.js now collects completely anonymous telemetry regarding usage.
+[client]This information is used to shape Next.js' roadmap and prioritize features.
+[client]You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+[client]https://nextjs.org/telemetry
+[client]
+[client]  ▲ Next.js 13.5.6
+[orders]> orders@1.0.0 start
+[orders]> ts-node-dev --poll -r tsconfig-paths/register ./src/index.ts
+[orders]
+[orders][INFO] 04:51:13 ts-node-dev ver. 2.0.0 (using ts-node ver. 10.9.1, typescript ver. 5.2.2)
+[auth][INFO] 04:51:13 ts-node-dev ver. 2.0.0 (using ts-node ver. 10.9.1, typescript ver. 5.2.2)
+[client]  - Local:        http://localhost:3000
+[client]  - Experiments (use at your own risk):
+[client]     · typedRoutes
+[payments]> ts-node-dev --poll -r tsconfig-paths/register ./src/index.ts
+[client]
+[client] ✓ Ready in 2.9s
+[payments]
+[payments][INFO] 04:51:13 ts-node-dev ver. 2.0.0 (using ts-node ver. 10.9.1, typescript ver. 5.2.2)
+Watching for changes...
+[expiration]Connected to NATS
+[auth]Connected to MongoDB
+[auth]listening on port 4000
+[orders]Connected to NATS
+[orders]Connected to MongoDB
+[orders]listening on port 4000
+[tickets]Connected to NATS
+[tickets]Connected to MongoDB
+[tickets]listening on port 4000
+[tickets]undefined
+[payments]Connected to NATS
+[payments]Connected to MongoDB
+[payments]listening on port 4000
+Generating tags...
+ - forksofpower/tb-client -> forksofpower/tb-client:3cfeca8-dirty
+Checking cache...
+ - forksofpower/tb-client: Not found. Building
+Starting build...
+Found [docker-desktop] context, using local docker daemon.
+Building [forksofpower/tb-client]...
+Target platforms: [linux/amd64]
+#0 building with "default" instance using docker driver
+
+#1 [internal] load .dockerignore
+#1 transferring context: 162B done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 518B done
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/node:alpine
+#3 DONE 0.0s
+
+#4 [base 1/4] FROM docker.io/library/node:alpine
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 5.72kB done
+#5 DONE 0.0s
+
+#6 [base 2/4] WORKDIR /app
+#6 CACHED
+
+#7 [base 3/4] COPY package.json .
+#7 CACHED
+
+#8 [development 1/2] WORKDIR /app
+#8 CACHED
+
+#9 [base 4/4] RUN yarn install
+#9 CACHED
+
+#10 [development 2/2] COPY . .
+#10 CACHED
+
+#11 exporting to image
+#11 exporting layers done
+#11 writing image sha256:d611338df0caaa63adfbe04ded3c816873434e198b34259450a9796f5ab642f6 done
+#11 naming to docker.io/forksofpower/tb-client:3cfeca8-dirty done
+#11 DONE 0.0s
+
+What's Next?
+  View a summary of image vulnerabilities and recommendations → docker scout quickview
+Build [forksofpower/tb-client] succeeded
+Tags used in deployment:
+ - forksofpower/tb-auth -> forksofpower/tb-auth:70634bad95c7c880a1673e6da1222ebee62b64bf7772598cec006b0bd6408d09
+ - forksofpower/tb-client -> forksofpower/tb-client:d611338df0caaa63adfbe04ded3c816873434e198b34259450a9796f5ab642f6
+ - forksofpower/tb-tickets -> forksofpower/tb-tickets:a1e2cd4c63252e07c0ddb8c2b0789ac46165c0b5ddfd4cb0b6437ae325574391
+ - forksofpower/tb-payments -> forksofpower/tb-payments:74f2b9fc2a1cf15cab792db1f046698715efb829643d3821e4e486c64de74070
+ - forksofpower/tb-expiration -> forksofpower/tb-expiration:8a82b8d9e689b6da9ee51923d319c75a515dac5d2f39e927cbe41971ba8d247f
+ - forksofpower/tb-orders -> forksofpower/tb-orders:99347e2f60509e5226b05786ccefcb5098398d2a22ed24c10ec96002ee2354dc
+Starting deploy...
+ - deployment.apps/client-depl configured
+Waiting for deployments to stabilize...
+ - deployment/orders-mongo-depl is ready. [11/12 deployment(s) still pending]
+ - deployment/payments-mongo-depl is ready. [10/12 deployment(s) still pending]
+ - deployment/tickets-mongo-depl is ready. [9/12 deployment(s) still pending]
+ - deployment/client-depl is ready. [8/12 deployment(s) still pending]
+ - deployment/payments-depl is ready. [5/12 deployment(s) still pending]
+ - deployment/expiration-redis-depl is ready. [4/12 deployment(s) still pending]
+ - deployment/auth-mongo-depl is ready. [7/12 deployment(s) still pending]
+ - deployment/nats-depl is ready. [6/12 deployment(s) still pending]
+ - deployment/orders-depl is ready. [3/12 deployment(s) still pending]
+ - deployment/auth-depl is ready. [2/12 deployment(s) still pending]
+ - deployment/expiration-depl is ready. [1/12 deployment(s) still pending]
+ - deployment/tickets-depl is ready.
+Deployments stabilized in 1.166 second
+Watching for changes...
+[client]Attention: Next.js now collects completely anonymous telemetry regarding usage.
+[client]This information is used to shape Next.js' roadmap and prioritize features.
+[client]You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+[client]https://nextjs.org/telemetry
+[client]
+[client]  ▲ Next.js 13.5.6
+[client]  - Local:        http://localhost:3000
+[client]  - Experiments (use at your own risk):
+[client]     · typedRoutes
+[client]
+[client] ✓ Ready in 2.6s
+Cleaning up...
+ - deployment.apps "auth-depl" deleted
+ - service "auth-srv" deleted
+ - deployment.apps "auth-mongo-depl" deleted
+ - service "auth-mongo-srv" deleted
+ - deployment.apps "client-depl" deleted
+ - service "client-srv" deleted
+ - deployment.apps "expiration-depl" deleted
+ - deployment.apps "expiration-redis-depl" deleted
+ - service "expiration-redis-srv" deleted
+ - ingress.networking.k8s.io "ingress-service" deleted
+ - deployment.apps "nats-depl" deleted
+ - service "nats-srv" deleted
+ - deployment.apps "orders-depl" deleted
+ - service "orders-srv" deleted
+ - deployment.apps "orders-mongo-depl" deleted
+ - service "orders-mongo-srv" deleted
+ - deployment.apps "payments-depl" deleted
+ - service "payments-srv" deleted
+ - deployment.apps "payments-mongo-depl" deleted
+ - service "payments-mongo-srv" deleted
+ - deployment.apps "tickets-depl" deleted
+ - service "tickets-srv" deleted
+ - deployment.apps "tickets-mongo-depl" deleted
+ - service "tickets-mongo-srv" deleted
+

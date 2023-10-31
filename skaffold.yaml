@@ -5,56 +5,67 @@ manifests:
     - infra/k8s/*
 deploy:
   kubectl: {}
+
 build:
   local:
     push: false
   artifacts:
     - image: forksofpower/tb-auth
-      context: ./services/auth
-      docker:
-        dockerfile: Dockerfile
-      sync:
-        manual:
-          - src: "src/**/*.ts"
-            dest: .
+      context: services/auth
+
     - image: forksofpower/tb-client
-      context: ./services/client
+      context: services/client
       docker:
-        dockerfile: Dockerfile
-        target: development
-      sync:
-        manual:
-          - src: "src/**/*.{ts,tsx,md}}"
-            dest: .
+        target: production
+
     - image: forksofpower/tb-tickets
-      context: ./services/tickets
-      docker:
-        dockerfile: Dockerfile
-      sync:
-        manual:
-          - src: "src/**/*.ts"
-            dest: .
+      context: services/tickets
+
     - image: forksofpower/tb-payments
-      context: ./services/payments
-      docker:
-        dockerfile: Dockerfile
-      sync:
-        manual:
-          - src: "src/**/*.ts"
-            dest: .
+      context: services/payments
+
     - image: forksofpower/tb-expiration
-      context: ./services/expiration
-      docker:
-        dockerfile: Dockerfile
-      sync:
-        manual:
-          - src: "src/**/*.{ts,json}"
-            dest: .
+      context: services/expiration
+
     - image: forksofpower/tb-orders
-      context: ./services/orders
-      docker:
-        dockerfile: Dockerfile
-      sync:
-        manual:
-          - src: "src/**/*.ts"
-            dest: .
+      context: services/orders
+
+profiles:
+  - name: dev
+    activation:
+      - command: dev
+    build:
+      local:
+        push: false
+      artifacts:
+        - image: forksofpower/tb-auth
+          context: services/auth
+          sync: &common-sync
+            manual:
+              - src: "**/*.{ts,js,json}"
+                dest: "app/"
+
+        - image: forksofpower/tb-client
+          context: services/client
+          docker:
+            target: development
+          sync:
+            manual:
+              - src: "**/*.{ts,tsx,js,jsx,json}"
+                dest: "app/"
+
+        - image: forksofpower/tb-tickets
+          context: services/tickets
+          sync: *common-sync
+
+        - image: forksofpower/tb-payments
+          context: services/payments
+          sync: *common-sync
+
+        - image: forksofpower/tb-expiration
+          context: services/expiration
+          sync: *common-sync
+
+        - image: forksofpower/tb-orders
+          context: services/orders
+          sync: *common-sync

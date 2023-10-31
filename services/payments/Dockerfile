@@ -1,12 +1,12 @@
 FROM node:alpine
 
 WORKDIR /app
-ENV NODE_ENV=production
+ENV NODE_ENV=development
 
 COPY package.json .
 # COPY .yarn .
 # RUN yarn workspaces focus --all --production
-RUN yarn install --production=true
+RUN yarn install
 COPY . .
 
 CMD ["npm", "start"]
