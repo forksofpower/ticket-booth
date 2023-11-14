@@ -1,35 +1,65 @@
 apiVersion: skaffold/v4beta6
 kind: Config
+
 manifests:
   rawYaml:
     - infra/k8s/*
 deploy:
   kubectl: {}
 
+# custom
+.YamlAnchors:
+  common:
+    - &prod-artifact
+      docker:
+        target: production
+        dockerfile: ../../infra/docker/service.Dockerfile
+    - &dev-artifact
+      docker:
+        target: development
+        dockerfile: ../../infra/docker/service.Dockerfile
+      sync:
+        manual:
+          - src: "**/*.{ts,js,json,tsx,jsx}"
+            dest: "app/"
+  artifactDefaults:
+    - &AUTH_SERVICE
+      image: forksofpower/tb-auth
+      context: services/auth
+
+    - &CLIENT_SERVICE
+      image: forksofpower/tb-client
+      context: services/client
+
+    - &TICKETS_SERVICE
+      image: forksofpower/tb-tickets
+      context: services/tickets
+
+    - &PAYMENTS_SERVICE
+      image: forksofpower/tb-payments
+      context: services/payments
+
+    - &EXPIRATION_SERVICE
+      image: forksofpower/tb-expiration
+      context: services/expiration
+
+    - &ORDERS_SERVICE
+      image: forksofpower/tb-orders
+      context: services/orders
+
+# production
 build:
   local:
     push: false
   artifacts:
-    - image: forksofpower/tb-auth
-      context: services/auth
+    - <<: [*AUTH_SERVICE, *prod-artifact]
+    - <<: [*CLIENT_SERVICE, *prod-artifact]
+    - <<: [*TICKETS_SERVICE, *prod-artifact]
+    - <<: [*PAYMENTS_SERVICE, *prod-artifact]
+    - <<: [*EXPIRATION_SERVICE, *prod-artifact]
+    - <<: [*ORDERS_SERVICE, *prod-artifact]
 
-    - image: forksofpower/tb-client
-      context: services/client
-      docker:
-        target: production
-
-    - image: forksofpower/tb-tickets
-      context: services/tickets
-
-    - image: forksofpower/tb-payments
-      context: services/payments
-
-    - image: forksofpower/tb-expiration
-      context: services/expiration
-
-    - image: forksofpower/tb-orders
-      context: services/orders
-
+# development
 profiles:
   - name: dev
     activation:
@@ -38,34 +68,9 @@ profiles:
       local:
         push: false
       artifacts:
-        - image: forksofpower/tb-auth
-          context: services/auth
-          sync: &common-sync
-            manual:
-              - src: "**/*.{ts,js,json}"
-                dest: "app/"
-
-        - image: forksofpower/tb-client
-          context: services/client
-          docker:
-            target: development
-          sync:
-            manual:
-              - src: "**/*.{ts,tsx,js,jsx,json}"
-                dest: "app/"
-
-        - image: forksofpower/tb-tickets
-          context: services/tickets
-          sync: *common-sync
-
-        - image: forksofpower/tb-payments
-          context: services/payments
-          sync: *common-sync
-
-        - image: forksofpower/tb-expiration
-          context: services/expiration
-          sync: *common-sync
-
-        - image: forksofpower/tb-orders
-          context: services/orders
-          sync: *common-sync
+        - <<: [*AUTH_SERVICE, *dev-artifact]
+        - <<: [*CLIENT_SERVICE, *dev-artifact]
+        - <<: [*TICKETS_SERVICE, *dev-artifact]
+        - <<: [*PAYMENTS_SERVICE, *dev-artifact]
+        - <<: [*EXPIRATION_SERVICE, *dev-artifact]
+        - <<: [*ORDERS_SERVICE, *dev-artifact]

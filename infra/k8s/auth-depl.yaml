@@ -15,6 +15,12 @@ spec:
       containers:
         - name: auth
           image: forksofpower/tb-auth
+          livenessProbe:
+            initialDelaySeconds: 5
+            periodSeconds: 5
+            httpGet:
+              port: 4000
+              path: /health
           resources:
             limits:
               memory: "1Gi"

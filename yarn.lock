@@ -1072,7 +1072,6 @@ __metadata:
     jsonwebtoken: ^9.0.1
     node-nats-streaming: ^0.3.2
     rimraf: ^5.0.1
-    tsconfig-paths: ^4.2.0
     typescript: ^5.2.2
   languageName: unknown
   linkType: soft
@@ -2143,8 +2142,6 @@ __metadata:
 "@ticketbooth/configs@^1.0.0, @ticketbooth/configs@workspace:lib/configs":
   version: 0.0.0-use.local
   resolution: "@ticketbooth/configs@workspace:lib/configs"
-  dependencies:
-    tsconfig-paths: ^4.2.0
   languageName: unknown
   linkType: soft
 

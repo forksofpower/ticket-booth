@@ -7,7 +7,9 @@
   "author": "",
   "license": "ISC",
   "scripts": {
-    "start": "ts-node-dev --poll -r tsconfig-paths/register ./src/index.ts",
+    "dev": "ts-node-dev --poll -r tsconfig-paths/register ./src/index.ts",
+    "build": "tsc -p .",
+    "start": "node build/index.js",
     "test": "echo \"\n\u001b[95mTesting: Orders Service\u001b[37m\n\" && jest",
     "test:watch": "yarn test --watch-all",
     "lint": "eslint ."

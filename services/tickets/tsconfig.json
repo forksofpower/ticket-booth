@@ -6,5 +6,15 @@
         "./src/*"
       ]
     },
-  }
+    "outDir": "./build",
+    "rootDir": "./src"
+  },
+  "exclude": [
+    "node_modules",
+    "build",
+    "src/**/*.spec.ts",
+    "src/**/*.test.ts",
+    "src/**/__mocks__",
+    "jest.config.ts",
+  ]
 }
